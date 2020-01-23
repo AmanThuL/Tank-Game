@@ -101,10 +101,10 @@ MonoBehaviour:
   maxSpeed: 0.1
   turnSpeed: 2.4
   velocity: {x: 0, y: 0, z: 0}
-  moveUp: 119
-  moveDown: 115
-  moveLeft: 97
-  moveRight: 100
+  moveUp: 273
+  moveDown: 274
+  moveLeft: 276
+  moveRight: 275
   rb: {fileID: 9208099354787253962}
 --- !u!50 &9208099354787253962
 Rigidbody2D:

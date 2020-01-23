@@ -113,7 +113,7 @@ public class BlueTankControls : MonoBehaviour
     /// </summary>
     private void Decelerate()
     {
-        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && velocity != Vector3.zero)
+        if ((Input.GetKeyUp(moveUp) || Input.GetKeyUp(moveDown)) && velocity != Vector3.zero)
         {
             ifDecelerating = true;
         }
@@ -121,6 +121,7 @@ public class BlueTankControls : MonoBehaviour
         if (ifDecelerating)
         {
             velocity *= deceleration;
+            Debug.Log(velocity);
             if (velocity.magnitude <= 0.0001f)
             {
                 velocity = Vector3.zero;
