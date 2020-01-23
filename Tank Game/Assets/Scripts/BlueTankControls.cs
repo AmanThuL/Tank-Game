@@ -19,6 +19,11 @@ public class BlueTankControls : MonoBehaviour
     private Vector3 velocity;
     private Vector3 direction = new Vector3(1f, 0f, 0f);
 
+    [SerializeField] KeyCode moveUp;
+    [SerializeField] KeyCode moveDown;
+    [SerializeField] KeyCode moveLeft;
+    [SerializeField] KeyCode moveRight;
+
     private bool ifDecelerating = false;
 
     public Rigidbody2D rb;
@@ -54,11 +59,11 @@ public class BlueTankControls : MonoBehaviour
     {
         //turn the tank
         //rotate using angles
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(moveLeft))
         {
             direction += transform.up * turnSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(moveRight))
         {
             direction -= transform.up * turnSpeed * Time.deltaTime;
         }
@@ -72,7 +77,7 @@ public class BlueTankControls : MonoBehaviour
     private void Move()
     {
         //this grouping handles acceleration and deceleration
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(moveUp))
         {
             ifDecelerating = false;
 
@@ -85,7 +90,7 @@ public class BlueTankControls : MonoBehaviour
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(moveDown))
         { 
             ifDecelerating = false;
 
