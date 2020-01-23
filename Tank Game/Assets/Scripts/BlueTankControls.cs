@@ -4,95 +4,125 @@ using UnityEngine;
 
 public class BlueTankControls : MonoBehaviour
 {
-	//Sepearte speed and direction to maintain turning speed
-	[SerializeField]
-	float Acceleartion = 30f;
-	[SerializeField]
-	float maxspeed = 10f;
+    //Sepearte speed and direction to maintain turning speed
+    [SerializeField] private Vector3 acceleration;
+    [SerializeField] private float accelRate = 30f;
+    [SerializeField] [Range(0, 1)] private float deceleration;
+    [SerializeField] [Range(0, 3)] private float maxSpeed = 10f;
+    //[SerializeField]
+    //private float velocity = 0f;
+    [SerializeField]
+    private float turnSpeed = 2.4f;
 
-	public Rigidbody2D rb;
-	float speed = 0f;
+    //hold what the actual movement is of the tank
+    [SerializeField]
+    private Vector3 velocity;
+    private Vector3 direction = new Vector3(1f, 0f, 0f);
 
-	//hold what the actual movement is of the tank
-	Vector3 movement;
+    private bool ifDecelerating = false;
 
+    public Rigidbody2D rb;
 
-	private Vector3 direction = new Vector3(1f,0f,0f);
-	
-	[SerializeField]
-	float turnSpeed = 2.4f;
-
-
-
-	//currently unused
-	//// start is called before the first frame update
-	//void start()
-	//{
-
-	//}
-
-	//get player input in update
-	void Update()
+    // start is called before the first frame update
+    void Start()
     {
-
-		//this grouping handles acceleration and deceleration
-		if (Input.GetKey(KeyCode.W))
-		{ //forward movement
-			//increase speed
-			speed += Acceleartion * Time.deltaTime;
-			//speed does not go over max speed
-			if (speed > maxspeed)
-			{
-				speed = maxspeed;
-			}
-		}
-		else if (Input.GetKey(KeyCode.S))
-		{ //backward movement
-			//decrease speed
-			speed -= Acceleartion * Time.deltaTime;
-			//speed does not go over max speed
-			if (speed < -maxspeed)
-			{
-				speed = -maxspeed;
-			}
-		}
-		else
-		{ //no movement / stopping
-		  //decrease speed to stop
-			if (speed > 0) { speed -= Acceleartion * Time.deltaTime; }
-			else { speed += Acceleartion * Time.deltaTime; }
-
-			
-			if (speed > -0.001 && speed < 0.001)
-			{
-				speed = 0;
-			}
-			
-		}
-
-		//turn the tank
-		//rotate using angles
-		if (Input.GetKey(KeyCode.A))
-		{
-			direction = direction + transform.up * turnSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.D))
-		{
-			direction = direction - transform.up * turnSpeed * Time.deltaTime;
-		}
-
-		direction.Normalize();
-		
-
-		//update info
-		//calculate how far the tank should move
-		movement = direction * speed * Time.deltaTime;
-
-		rb.MovePosition(transform.position + movement);
-		rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-
+        velocity = Vector3.zero;
     }
 
-	
+    //get player input in update
+    void Update()
+    {
+        Rotate();
+        Move();
+        Decelerate();
+    }
+
+    /// <summary>
+    /// Sets the rigidbody of the tank
+    /// </summary>
+    protected void UpdateRB()
+    {
+        //update info
+        rb.MovePosition(transform.position + velocity);
+        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    }
+
+    /// <summary>
+    /// Rotates the tank using A/D key
+    /// </summary>
+    private void Rotate()
+    {
+        //turn the tank
+        //rotate using angles
+        if (Input.GetKey(KeyCode.A))
+        {
+            direction += transform.up * turnSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            direction -= transform.up * turnSpeed * Time.deltaTime;
+        }
+
+        direction.Normalize();
+    }
+
+    /// <summary>
+    /// The tank moves forward/backward
+    /// </summary>
+    private void Move()
+    {
+        //this grouping handles acceleration and deceleration
+        if (Input.GetKey(KeyCode.W))
+        {
+            ifDecelerating = false;
+
+            acceleration = accelRate * direction * Time.deltaTime;
+
+            //forward movement
+            //increase speed
+            velocity += acceleration;
+
+            //speed does not go over max speed
+            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        { 
+            ifDecelerating = false;
+
+            acceleration = accelRate * direction * Time.deltaTime;
+
+            //backward movement
+            //decrease speed
+            velocity -= acceleration;
+
+            //speed does not go over max speed
+            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+
+        }
+
+        UpdateRB();
+    }
+
+    /// <summary>
+    /// Decelerates the tank
+    /// </summary>
+    private void Decelerate()
+    {
+        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && velocity != Vector3.zero)
+        {
+            ifDecelerating = true;
+        }
+
+        if (ifDecelerating)
+        {
+            velocity *= deceleration;
+            if (velocity.magnitude <= 0.0001f)
+            {
+                velocity = Vector3.zero;
+
+                ifDecelerating = false;
+            }
+            UpdateRB();
+        }
+    }
 }

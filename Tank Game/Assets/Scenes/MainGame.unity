@@ -443,8 +443,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!70 &888294038
-CapsuleCollider2D:
+--- !u!61 &888294038
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -457,8 +457,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.29, y: 0.17}
-  m_Direction: 1
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.31, y: 0.18}
+    newSize: {x: 0.18, y: 0.31}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.31, y: 0.18}
+  m_EdgeRadius: 0
 --- !u!50 &888294039
 Rigidbody2D:
   serializedVersion: 4
@@ -492,10 +502,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7e106ef3f92124c9b2f0eaa2ca121e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleartion: 20
-  maxspeed: 10
-  rb: {fileID: 888294039}
+  acceleration: {x: 0, y: 0, z: 0}
+  accelRate: 1
+  deceleration: 0.751
+  maxSpeed: 0.1
   turnSpeed: 2.4
+  velocity: {x: 0, y: 0, z: 0}
+  rb: {fileID: 888294039}
 --- !u!212 &888294041
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -612,7 +625,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.8858218
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
