@@ -149,7 +149,6 @@ public class BlueTankControls : MonoBehaviour
             Debug.Log(angle);
             tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
             tempBullet.tag = gameObject.tag;
-
         }
     }
 

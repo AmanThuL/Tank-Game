@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    GameObject tank;
+    //GameObject tank;
 
     float speed;
     public Vector3 direction;
@@ -15,9 +15,9 @@ public class Bullet : MonoBehaviour
     void Start()
     {
 
-        tank = GameObject.Find("Blue_Tank");
-        direction = tank.GetComponent<BlueTankControls>().direction;
-        position = tank.GetComponent<BlueTankControls>().transform.position + direction * .35f;
+        //tank = GameObject.Find("Blue_Tank");
+        //direction = tank.GetComponent<BlueTankControls>().direction;
+        //position = tank.GetComponent<BlueTankControls>().transform.position + direction * .35f;
         speed = .2f;
         direction.Normalize();
         //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.x, direction.y));
@@ -53,7 +53,19 @@ public class Bullet : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DestroySelf();
+        if(collision.gameObject.tag != gameObject.tag)
+        {
+            if (collision.gameObject.tag == "Blue")
+            {
+                GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+            }
+            if (collision.gameObject.tag == "Red")
+            {
+                GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+            }
+
+            DestroySelf();
+        }
     }
 
     /// <summary>
