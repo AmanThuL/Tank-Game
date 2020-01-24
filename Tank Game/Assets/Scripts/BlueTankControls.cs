@@ -143,7 +143,7 @@ public class BlueTankControls : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Debug.Log(angle);
             Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
         }
