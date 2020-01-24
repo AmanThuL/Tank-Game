@@ -39,9 +39,12 @@ public class Manager : MonoBehaviour
     /// <param name="dt"></param>
     void UpdateRespawnTimer(float dt)
     {
+        //if the blue tank is dead
         if (blueDead)
         {
+            //update it's timer
             spawnTimerBlue += dt;
+            //if the blue tank is ready to respawn
             if (spawnTimerBlue > SpawnDelay)
             {
                 RespawnBlueTank();
@@ -49,9 +52,12 @@ public class Manager : MonoBehaviour
 
         }
 
+        //if the red tank is dead
         if(redDead)
         {
+            //update it's timer
             spawnTimerRed += dt;
+            //check if the red tank is ready to respawn
             if (spawnTimerRed > SpawnDelay)
             {
                 RespawnRedTank();
@@ -63,8 +69,11 @@ public class Manager : MonoBehaviour
     /// </summary>
     void RespawnBlueTank()
     {
+        //the blue tank is no longer dead
         blueDead = false;
+        //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
+        //move the blue tank to it's spawn location
         activeBlueTank.gameObject.transform.position = blueSpawnPosition;
     }
 
@@ -73,8 +82,11 @@ public class Manager : MonoBehaviour
     /// </summary>
     void RespawnRedTank()
     {
+        //the red tank is no longer dead
         redDead = false;
+        //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
+        //move the red tank to it's spawn position
         activeRedTank.gameObject.transform.position = redSpawnPosition;
     }
 
@@ -109,5 +121,7 @@ public class Manager : MonoBehaviour
         //destroy the red tank
         GameObject.Destroy(activeRedTank);
     }
+
+    //public void RedAdvance()
 
 }

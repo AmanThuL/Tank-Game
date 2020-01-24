@@ -4,10 +4,26 @@ using UnityEngine;
 
 public class BlueTankControls : MonoBehaviour
 {
-    //Sepearte speed and direction to maintain turning speed
+    // Movement
+    [Header("Movement")]
     [SerializeField] private Vector3 acceleration;
-    [SerializeField] private float accelRate = 30f;
+    [SerializeField] [Range(0, 5)] private float accelRate;
     [SerializeField] [Range(0, 1)] private float deceleration;
+    [SerializeField] [Range(0, 20)] private float maxSpeed;
+
+    [Header("Rotation")]
+    [SerializeField] [Range(30, 100)] private float turnSpeed;
+    private float angleOfRotation;
+
+    //hold what the actual movement is of the tank
+    [Header("Tank Properties")]
+    public Vector3 tankPos;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private Vector3 direction;
+
+    private bool ifDecelerating = false;
+
+
     [SerializeField] [Range(0, 3)] public float maxSpeed = 10f;
     //[SerializeField]
     //private float velocity = 0f;
@@ -38,6 +54,9 @@ public class BlueTankControls : MonoBehaviour
     void Start()
     {
         velocity = Vector3.zero;
+        tankPos = transform.position;
+        direction = Vector3.right;
+        velocity = Vector3.zero;
     }
 
     //get player input in update
@@ -52,11 +71,12 @@ public class BlueTankControls : MonoBehaviour
     /// <summary>
     /// Sets the rigidbody of the tank
     /// </summary>
-    protected void UpdateRB()
+    protected void SetTransform()
     {
         //update info
-        rb.MovePosition(transform.position + velocity);
-        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angleOfRotation);
+
+        transform.position += velocity * Time.deltaTime;
     }
 
     /// <summary>
@@ -68,14 +88,17 @@ public class BlueTankControls : MonoBehaviour
         //rotate using angles
         if (Input.GetKey(moveLeft))
         {
-            direction += transform.up * turnSpeed * Time.deltaTime;
+            angleOfRotation += turnSpeed * Time.deltaTime;
+            direction = Quaternion.Euler(0, 0, turnSpeed * Time.deltaTime) * direction;
         }
         if (Input.GetKey(moveRight))
         {
-            direction -= transform.up * turnSpeed * Time.deltaTime;
+            angleOfRotation -= turnSpeed * Time.deltaTime;
+            direction = Quaternion.Euler(0, 0, -turnSpeed * Time.deltaTime) * direction;
         }
 
         direction.Normalize();
+        SetTransform();
     }
 
     /// <summary>
@@ -111,8 +134,6 @@ public class BlueTankControls : MonoBehaviour
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         }
-
-        UpdateRB();
     }
 
     /// <summary>
@@ -128,14 +149,14 @@ public class BlueTankControls : MonoBehaviour
         if (ifDecelerating)
         {
             velocity *= deceleration;
-            Debug.Log(velocity);
-            if (velocity.magnitude <= 0.0001f)
+
+            if (velocity.magnitude <= 0.05f)
             {
                 velocity = Vector3.zero;
 
                 ifDecelerating = false;
             }
-            UpdateRB();
+            SetTransform();
         }
     }
 
@@ -149,6 +170,7 @@ public class BlueTankControls : MonoBehaviour
             Debug.Log(angle);
             tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
             tempBullet.tag = gameObject.tag;
+            tempBullet.GetComponent<Bullet>().Initialize(direction);
 
         }
     }
