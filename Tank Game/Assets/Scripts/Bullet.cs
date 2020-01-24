@@ -8,19 +8,20 @@ public class Bullet : MonoBehaviour
 
     float speed;
     public Vector3 direction;
-    public Vector3 velocity;
+    [SerializeField] public Vector3 velocity;
     public Vector3 position;
 
     // Start is called before the first frame update
     void Start()
     {
-        tank = GameObject.Find("Blue_Tank");
-        direction = tank.GetComponent<Vehicle>().direction;
-        position = tank.GetComponent<Vehicle>().vehiclePosition + direction * .35f;
-        speed = tank.GetComponent<Vehicle>().maxSpeed * .8f;
-        transform.rotation = Quaternion.Euler(direction);
+        position = transform.position;
+        //tank = GameObject.Find("Blue_Tank");
+        //direction = tank.GetComponent<BlueTankControls>().direction;
+        //position = tank.GetComponent<BlueTankControls>().vehiclePosition + direction * .35f;
+        //speed = tank.GetComponent<BlueTankControls>().maxSpeed * .8f;
+        //transform.rotation = Quaternion.Euler(direction);
 
-        velocity = direction * speed;
+        //velocity = direction * speed;
     }
 
     // Update is called once per frame
@@ -32,7 +33,42 @@ public class Bullet : MonoBehaviour
 
     void MoveBullet()
     {
-        position += velocity;
+        position += velocity * Time.deltaTime;
         transform.position = position;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "BlueTank")
+        {
+            GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+        }
+        if(collision.gameObject.tag == "RedTank")
+        {
+            GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+        }
+
+        DestroySelf();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DestroySelf();
+    }
+
+    /// <summary>
+    /// The Bullet Destroys itself
+    /// </summary>
+    void DestroySelf()
+    {
+        GameObject.Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Bullet Destroyes itself after a delay
+    /// </summary>
+    /// <param name="delay">Float, the number of seconds before the bullet destroyes itself</param>
+    void DestroySelf(float delay)
+    {
+        GameObject.Destroy(this, delay);
     }
 }

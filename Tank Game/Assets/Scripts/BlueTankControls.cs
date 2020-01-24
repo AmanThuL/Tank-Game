@@ -8,7 +8,7 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField] private Vector3 acceleration;
     [SerializeField] private float accelRate = 30f;
     [SerializeField] [Range(0, 1)] private float deceleration;
-    [SerializeField] [Range(0, 3)] private float maxSpeed = 10f;
+    [SerializeField] [Range(0, 3)] public float maxSpeed = 10f;
     //[SerializeField]
     //private float velocity = 0f;
     [SerializeField]
