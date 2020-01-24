@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9208099354787253963}
   m_Layer: 0
   m_Name: Red_Tank
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,11 +101,13 @@ MonoBehaviour:
   maxSpeed: 0.1
   turnSpeed: 2.4
   velocity: {x: 0, y: 0, z: 0}
+  direction: {x: 1, y: 0, z: 0}
   moveUp: 274
   moveDown: 273
   moveLeft: 276
   moveRight: 275
   rb: {fileID: 9208099354787253962}
+  bullet: {fileID: 2792031396910480454, guid: dd4d791319dfc7a419d0ec854a1e91e0, type: 3}
 --- !u!50 &9208099354787253962
 Rigidbody2D:
   serializedVersion: 4
