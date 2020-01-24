@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     //GameObject tank;
 
-    float speed;
+    [SerializeField] [Range (0,3)] float speed;
     public Vector3 direction;
     [SerializeField] public Vector3 velocity;
     public Vector3 position;
@@ -15,14 +15,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
 
-        //tank = GameObject.Find("Blue_Tank");
-        //direction = tank.GetComponent<BlueTankControls>().direction;
-        //position = tank.GetComponent<BlueTankControls>().transform.position + direction * .35f;
-        speed = .2f;
-        direction.Normalize();
-        //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.x, direction.y));
-
-        //velocity = direction * speed;
     }
 
     // Update is called once per frame
@@ -84,4 +76,12 @@ public class Bullet : MonoBehaviour
     {
         GameObject.Destroy(this, delay);
     } 
+
+    public void Initialize( Vector3 dir)
+    {
+        direction = dir;
+        speed = .2f;
+        direction.Normalize();
+        velocity = direction * speed;
+    }
 }
