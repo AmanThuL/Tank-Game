@@ -17,7 +17,7 @@ public class BlueTankControls : MonoBehaviour
     //hold what the actual movement is of the tank
     [SerializeField]
     private Vector3 velocity;
-    private Vector3 direction = new Vector3(1f, 0f, 0f);
+    public Vector3 direction = new Vector3(1f, 0f, 0f);
 
     [SerializeField] KeyCode moveUp;
     [SerializeField] KeyCode moveDown;
@@ -27,6 +27,11 @@ public class BlueTankControls : MonoBehaviour
     private bool ifDecelerating = false;
 
     public Rigidbody2D rb;
+
+    //Bullet fire rate
+    public GameObject bullet;
+    float fireRate = .4f;
+    float nextFire = 0f;
 
     // start is called before the first frame update
     void Start()
@@ -40,6 +45,7 @@ public class BlueTankControls : MonoBehaviour
         Rotate();
         Move();
         Decelerate();
+        ShootBullet();
     }
 
     /// <summary>
@@ -131,4 +137,16 @@ public class BlueTankControls : MonoBehaviour
             UpdateRB();
         }
     }
+
+    void ShootBullet()
+    {
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+            Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+        }
+    }
+
 }

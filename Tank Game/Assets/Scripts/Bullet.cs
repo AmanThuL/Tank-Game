@@ -14,12 +14,13 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position = transform.position;
-        //tank = GameObject.Find("Blue_Tank");
-        //direction = tank.GetComponent<BlueTankControls>().direction;
-        //position = tank.GetComponent<BlueTankControls>().vehiclePosition + direction * .35f;
-        //speed = tank.GetComponent<BlueTankControls>().maxSpeed * .8f;
-        //transform.rotation = Quaternion.Euler(direction);
+
+        tank = GameObject.Find("Blue_Tank");
+        direction = tank.GetComponent<BlueTankControls>().direction;
+        position = tank.GetComponent<BlueTankControls>().transform.position + direction * .35f;
+        speed = .2f;
+        direction.Normalize();
+        //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.x, direction.y));
 
         //velocity = direction * speed;
     }

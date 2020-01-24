@@ -101,11 +101,13 @@ MonoBehaviour:
   maxSpeed: 0.1
   turnSpeed: 2.4
   velocity: {x: 0, y: 0, z: 0}
+  direction: {x: 1, y: 0, z: 0}
   moveUp: 119
   moveDown: 115
   moveLeft: 97
   moveRight: 100
   rb: {fileID: 7822391243506017311}
+  bullet: {fileID: 2792031396910480454, guid: dd4d791319dfc7a419d0ec854a1e91e0, type: 3}
 --- !u!50 &7822391243506017311
 Rigidbody2D:
   serializedVersion: 4
