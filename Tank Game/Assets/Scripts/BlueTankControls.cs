@@ -4,33 +4,44 @@ using UnityEngine;
 
 public class BlueTankControls : MonoBehaviour
 {
-    //Sepearte speed and direction to maintain turning speed
+    // Movement
+    [Header("Movement")]
     [SerializeField] private Vector3 acceleration;
-    [SerializeField] private float accelRate = 30f;
+    [SerializeField] [Range(0, 5)] private float accelRate;
     [SerializeField] [Range(0, 1)] private float deceleration;
-    [SerializeField] [Range(0, 3)] private float maxSpeed = 10f;
-    //[SerializeField]
-    //private float velocity = 0f;
-    [SerializeField]
-    private float turnSpeed = 2.4f;
+    [SerializeField] [Range(0, 20)] private float maxSpeed;
+
+    [Header("Rotation")]
+    [SerializeField] [Range(30, 100)] private float turnSpeed;
+    //[SerializeField] private float angleOfRotation;
 
     //hold what the actual movement is of the tank
-    [SerializeField]
-    private Vector3 velocity;
-    private Vector3 direction = new Vector3(1f, 0f, 0f);
+    [Header("Tank Properties")]
+    public Vector3 tankPos;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private Vector3 direction;
+
+    private bool ifDecelerating = false;
 
     [SerializeField] KeyCode moveUp;
     [SerializeField] KeyCode moveDown;
     [SerializeField] KeyCode moveLeft;
     [SerializeField] KeyCode moveRight;
+    [SerializeField] KeyCode shoot;
 
-    private bool ifDecelerating = false;
 
     public Rigidbody2D rb;
+
+    //Bullet fire rate
+    public GameObject bullet;
+    float fireRate = .4f;
+    float nextFire = 0f;
 
     // start is called before the first frame update
     void Start()
     {
+        velocity = Vector3.zero;
+        tankPos = transform.position;
         velocity = Vector3.zero;
     }
 
@@ -40,16 +51,17 @@ public class BlueTankControls : MonoBehaviour
         Rotate();
         Move();
         Decelerate();
+        ShootBullet();
     }
 
     /// <summary>
     /// Sets the rigidbody of the tank
     /// </summary>
-    protected void UpdateRB()
+    protected void SetTransform()
     {
         //update info
-        rb.MovePosition(transform.position + velocity);
-        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f,0f,Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg);
+        transform.position += velocity * Time.deltaTime;
     }
 
     /// <summary>
@@ -61,14 +73,17 @@ public class BlueTankControls : MonoBehaviour
         //rotate using angles
         if (Input.GetKey(moveLeft))
         {
-            direction += transform.up * turnSpeed * Time.deltaTime;
+            //angleOfRotation += turnSpeed * Time.deltaTime;
+            direction = Quaternion.Euler(0, 0, turnSpeed * Time.deltaTime) * direction;
         }
         if (Input.GetKey(moveRight))
         {
-            direction -= transform.up * turnSpeed * Time.deltaTime;
+            //angleOfRotation -= turnSpeed * Time.deltaTime;
+            direction = Quaternion.Euler(0, 0, -turnSpeed * Time.deltaTime) * direction;
         }
 
         direction.Normalize();
+        SetTransform();
     }
 
     /// <summary>
@@ -85,7 +100,7 @@ public class BlueTankControls : MonoBehaviour
 
             //forward movement
             //increase speed
-            velocity += acceleration;
+            velocity = (velocity.magnitude + acceleration.magnitude) *direction;
 
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
@@ -98,14 +113,12 @@ public class BlueTankControls : MonoBehaviour
 
             //backward movement
             //decrease speed
-            velocity -= acceleration;
+            velocity = -(velocity.magnitude + acceleration.magnitude) * direction;
 
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         }
-
-        UpdateRB();
     }
 
     /// <summary>
@@ -113,7 +126,7 @@ public class BlueTankControls : MonoBehaviour
     /// </summary>
     private void Decelerate()
     {
-        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && velocity != Vector3.zero)
+        if ((Input.GetKeyUp(moveUp) || Input.GetKeyUp(moveDown)) && velocity != Vector3.zero)
         {
             ifDecelerating = true;
         }
@@ -121,13 +134,30 @@ public class BlueTankControls : MonoBehaviour
         if (ifDecelerating)
         {
             velocity *= deceleration;
-            if (velocity.magnitude <= 0.0001f)
+
+            if (velocity.magnitude <= 0.05f)
             {
                 velocity = Vector3.zero;
 
                 ifDecelerating = false;
             }
-            UpdateRB();
+            SetTransform();
         }
     }
+
+    void ShootBullet()
+    {
+        GameObject tempBullet;
+        if (Input.GetKey(shoot) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+            tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+            tempBullet.tag = gameObject.tag;
+            tempBullet.GetComponent<Bullet>().Initialize(direction);
+
+        }
+    }
+
 }
