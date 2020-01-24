@@ -12,7 +12,7 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField] [Range(0, 20)] private float maxSpeed;
 
     [Header("Rotation")]
-    [SerializeField] [Range(30, 100)] private float turnSpeed;
+    [SerializeField] [Range(30, 200)] private float turnSpeed;
     //[SerializeField] private float angleOfRotation;
 
     //hold what the actual movement is of the tank
