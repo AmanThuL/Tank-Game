@@ -96,10 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: {x: 0, y: 0, z: 0}
-  accelRate: 1
+  accelRate: 5
   deceleration: 0.751
-  maxSpeed: 0.1
-  turnSpeed: 2.4
+  maxSpeed: 7
+  turnSpeed: 100
+  tankPos: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 1, y: 0, z: 0}
   moveUp: 119

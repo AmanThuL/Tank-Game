@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     //GameObject tank;
 
-    [SerializeField] [Range (0,3)] float speed;
+    [SerializeField] [Range (0,20)] float speed;
     public Vector3 direction;
     [SerializeField] public Vector3 velocity;
     public Vector3 position;

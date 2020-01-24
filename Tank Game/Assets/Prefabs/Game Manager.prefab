@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4294a56a4e913bc4e9447a4e6b3ca386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueTank: {fileID: 0}
-  RedTank: {fileID: 0}
+  BlueTank: {fileID: 7822391243506017309, guid: 8efd4bd8ec35bb644860e6c64e37b0c3,
+    type: 3}
+  RedTank: {fileID: 9208099354787253960, guid: ea12c36d259eded419c19c07cb3f90da, type: 3}
   blueSpawnPosition: {x: -5, y: 0, z: 0}
   redSpawnPosition: {x: 5, y: 0, z: 0}
   SpawnDelay: 1

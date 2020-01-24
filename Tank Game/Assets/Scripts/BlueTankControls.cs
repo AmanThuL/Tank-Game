@@ -13,7 +13,7 @@ public class BlueTankControls : MonoBehaviour
 
     [Header("Rotation")]
     [SerializeField] [Range(30, 100)] private float turnSpeed;
-    private float angleOfRotation;
+    //[SerializeField] private float angleOfRotation;
 
     //hold what the actual movement is of the tank
     [Header("Tank Properties")]
@@ -23,25 +23,12 @@ public class BlueTankControls : MonoBehaviour
 
     private bool ifDecelerating = false;
 
-
-    [SerializeField] [Range(0, 3)] public float maxSpeed = 10f;
-    //[SerializeField]
-    //private float velocity = 0f;
-    [SerializeField]
-    private float turnSpeed = 2.4f;
-
-    //hold what the actual movement is of the tank
-    [SerializeField]
-    private Vector3 velocity;
-    public Vector3 direction = new Vector3(1f, 0f, 0f);
-
     [SerializeField] KeyCode moveUp;
     [SerializeField] KeyCode moveDown;
     [SerializeField] KeyCode moveLeft;
     [SerializeField] KeyCode moveRight;
     [SerializeField] KeyCode shoot;
 
-    private bool ifDecelerating = false;
 
     public Rigidbody2D rb;
 
@@ -55,7 +42,6 @@ public class BlueTankControls : MonoBehaviour
     {
         velocity = Vector3.zero;
         tankPos = transform.position;
-        direction = Vector3.right;
         velocity = Vector3.zero;
     }
 
@@ -74,8 +60,7 @@ public class BlueTankControls : MonoBehaviour
     protected void SetTransform()
     {
         //update info
-        transform.rotation = Quaternion.Euler(0, 0, angleOfRotation);
-
+        transform.rotation = Quaternion.Euler(0f,0f,Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg);
         transform.position += velocity * Time.deltaTime;
     }
 
@@ -88,12 +73,12 @@ public class BlueTankControls : MonoBehaviour
         //rotate using angles
         if (Input.GetKey(moveLeft))
         {
-            angleOfRotation += turnSpeed * Time.deltaTime;
+            //angleOfRotation += turnSpeed * Time.deltaTime;
             direction = Quaternion.Euler(0, 0, turnSpeed * Time.deltaTime) * direction;
         }
         if (Input.GetKey(moveRight))
         {
-            angleOfRotation -= turnSpeed * Time.deltaTime;
+            //angleOfRotation -= turnSpeed * Time.deltaTime;
             direction = Quaternion.Euler(0, 0, -turnSpeed * Time.deltaTime) * direction;
         }
 
@@ -115,7 +100,7 @@ public class BlueTankControls : MonoBehaviour
 
             //forward movement
             //increase speed
-            velocity += acceleration;
+            velocity = (velocity.magnitude + acceleration.magnitude) *direction;
 
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
@@ -128,7 +113,7 @@ public class BlueTankControls : MonoBehaviour
 
             //backward movement
             //decrease speed
-            velocity -= acceleration;
+            velocity = -(velocity.magnitude + acceleration.magnitude) * direction;
 
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
