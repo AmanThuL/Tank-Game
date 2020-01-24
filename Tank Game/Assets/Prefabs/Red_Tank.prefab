@@ -107,7 +107,7 @@ MonoBehaviour:
   moveDown: 274
   moveLeft: 276
   moveRight: 275
-  shoot: 305
+  shoot: 303
   rb: {fileID: 9208099354787253962}
   bullet: {fileID: 2792031396910480454, guid: dd4d791319dfc7a419d0ec854a1e91e0, type: 3}
 --- !u!50 &9208099354787253962
