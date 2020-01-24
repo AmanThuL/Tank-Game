@@ -80,8 +80,8 @@ public class Bullet : MonoBehaviour
     public void Initialize( Vector3 dir)
     {
         direction = dir;
-        speed = .2f;
         direction.Normalize();
         velocity = direction * speed;
+        position = transform.position;
     }
 }
