@@ -23,6 +23,7 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField] KeyCode moveDown;
     [SerializeField] KeyCode moveLeft;
     [SerializeField] KeyCode moveRight;
+    [SerializeField] KeyCode shoot;
 
     private bool ifDecelerating = false;
 
@@ -140,12 +141,15 @@ public class BlueTankControls : MonoBehaviour
 
     void ShootBullet()
     {
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
+        GameObject tempBullet;
+        if (Input.GetKey(shoot) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Debug.Log(angle);
-            Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+            tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+            tempBullet.tag = gameObject.tag;
+
         }
     }
 

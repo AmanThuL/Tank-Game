@@ -38,19 +38,19 @@ public class Bullet : MonoBehaviour
         transform.position = position;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "BlueTank")
-        {
-            GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
-        }
-        if(collision.gameObject.tag == "RedTank")
-        {
-            GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
-        }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if(collision.gameObject.tag == "Blue")
+    //    {
+    //        GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+    //    }
+    //    if(collision.gameObject.tag == "RedTank")
+    //    {
+    //        GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+    //    }
 
-        DestroySelf();
-    }
+    //    DestroySelf();
+    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DestroySelf();
@@ -71,5 +71,5 @@ public class Bullet : MonoBehaviour
     void DestroySelf(float delay)
     {
         GameObject.Destroy(this, delay);
-    }
+    } 
 }
