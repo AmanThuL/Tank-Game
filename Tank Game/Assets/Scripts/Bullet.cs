@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    GameObject tank;
+    //GameObject tank;
 
     [SerializeField] [Range (0,3)] float speed;
     public Vector3 direction;
@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -44,7 +45,19 @@ public class Bullet : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DestroySelf();
+        if(collision.gameObject.tag != gameObject.tag)
+        {
+            if (collision.gameObject.tag == "Blue")
+            {
+                GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+            }
+            if (collision.gameObject.tag == "Red")
+            {
+                GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+            }
+
+            DestroySelf();
+        }
     }
 
     /// <summary>
