@@ -15,9 +15,9 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         tank = GameObject.Find("Blue_Tank");
-        direction = tank.GetComponent<Vehicle>().direction;
-        position = tank.GetComponent<Vehicle>().vehiclePosition + direction * .35f;
-        speed = tank.GetComponent<Vehicle>().maxSpeed * .8f;
+        //direction = tank.GetComponent<Vehicle>().direction;
+        //position = tank.GetComponent<Vehicle>().vehiclePosition + direction * .35f;
+        //speed = tank.GetComponent<Vehicle>().maxSpeed * .8f;
         transform.rotation = Quaternion.Euler(direction);
 
         velocity = direction * speed;
