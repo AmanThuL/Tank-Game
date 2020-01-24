@@ -434,8 +434,8 @@ GameObject:
   - component: {fileID: 888294042}
   - component: {fileID: 888294041}
   - component: {fileID: 888294040}
-  - component: {fileID: 888294039}
   - component: {fileID: 888294038}
+  - component: {fileID: 888294039}
   m_Layer: 0
   m_Name: Blue_Tank
   m_TagString: Untagged
@@ -503,12 +503,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: {x: 0, y: 0, z: 0}
-  accelRate: 1
-  deceleration: 0.41
-  maxSpeed: 0.1
-  turnSpeed: 2.4
+  accelRate: 3.23
+  deceleration: 0.751
+  maxSpeed: 5.7
+  turnSpeed: 70
+  tankPos: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  rb: {fileID: 888294039}
+  direction: {x: 1, y: 0, z: 0}
 --- !u!212 &888294041
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class BlueTankControls : MonoBehaviour
 {
-    //Sepearte speed and direction to maintain turning speed
+    // Movement
+    [Header("Movement")]
     [SerializeField] private Vector3 acceleration;
-    [SerializeField] private float accelRate = 30f;
+    [SerializeField] [Range(0, 5)] private float accelRate;
     [SerializeField] [Range(0, 1)] private float deceleration;
-    [SerializeField] [Range(0, 3)] private float maxSpeed = 10f;
-    //[SerializeField]
-    //private float velocity = 0f;
-    [SerializeField]
-    private float turnSpeed = 2.4f;
+    [SerializeField] [Range(0, 20)] private float maxSpeed;
+
+    [Header("Rotation")]
+    [SerializeField] [Range(30, 100)] private float turnSpeed;
+    private float angleOfRotation;
 
     //hold what the actual movement is of the tank
-    [SerializeField]
-    private Vector3 velocity;
-    private Vector3 direction = new Vector3(1f, 0f, 0f);
+    [Header("Tank Properties")]
+    public Vector3 tankPos;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private Vector3 direction;
 
     private bool ifDecelerating = false;
-
-    public Rigidbody2D rb;
 
     // start is called before the first frame update
     void Start()
     {
+        velocity = Vector3.zero;
+        tankPos = transform.position;
+        direction = Vector3.right;
         velocity = Vector3.zero;
     }
 
@@ -40,11 +43,12 @@ public class BlueTankControls : MonoBehaviour
     /// <summary>
     /// Sets the rigidbody of the tank
     /// </summary>
-    protected void UpdateRB()
+    protected void SetTransform()
     {
         //update info
-        rb.MovePosition(transform.position + velocity);
-        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angleOfRotation);
+
+        transform.position += velocity * Time.deltaTime;
     }
 
     /// <summary>
@@ -56,14 +60,17 @@ public class BlueTankControls : MonoBehaviour
         //rotate using angles
         if (Input.GetKey(KeyCode.A))
         {
-            direction += transform.up * turnSpeed * Time.deltaTime;
+            angleOfRotation += turnSpeed * Time.deltaTime;
+            direction = Quaternion.Euler(0, 0, turnSpeed * Time.deltaTime) * direction;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            direction -= transform.up * turnSpeed * Time.deltaTime;
+            angleOfRotation -= turnSpeed * Time.deltaTime;
+            direction = Quaternion.Euler(0, 0, -turnSpeed * Time.deltaTime) * direction;
         }
 
         direction.Normalize();
+        SetTransform();
     }
 
     /// <summary>
@@ -99,8 +106,6 @@ public class BlueTankControls : MonoBehaviour
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         }
-
-        UpdateRB();
     }
 
     /// <summary>
@@ -116,13 +121,13 @@ public class BlueTankControls : MonoBehaviour
         if (ifDecelerating)
         {
             velocity *= deceleration;
-            if (velocity.magnitude <= 0.0001f)
+            if (velocity.magnitude <= 0.05f)
             {
                 velocity = Vector3.zero;
 
                 ifDecelerating = false;
             }
-            UpdateRB();
+            SetTransform();
         }
     }
 }
