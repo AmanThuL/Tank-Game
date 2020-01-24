@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ship = GameObject.Find("Blue_Tank");
+        tank = GameObject.Find("Blue_Tank");
         direction = tank.GetComponent<Vehicle>().direction;
         position = tank.GetComponent<Vehicle>().vehiclePosition + direction * .35f;
         speed = tank.GetComponent<Vehicle>().maxSpeed * .8f;
