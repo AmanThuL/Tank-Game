@@ -23,6 +23,33 @@ public class BlueTankControls : MonoBehaviour
 
     private bool ifDecelerating = false;
 
+
+    [SerializeField] [Range(0, 3)] public float maxSpeed = 10f;
+    //[SerializeField]
+    //private float velocity = 0f;
+    [SerializeField]
+    private float turnSpeed = 2.4f;
+
+    //hold what the actual movement is of the tank
+    [SerializeField]
+    private Vector3 velocity;
+    public Vector3 direction = new Vector3(1f, 0f, 0f);
+
+    [SerializeField] KeyCode moveUp;
+    [SerializeField] KeyCode moveDown;
+    [SerializeField] KeyCode moveLeft;
+    [SerializeField] KeyCode moveRight;
+    [SerializeField] KeyCode shoot;
+
+    private bool ifDecelerating = false;
+
+    public Rigidbody2D rb;
+
+    //Bullet fire rate
+    public GameObject bullet;
+    float fireRate = .4f;
+    float nextFire = 0f;
+
     // start is called before the first frame update
     void Start()
     {
@@ -38,6 +65,7 @@ public class BlueTankControls : MonoBehaviour
         Rotate();
         Move();
         Decelerate();
+        ShootBullet();
     }
 
     /// <summary>
@@ -58,12 +86,12 @@ public class BlueTankControls : MonoBehaviour
     {
         //turn the tank
         //rotate using angles
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(moveLeft))
         {
             angleOfRotation += turnSpeed * Time.deltaTime;
             direction = Quaternion.Euler(0, 0, turnSpeed * Time.deltaTime) * direction;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(moveRight))
         {
             angleOfRotation -= turnSpeed * Time.deltaTime;
             direction = Quaternion.Euler(0, 0, -turnSpeed * Time.deltaTime) * direction;
@@ -79,7 +107,7 @@ public class BlueTankControls : MonoBehaviour
     private void Move()
     {
         //this grouping handles acceleration and deceleration
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(moveUp))
         {
             ifDecelerating = false;
 
@@ -92,7 +120,7 @@ public class BlueTankControls : MonoBehaviour
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(moveDown))
         { 
             ifDecelerating = false;
 
@@ -113,7 +141,7 @@ public class BlueTankControls : MonoBehaviour
     /// </summary>
     private void Decelerate()
     {
-        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && velocity != Vector3.zero)
+        if ((Input.GetKeyUp(moveUp) || Input.GetKeyUp(moveDown)) && velocity != Vector3.zero)
         {
             ifDecelerating = true;
         }
@@ -121,6 +149,7 @@ public class BlueTankControls : MonoBehaviour
         if (ifDecelerating)
         {
             velocity *= deceleration;
+
             if (velocity.magnitude <= 0.05f)
             {
                 velocity = Vector3.zero;
@@ -130,4 +159,20 @@ public class BlueTankControls : MonoBehaviour
             SetTransform();
         }
     }
+
+    void ShootBullet()
+    {
+        GameObject tempBullet;
+        if (Input.GetKey(shoot) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+            tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+            tempBullet.tag = gameObject.tag;
+            tempBullet.GetComponent<Bullet>().Initialize(direction);
+
+        }
+    }
+
 }
