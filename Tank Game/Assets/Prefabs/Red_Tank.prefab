@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9208099354787253963}
   m_Layer: 0
   m_Name: Red_Tank
-  m_TagString: Red
+  m_TagString: RedTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
