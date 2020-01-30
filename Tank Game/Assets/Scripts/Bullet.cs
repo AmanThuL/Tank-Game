@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     //GameObject tank;
 
-    [SerializeField] [Range (0,20)] float speed;
+    [SerializeField] [Range (0,20)] private float speed;
     public Vector3 direction;
-    [SerializeField] public Vector3 velocity;
+    [SerializeField] private Vector3 velocity;
     public Vector3 position;
 
     // Start is called before the first frame update
