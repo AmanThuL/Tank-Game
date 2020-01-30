@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     //GameObject tank;
 
-    [SerializeField] [Range (0,3)] float speed;
+    [SerializeField] [Range (0,20)] private float speed;
     public Vector3 direction;
-    [SerializeField] public Vector3 velocity;
+    [SerializeField] private Vector3 velocity;
     public Vector3 position;
 
     // Start is called before the first frame update
@@ -45,16 +45,22 @@ public class Bullet : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag != gameObject.tag)
+        Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
+        
+
+        if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3))
         {
-            if (collision.gameObject.tag == "Blue")
+           
+
+            if (collision.gameObject.tag == "BluTank")
             {
                 GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
             }
-            if (collision.gameObject.tag == "Red")
+            if (collision.gameObject.tag == "RedTank")
             {
                 GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
             }
+            
 
             DestroySelf();
         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9208099354787253963}
   m_Layer: 0
   m_Name: Red_Tank
-  m_TagString: Red
+  m_TagString: RedTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,17 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: {x: 0, y: 0, z: 0}
-  accelRate: 1
+  accelRate: 5
   deceleration: 0.751
-  maxSpeed: 0.1
-  turnSpeed: 2.4
+  maxSpeed: 7
+  turnSpeed: 150
+  tankPos: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  direction: {x: 1, y: 0, z: 0}
-  moveUp: 274
-  moveDown: 273
+  direction: {x: -1, y: 0, z: 0}
+  moveUp: 273
+  moveDown: 274
   moveLeft: 276
   moveRight: 275
-  shoot: 305
+  shoot: 47
   rb: {fileID: 9208099354787253962}
   bullet: {fileID: 2792031396910480454, guid: dd4d791319dfc7a419d0ec854a1e91e0, type: 3}
 --- !u!50 &9208099354787253962
