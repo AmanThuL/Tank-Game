@@ -8,6 +8,7 @@ TagManager:
   - RedBullet
   - BluTank
   - BluBullet
+  - Crate
   layers:
   - Default
   - TransparentFX
