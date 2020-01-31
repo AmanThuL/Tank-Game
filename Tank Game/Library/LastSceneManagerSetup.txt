@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/John Test Scene.unity
+- path: Assets/Scenes/Ricochet Test Scene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
