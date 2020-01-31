@@ -35,6 +35,7 @@ public class Manager : MonoBehaviour
     GameObject currentLeftBounds;
     GameObject currentRightBounds;
 
+    public GameObject blueTankWinsUI, redTankWinsUI;
 
     [Header("Tanks Properties")]
     [SerializeField] [Range(0, 10)] private float accelRate;
@@ -195,9 +196,20 @@ public class Manager : MonoBehaviour
     /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
     private void Advance(int direction)
     {
-        if(currentpos > winBy)
+        if(Mathf.Abs(currentpos) > winBy)
         {
             //call some winning function
+            switch (direction)
+            {
+                case -1:
+                    Time.timeScale = 0;
+                    redTankWinsUI.SetActive(true);
+                    break;
+                case 1:
+                    Time.timeScale = 0;
+                    blueTankWinsUI.SetActive(true);
+                    break;
+            }
         }
 
         targetpos += direction;
@@ -294,5 +306,6 @@ public class Manager : MonoBehaviour
         tank.GetComponent<BlueTankControls>().MaxSpeed = maxSpeed;
         tank.GetComponent<BlueTankControls>().TurnSpeed = turnSpeed;
     }
+
 
 }

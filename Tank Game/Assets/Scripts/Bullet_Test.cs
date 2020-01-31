@@ -76,6 +76,13 @@ public class Bullet_Test : MonoBehaviour
                 return;
             }
 
+            if (collision.gameObject.tag == "Crate")
+            {
+                Destroy(collision.gameObject);
+                DestroySelf();
+                return;
+            }
+
             ////Collisions with walls
             //if (ricochet != true)
             //{
@@ -86,7 +93,7 @@ public class Bullet_Test : MonoBehaviour
             //{
             //    DestroySelf();
             //}
-            
+
             if (bounced) DestroySelf();
         }
     }
