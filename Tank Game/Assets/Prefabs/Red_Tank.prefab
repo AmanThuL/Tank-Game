@@ -109,7 +109,7 @@ MonoBehaviour:
   moveRight: 275
   shoot: 47
   rb: {fileID: 9208099354787253962}
-  bullet: {fileID: 2792031396910480454, guid: dd4d791319dfc7a419d0ec854a1e91e0, type: 3}
+  bullet: {fileID: 2792031396910480454, guid: 33130a4b1b2a47a45aa7791a99a5fa0a, type: 3}
 --- !u!50 &9208099354787253962
 Rigidbody2D:
   serializedVersion: 4

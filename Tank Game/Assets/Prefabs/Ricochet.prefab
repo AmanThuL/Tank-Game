@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3436647761886956938}
   - component: {fileID: 3838298564161638103}
-  - component: {fileID: 2219645088876677308}
+  - component: {fileID: 6105161328660253982}
   - component: {fileID: 4464248338577121229}
   - component: {fileID: -6095126520571045841}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Ricochet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2219645088876677308
+--- !u!114 &6105161328660253982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,13 +92,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2792031396910480454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f501582fe3ea69e41b3d5134581e53e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 117b914bfb6694c4394cc12a1dd4bf76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8.5
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!70 &4464248338577121229
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

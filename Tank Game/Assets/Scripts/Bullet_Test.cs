@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet_Test : MonoBehaviour
 {
     //GameObject tank;
 
@@ -11,17 +11,27 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Vector3 velocity;
     public Vector3 position;
     private bool ricochet;
+    private Ray2D ray;
+    private RaycastHit2D hit;
+    public LayerMask collisionMask;
+
+    float nextUpdate;
+    float updateRate;
+
+    [SerializeField]private bool bounced;
 
     // Start is called before the first frame update
     void Start()
     {
-        ricochet = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveBullet();
+
+        if (!bounced) 
+            RicochetBullet();
     }
 
 
@@ -66,17 +76,18 @@ public class Bullet : MonoBehaviour
                 return;
             }
 
-            //Collisions with walls
-            if (ricochet != true)
-            {
-                ricochetBullet(collision);
-                ricochet = true;
-            }
-            else
-            {
-                DestroySelf();
-            }
+            ////Collisions with walls
+            //if (ricochet != true)
+            //{
+            //    RicochetBullet(collision.gameObject);
+            //    ricochet = true;
+            //}
+            //else
+            //{
+            //    DestroySelf();
+            //}
             
+            if (bounced) DestroySelf();
         }
     }
 
@@ -103,14 +114,35 @@ public class Bullet : MonoBehaviour
         direction.Normalize();
         velocity = direction * speed;
         position = transform.position;
+        bounced = false;
     }
 
 
-    public void ricochetBullet(Collision2D col)
+    public void RicochetBullet()
     {
-        Vector3 v = Vector3.Reflect(transform.right, col.contacts[0].normal);
-        float rot = 90 - Mathf.Atan2(v.z, v.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0, 0, rot);
+        hit = Physics2D.Raycast(transform.position, transform.right, Time.deltaTime * speed + .1f, collisionMask);
+        if (hit.collider != null)
+        {
+            Vector2 reflectDir = Vector2.Reflect(direction, hit.normal);
+            direction = reflectDir;
+            velocity = direction * speed;
+            float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg;
+            transform.eulerAngles = new Vector3(0, 0, rot);
+
+            // update bounced bool
+            StartCoroutine(SetBounced(true));
+        }
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + direction * 5f);
+    }
+
+    private IEnumerator SetBounced(bool value)
+    {
+        yield return 0; // make it wait 1 frame
+        bounced = value;
+    }
 }
