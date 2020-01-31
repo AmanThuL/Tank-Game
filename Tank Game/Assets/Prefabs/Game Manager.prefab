@@ -49,3 +49,11 @@ MonoBehaviour:
   blueSpawnPosition: {x: -5, y: 0, z: 0}
   redSpawnPosition: {x: 5, y: 0, z: 0}
   SpawnDelay: 1
+  cam: {fileID: 0}
+  winBy: 2
+  ScreenWidth: {x: 21, y: 0, z: -10}
+  screenMoveSpeed: 10
+  rightbounds: {fileID: 2235274277727372624, guid: 27c2a5064b2403044b8cf0c39d40957e,
+    type: 3}
+  leftbounds: {fileID: 674519392680065025, guid: afa963191b6925b43aabe874b399fc7e,
+    type: 3}
