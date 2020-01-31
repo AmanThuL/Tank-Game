@@ -47,6 +47,7 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
@@ -196,7 +197,11 @@ public class Manager : MonoBehaviour
     /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
     private void Advance(int direction)
     {
-        if(Mathf.Abs(currentpos) > winBy)
+        
+
+        targetpos += direction;
+        
+        if (Mathf.Abs(targetpos) > winBy)
         {
             //call some winning function
             switch (direction)
@@ -210,9 +215,9 @@ public class Manager : MonoBehaviour
                     blueTankWinsUI.SetActive(true);
                     break;
             }
-        }
 
-        targetpos += direction;
+            return;
+        }
         screenMoving = true;
 
     }

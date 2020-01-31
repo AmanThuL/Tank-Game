@@ -46,8 +46,10 @@ MonoBehaviour:
   BlueTank: {fileID: 7822391243506017309, guid: 8efd4bd8ec35bb644860e6c64e37b0c3,
     type: 3}
   RedTank: {fileID: 9208099354787253960, guid: ea12c36d259eded419c19c07cb3f90da, type: 3}
-  blueSpawnPosition: {x: -5, y: 0, z: 0}
-  redSpawnPosition: {x: 5, y: 0, z: 0}
+  blueSpawnPosition: {x: -8.5, y: 0, z: 0}
+  redSpawnPosition: {x: 8.5, y: 0, z: 0}
+  activeRedTank: {fileID: 0}
+  activeBlueTank: {fileID: 0}
   SpawnDelay: 1
   cam: {fileID: 0}
   winBy: 2
@@ -57,3 +59,9 @@ MonoBehaviour:
     type: 3}
   leftbounds: {fileID: 674519392680065025, guid: afa963191b6925b43aabe874b399fc7e,
     type: 3}
+  blueTankWinsUI: {fileID: 0}
+  redTankWinsUI: {fileID: 0}
+  accelRate: 0
+  deceleration: 0
+  maxSpeed: 0
+  turnSpeed: 0
