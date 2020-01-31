@@ -44,9 +44,7 @@ public class Bullet : MonoBehaviour
     //    DestroySelf();
     //}
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
-        
+    {        
 
         if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3))
         {

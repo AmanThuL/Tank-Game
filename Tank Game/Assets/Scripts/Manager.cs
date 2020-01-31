@@ -28,10 +28,18 @@ public class Manager : MonoBehaviour
     [SerializeField] Vector3 ScreenWidth = new Vector3();
     [SerializeField] float screenMoveSpeed;
 
+    [SerializeField] GameObject rightbounds;
+    [SerializeField] GameObject leftbounds;
+
+    GameObject currentLeftBounds;
+    GameObject currentRightBounds;
+
+
     // Start is called before the first frame update
     void Start()
     {
         //spawn the red and blue tank
+        RespawnBounds();
         RespawnBlueTank();
         RespawnRedTank();
     }
@@ -88,6 +96,7 @@ public class Manager : MonoBehaviour
         if((targetpos <= currentpos + .01) && (targetpos >= currentpos - .01))
         {
             screenMoving = false;
+            RespawnBounds();
             return;
         }
 
@@ -95,10 +104,18 @@ public class Manager : MonoBehaviour
 
         //get what direction we are moving in
         float dir = (targetpos - currentpos)/Mathf.Abs(targetpos - currentpos);
-        //move
-        currentpos += screenMoveSpeed * dir * Time.deltaTime;
-        //update the camera's position
-        cam.transform.position = currentpos * ScreenWidth;
+        float dist = Mathf.Abs(targetpos - currentpos);
+        if (dist < screenMoveSpeed * dt)
+        {
+            currentpos = targetpos;
+        }
+        else
+        {
+            //move
+            currentpos += screenMoveSpeed * dir * dt;
+            //update the camera's position
+        }
+        cam.transform.position = new Vector3(currentpos * ScreenWidth.x, 0, ScreenWidth.z);
 
     }
 
@@ -112,7 +129,7 @@ public class Manager : MonoBehaviour
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
         //move the blue tank to it's spawn location
-        activeBlueTank.gameObject.transform.position = blueSpawnPosition + targetpos * ScreenWidth;
+        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + targetpos * ScreenWidth.x, 0, blueSpawnPosition.z);
     }
 
     /// <summary>
@@ -125,7 +142,7 @@ public class Manager : MonoBehaviour
         //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
         //move the red tank to it's spawn position
-        activeRedTank.gameObject.transform.position = redSpawnPosition;
+        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + targetpos * ScreenWidth.x,0,redSpawnPosition.z);
     }
 
     /// <summary>
@@ -175,24 +192,88 @@ public class Manager : MonoBehaviour
         screenMoving = true;
 
     }
-
-    public void redAdvacne()
+    /// <summary>
+    /// called by left bounds to advance the red tank
+    /// </summary>
+    public void RedAdvance()
     {
+        //advance the red tank if you are able
         if(redAdvance)
         {
             Advance(-1);
-            RespawnBlueTank();
+            KillBlueTank();
+            Destroy(currentLeftBounds.gameObject);
+            Destroy(currentRightBounds.gameObject);
+
+            //check if tanks are out of bounds
+            Checkbounds(activeRedTank);
+            Checkbounds(activeBlueTank);
         }
     }
 
-    public void bluAdvance()
+    /// <summary>
+    /// called by right bounds to advance the blue tank
+    /// </summary>
+    public void BluAdvance()
     {
+        //advance the blue tank if you are able
         if(blueAdvance)
         {
             Advance(1);
-            RespawnRedTank();
+            KillRedTank();
+            Destroy(currentLeftBounds.gameObject);
+            Destroy(currentRightBounds.gameObject);
+
+            //check if tanks are out of bounds
+            Checkbounds(activeRedTank);
+            Checkbounds(activeBlueTank);
         }
     }
-    
+
+    private void RespawnBounds()
+    {
+        
+
+        GameObject right = Instantiate(rightbounds);
+        GameObject left = Instantiate(leftbounds);
+
+        right.gameObject.transform.position = new Vector3(targetpos * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
+        left.gameObject.transform.position = new Vector3(targetpos * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
+
+        currentRightBounds = right;
+        currentLeftBounds = left;
+
+
+    }
+
+    private void Checkbounds(GameObject tank)
+    {
+        if(tank == null)
+        {
+            return;
+        }
+
+        if (redAdvance)
+        {
+            if (tank.transform.position.x > (targetpos * ScreenWidth.x + .5f * ScreenWidth.x))
+            {
+                tank.transform.position = new Vector3((targetpos * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
+               
+            }
+        }
+        else if (blueAdvance)
+        {
+            if (tank.transform.position.x < (targetpos * ScreenWidth.x - .5f * ScreenWidth.x))
+            {
+                tank.transform.position = new Vector3(((targetpos * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
+                
+            }
+        }
+
+        
+
+        
+    }
+
 
 }
