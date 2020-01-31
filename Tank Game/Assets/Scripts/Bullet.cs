@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
+        //Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
         
 
         if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3))
@@ -60,7 +60,10 @@ public class Bullet : MonoBehaviour
             {
                 GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
             }
-            
+            if (collision.gameObject.tag == "Crate")
+            {
+                Destroy(collision.gameObject);
+            }
 
             DestroySelf();
         }
