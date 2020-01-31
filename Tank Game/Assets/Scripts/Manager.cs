@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+    [Header("General")]
     [SerializeField] GameObject BlueTank;
     [SerializeField] GameObject RedTank;
 
     [SerializeField] Vector3 blueSpawnPosition;
     [SerializeField] Vector3 redSpawnPosition;
 
-    GameObject activeRedTank, activeBlueTank;
+    public GameObject activeRedTank, activeBlueTank;
 
     [SerializeField] [Range(0, 5)] float SpawnDelay;
     float spawnTimerBlue = 0f;
@@ -33,6 +34,13 @@ public class Manager : MonoBehaviour
 
     GameObject currentLeftBounds;
     GameObject currentRightBounds;
+
+
+    [Header("Tanks Properties")]
+    [SerializeField] [Range(0, 10)] private float accelRate;
+    [SerializeField] [Range(0, 1)] private float deceleration;
+    [SerializeField] [Range(0, 20)] private float maxSpeed;
+    [SerializeField] [Range(0, 360)] private float turnSpeed;
 
 
     // Start is called before the first frame update
@@ -128,6 +136,8 @@ public class Manager : MonoBehaviour
         blueDead = false;
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
+
+        AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
         activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + targetpos * ScreenWidth.x, 0, blueSpawnPosition.z);
     }
@@ -141,6 +151,8 @@ public class Manager : MonoBehaviour
         redDead = false;
         //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
+
+        AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
         activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + targetpos * ScreenWidth.x,0,redSpawnPosition.z);
     }
@@ -275,5 +287,12 @@ public class Manager : MonoBehaviour
         
     }
 
+    private void AssignTankProperties(GameObject tank)
+    {
+        tank.GetComponent<BlueTankControls>().AccelRate = accelRate;
+        tank.GetComponent<BlueTankControls>().Deceleration = deceleration;
+        tank.GetComponent<BlueTankControls>().MaxSpeed = maxSpeed;
+        tank.GetComponent<BlueTankControls>().TurnSpeed = turnSpeed;
+    }
 
 }

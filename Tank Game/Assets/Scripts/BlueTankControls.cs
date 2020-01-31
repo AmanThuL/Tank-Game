@@ -15,6 +15,12 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField] [Range(30, 200)] private float turnSpeed;
     //[SerializeField] private float angleOfRotation;
 
+    // Setters
+    public float AccelRate { set => accelRate = value; }
+    public float Deceleration { set => deceleration = value; }
+    public float MaxSpeed { set => maxSpeed = value; }
+    public float TurnSpeed { set => turnSpeed = value; }
+
     //hold what the actual movement is of the tank
     [Header("Tank Properties")]
     public Vector3 tankPos;
