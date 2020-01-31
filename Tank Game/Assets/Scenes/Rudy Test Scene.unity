@@ -1476,5 +1476,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: accelRate
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: deceleration
+      value: 0.751
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 190
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dae555daa268a546b793977202a4484, type: 3}
