@@ -17,7 +17,16 @@ public class Manager : MonoBehaviour
     float spawnTimerRed = 0f;
 
     bool blueDead, redDead;
+
+
     bool blueAdvance = false, redAdvance = false;
+    float currentpos = 0; //hold the position in game
+    float targetpos = 0;
+    bool screenMoving = false;
+    [SerializeField] GameObject cam; //holds the camera
+    [SerializeField] [Range (0,5)]int winBy = 2;
+    [SerializeField] Vector3 ScreenWidth = new Vector3();
+    [SerializeField] float screenMoveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +40,7 @@ public class Manager : MonoBehaviour
     void Update()
     {
         UpdateRespawnTimer(Time.deltaTime);
+        UpdateScreenMove(Time.deltaTime);
     }
 
     /// <summary>
@@ -64,6 +74,34 @@ public class Manager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Updates the screen movement
+    /// </summary>
+    void UpdateScreenMove(float dt)
+    { 
+        //do nothing if the screen is not moving
+        if(!screenMoving)
+        { return; }
+
+        //if the screen is in place do nothing and stop the screen from moving
+        if((targetpos <= currentpos + .01) && (targetpos >= currentpos - .01))
+        {
+            screenMoving = false;
+            return;
+        }
+
+        //now we know the screen can move
+
+        //get what direction we are moving in
+        float dir = (targetpos - currentpos)/Mathf.Abs(targetpos - currentpos);
+        //move
+        currentpos += screenMoveSpeed * dir * Time.deltaTime;
+        //update the camera's position
+        cam.transform.position = currentpos * ScreenWidth;
+
+    }
+
     /// <summary>
     /// respawn the blue players tank
     /// </summary>
@@ -74,7 +112,7 @@ public class Manager : MonoBehaviour
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
         //move the blue tank to it's spawn location
-        activeBlueTank.gameObject.transform.position = blueSpawnPosition;
+        activeBlueTank.gameObject.transform.position = blueSpawnPosition + targetpos * ScreenWidth;
     }
 
     /// <summary>
@@ -122,6 +160,39 @@ public class Manager : MonoBehaviour
         GameObject.Destroy(activeRedTank);
     }
 
-    //public void RedAdvance()
+    /// <summary>
+    /// advance the player between screens
+    /// </summary>
+    /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
+    private void Advance(int direction)
+    {
+        if(currentpos > winBy)
+        {
+            //call some winning function
+        }
+
+        targetpos += direction;
+        screenMoving = true;
+
+    }
+
+    public void redAdvacne()
+    {
+        if(redAdvance)
+        {
+            Advance(-1);
+            RespawnBlueTank();
+        }
+    }
+
+    public void bluAdvance()
+    {
+        if(blueAdvance)
+        {
+            Advance(1);
+            RespawnRedTank();
+        }
+    }
+    
 
 }
