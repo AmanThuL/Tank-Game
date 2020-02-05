@@ -49,6 +49,8 @@ public class Manager : MonoBehaviour
     [SerializeField] [Range(0, 1)] private float deceleration;
     [SerializeField] [Range(0, 20)] private float maxSpeed;
     [SerializeField] [Range(0, 360)] private float turnSpeed;
+    [SerializeField] GameObject explosion;
+    [SerializeField] GameObject destroyedDecal;
 
 
     // Start is called before the first frame update
@@ -220,9 +222,11 @@ public class Manager : MonoBehaviour
         Vector3 temp = activeBlueTank.transform.position;
 
         //destroy the blue tank
-        GameObject.Destroy(activeBlueTank);
+        GameObject.Destroy(activeBlueTank); 
+        Instantiate(explosion, temp, Quaternion.identity);
+        Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
-        if(GameStats.blueAdvance)
+        if (GameStats.blueAdvance)
         {
             GameStats.blueAdvance = false;
             SpawnFlag(temp);
@@ -251,8 +255,10 @@ public class Manager : MonoBehaviour
 
         //destroy the red tank
         GameObject.Destroy(activeRedTank);
+        Instantiate(explosion, temp, Quaternion.identity);
+        Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
-        if(GameStats.redAdvance)
+        if (GameStats.redAdvance)
         {
             GameStats.redAdvance = false;
             SpawnFlag(temp);
