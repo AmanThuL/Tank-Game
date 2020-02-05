@@ -14,10 +14,17 @@ public class Manager : MonoBehaviour
     public GameObject activeRedTank, activeBlueTank;
 
     [SerializeField] [Range(0, 5)] float SpawnDelay;
+    [SerializeField] [Range(0,2)] float spawnDelayIncrement;
+    float currentRedSpawnDelay;
+    float currentBlueSpawnDelay;
     float spawnTimerBlue = 0f;
     float spawnTimerRed = 0f;
 
     bool blueDead, redDead;
+
+    bool redInvincible, BlueInvincible;
+    [SerializeField] [Range(0, 5)] float invinciblityTime;
+    float redInvulnTimer, bluInvulnTimer;
 
 
     bool blueAdvance = false, redAdvance = false;
@@ -28,7 +35,6 @@ public class Manager : MonoBehaviour
     [SerializeField] [Range (0,5)]int winBy = 2;
     [SerializeField] Vector3 ScreenWidth = new Vector3();
     [SerializeField] float screenMoveSpeed;
-
     [SerializeField] GameObject rightbounds;
     [SerializeField] GameObject leftbounds;
 
@@ -48,6 +54,7 @@ public class Manager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        resetSpawnDelay();
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
@@ -73,7 +80,7 @@ public class Manager : MonoBehaviour
             //update it's timer
             spawnTimerBlue += dt;
             //if the blue tank is ready to respawn
-            if (spawnTimerBlue > SpawnDelay)
+            if (spawnTimerBlue > currentBlueSpawnDelay)
             {
                 RespawnBlueTank();
             }
@@ -86,7 +93,7 @@ public class Manager : MonoBehaviour
             //update it's timer
             spawnTimerRed += dt;
             //check if the red tank is ready to respawn
-            if (spawnTimerRed > SpawnDelay)
+            if (spawnTimerRed > currentRedSpawnDelay)
             {
                 RespawnRedTank();
             }
@@ -167,6 +174,7 @@ public class Manager : MonoBehaviour
         //begin the timer for the blue tank
         blueDead = true;
         spawnTimerBlue = 0f;
+        currentBlueSpawnDelay += spawnDelayIncrement;
         //set which tank can advance to win
         blueAdvance = false;
         redAdvance = true;
@@ -183,6 +191,7 @@ public class Manager : MonoBehaviour
         //begin the timer for the red tank
         redDead = true;
         spawnTimerRed = 0f;
+        currentRedSpawnDelay += spawnDelayIncrement;
         //set which tank can advance to win
         blueAdvance = true;
         redAdvance = false;
@@ -218,7 +227,10 @@ public class Manager : MonoBehaviour
 
             return;
         }
+
         screenMoving = true;
+
+        resetSpawnDelay();
 
     }
     /// <summary>
@@ -259,22 +271,30 @@ public class Manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Respawns the bounds around the screen
+    /// </summary>
     private void RespawnBounds()
     {
         
-
+        //create the left and right bounds
         GameObject right = Instantiate(rightbounds);
         GameObject left = Instantiate(leftbounds);
-
+        //place the left and right bounds
         right.gameObject.transform.position = new Vector3(targetpos * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
         left.gameObject.transform.position = new Vector3(targetpos * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
-
+        //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
 
 
     }
 
+
+    /// <summary>
+    /// Checks to see if a tank is outside the bounds
+    /// </summary>
+    /// <param name="tank"> the game object to check outside the bounds, if tank is null the check is not preformed as the tank is presumed daed</param>
     private void Checkbounds(GameObject tank)
     {
         if(tank == null)
@@ -312,5 +332,10 @@ public class Manager : MonoBehaviour
         tank.GetComponent<BlueTankControls>().TurnSpeed = turnSpeed;
     }
 
+    private void resetSpawnDelay()
+    {
+        currentBlueSpawnDelay = SpawnDelay;
+        currentRedSpawnDelay = SpawnDelay;
+    }
 
 }
