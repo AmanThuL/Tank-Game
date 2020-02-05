@@ -306,9 +306,6 @@ public class Manager : MonoBehaviour
             Destroy(currentLeftBounds.gameObject);
             Destroy(currentRightBounds.gameObject);
 
-            //check if tanks are out of bounds
-            Checkbounds(activeRedTank);
-            Checkbounds(activeBlueTank);
         }
     }
 
@@ -325,9 +322,7 @@ public class Manager : MonoBehaviour
             Destroy(currentLeftBounds.gameObject);
             Destroy(currentRightBounds.gameObject);
 
-            //check if tanks are out of bounds
-            Checkbounds(activeRedTank);
-            Checkbounds(activeBlueTank);
+            
         }
     }
 
@@ -346,6 +341,10 @@ public class Manager : MonoBehaviour
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
+
+        //check if tanks are out of bounds
+        Checkbounds(activeRedTank);
+        Checkbounds(activeBlueTank);
     }
 
 
