@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -26,12 +27,12 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (GameStats.blueAdvance)
-            blueArrow.SetActive(true);
-        else blueArrow.SetActive(false);
+            SetArrowActive(blueArrow, true);
+        else SetArrowActive(blueArrow, false);
 
         if (GameStats.redAdvance)
-            redArrow.SetActive(true);
-        else redArrow.SetActive(false);
+            SetArrowActive(redArrow, true);
+        else SetArrowActive(redArrow, false);
     }
 
     // Button onclick
@@ -61,5 +62,14 @@ public class UIManager : MonoBehaviour
         //SceneManager.LoadScene(controlsSceneName);
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(controlsSceneName);
+    }
+
+    private void SetArrowActive(GameObject arrow, bool value)
+    {
+        arrow.GetComponent<Image>().enabled = value;
+        if (!value) // inactive
+        {
+            arrow.GetComponent<BlinkingUI>().SetBlinkingTimes = 0;
+        }
     }
 }

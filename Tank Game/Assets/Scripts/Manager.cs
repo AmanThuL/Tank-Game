@@ -56,6 +56,7 @@ public class Manager : MonoBehaviour
     {
         Time.timeScale = 1;
         resetSpawnDelay();
+        SpawnFlag(new Vector3(0,-2,0));
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
