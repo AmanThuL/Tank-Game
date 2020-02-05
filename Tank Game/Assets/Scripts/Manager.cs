@@ -43,6 +43,7 @@ public class Manager : MonoBehaviour
     GameObject currentRightBounds;
 
     public GameObject blueTankWinsUI, redTankWinsUI;
+    public GameObject getFlagCanvasUI;
 
     [Header("Tanks Properties")]
     [SerializeField] [Range(0, 10)] private float accelRate;
@@ -59,6 +60,8 @@ public class Manager : MonoBehaviour
         GameStats.isInputEnabled = true;
         GameStats.blueAdvance = false;
         GameStats.redAdvance = false;
+        GameStats.isGetFlagUIDisplayed = true;
+        getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
 
         Time.timeScale = 1;
         resetSpawnDelay();
@@ -276,6 +279,9 @@ public class Manager : MonoBehaviour
     /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
     private void Advance(int direction)
     {
+        GameStats.isGetFlagUIDisplayed = false;
+        getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
+
         targetpos += direction;
         
         if (Mathf.Abs(targetpos) > winBy)

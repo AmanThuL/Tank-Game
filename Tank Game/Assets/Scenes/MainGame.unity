@@ -7179,6 +7179,11 @@ PrefabInstance:
       propertyPath: InvulnColor.a
       value: 0.49019608
       objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: getFlagCanvasUI
+      value: 
+      objectReference: {fileID: 1318018739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dae555daa268a546b793977202a4484, type: 3}
 --- !u!1 &2059975286
