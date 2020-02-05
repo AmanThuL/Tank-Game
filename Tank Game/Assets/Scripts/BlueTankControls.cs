@@ -28,7 +28,7 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField] private Vector3 direction;
 
     private bool ifDecelerating = false;
-
+    [Header("Controls")]
     [SerializeField] KeyCode moveUp;
     [SerializeField] KeyCode moveDown;
     [SerializeField] KeyCode moveLeft;
@@ -37,7 +37,7 @@ public class BlueTankControls : MonoBehaviour
 
 
     public Rigidbody2D rb;
-
+    [SerializeField] GameObject smoke;
     //Bullet fire rate
     public GameObject bullet;
     float fireRate = .4f;
@@ -54,10 +54,13 @@ public class BlueTankControls : MonoBehaviour
     //get player input in update
     void Update()
     {
-        Rotate();
-        Move();
-        Decelerate();
-        ShootBullet();
+        if (GameStats.isInputEnabled)
+        {
+            Rotate();
+            Move();
+            Decelerate();
+            ShootBullet();
+        }
     }
 
     /// <summary>
@@ -161,7 +164,7 @@ public class BlueTankControls : MonoBehaviour
             tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
             tempBullet.tag = gameObject.tag.Substring(0,3) + "Bullet";
             tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
-
+            Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
         }
     }
 

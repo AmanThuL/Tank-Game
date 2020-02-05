@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_Test : MonoBehaviour
 {
     //GameObject tank;
-
+    [SerializeField] GameObject bulletTrail;
     [SerializeField] [Range (0,20)] private float speed;
     public Vector3 direction;
     [SerializeField] private Vector3 velocity;

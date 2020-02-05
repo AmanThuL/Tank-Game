@@ -51,6 +51,10 @@ MonoBehaviour:
   activeRedTank: {fileID: 0}
   activeBlueTank: {fileID: 0}
   SpawnDelay: 1
+  spawnDelayIncrement: 0
+  invinciblityTime: 0
+  InvulnColor: {r: 255, g: 255, b: 255, a: 100}
+  flag: {fileID: 0}
   cam: {fileID: 0}
   winBy: 2
   ScreenWidth: {x: 21, y: 0, z: -10}
@@ -65,3 +69,7 @@ MonoBehaviour:
   deceleration: 0
   maxSpeed: 0
   turnSpeed: 0
+  explosion: {fileID: 2991249485464585752, guid: 5cb56443a570227449fd19a6335a08a9,
+    type: 3}
+  destroyedDecal: {fileID: 3120459931105333190, guid: 2a583b73937af8e4aaa9b8638ca3fbe4,
+    type: 3}
