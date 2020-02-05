@@ -83,6 +83,12 @@ public class Bullet_Test : MonoBehaviour
                 return;
             }
 
+            if(collision.gameObject.tag == "Bounds")
+            {
+                DestroySelf();
+                return;
+            }
+
             ////Collisions with walls
             //if (ricochet != true)
             //{
