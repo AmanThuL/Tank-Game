@@ -28,7 +28,6 @@ public class Manager : MonoBehaviour
     [SerializeField] Color InvulnColor = new Color(255, 255, 255, 100);
 
     [Header("Screen Transition")]
-    bool blueAdvance = false, redAdvance = false;
     [SerializeField] GameObject flag; //holds the item that will be captured
     float currentpos = 0; //hold the position in game
     float targetpos = 0;
@@ -223,9 +222,9 @@ public class Manager : MonoBehaviour
         //destroy the blue tank
         GameObject.Destroy(activeBlueTank);
 
-        if(blueAdvance)
+        if(GameStats.blueAdvance)
         {
-            blueAdvance = false;
+            GameStats.blueAdvance = false;
             SpawnFlag(temp);
         }
     }
@@ -253,9 +252,9 @@ public class Manager : MonoBehaviour
         //destroy the red tank
         GameObject.Destroy(activeRedTank);
 
-        if(redAdvance)
+        if(GameStats.redAdvance)
         {
-            redAdvance = false;
+            GameStats.redAdvance = false;
             SpawnFlag(temp);
         }
     }
@@ -299,7 +298,7 @@ public class Manager : MonoBehaviour
     public void RedAdvance()
     {
         //advance the red tank if you are able
-        if(redAdvance)
+        if(GameStats.redAdvance)
         {
             Advance(-1);
             KillBlueTank();
@@ -315,7 +314,7 @@ public class Manager : MonoBehaviour
     public void BluAdvance()
     {
         //advance the blue tank if you are able
-        if(blueAdvance)
+        if(GameStats.blueAdvance)
         {
             Advance(1);
             KillRedTank();
@@ -359,7 +358,7 @@ public class Manager : MonoBehaviour
             return;
         }
 
-        if (redAdvance)
+        if (GameStats.redAdvance)
         {
             if (tank.transform.position.x > (targetpos * ScreenWidth.x + .5f * ScreenWidth.x))
             {
@@ -367,7 +366,7 @@ public class Manager : MonoBehaviour
                
             }
         }
-        else if (blueAdvance)
+        else if (GameStats.blueAdvance)
         {
             if (tank.transform.position.x < (targetpos * ScreenWidth.x - .5f * ScreenWidth.x))
             {
@@ -414,12 +413,12 @@ public class Manager : MonoBehaviour
 
     public void RedCaptureFlag()
     {
-        redAdvance = true;
+        GameStats.redAdvance = true;
     }
 
     public void BlueCaptureFlag()
     {
-        blueAdvance = true;
+        GameStats.blueAdvance = true;
     }
 
     /// <summary>

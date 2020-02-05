@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject sceneFader;
 
+    public GameObject redArrow, blueArrow;
+
     private bool isControlOn;
 
     // Start is called before the first frame update
@@ -23,7 +25,13 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameStats.blueAdvance)
+            blueArrow.SetActive(true);
+        else blueArrow.SetActive(false);
+
+        if (GameStats.redAdvance)
+            redArrow.SetActive(true);
+        else redArrow.SetActive(false);
     }
 
     // Button onclick
