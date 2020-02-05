@@ -18,7 +18,8 @@ public class Bullet_Test : MonoBehaviour
     float nextUpdate;
     float updateRate;
 
-    [SerializeField]private bool bounced;
+    [SerializeField]private int MAX_BOUNCES;
+    private int currentBounces;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class Bullet_Test : MonoBehaviour
     {
         MoveBullet();
 
-        if (!bounced) 
+        if (currentBounces <= MAX_BOUNCES) 
             RicochetBullet();
     }
 
@@ -57,9 +58,8 @@ public class Bullet_Test : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
-        
 
-        if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3))
+        if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3) || currentBounces > 1)
         {
            
             //Collisions with tanks
@@ -76,7 +76,7 @@ public class Bullet_Test : MonoBehaviour
                 return;
             }
 
-            if (collision.gameObject.tag == "Crate")
+            if (collision.gameObject.tag == "Crate" || collision.gameObject.tag.Substring(3) == "Bullet")
             {
                 Destroy(collision.gameObject);
                 DestroySelf();
@@ -94,7 +94,7 @@ public class Bullet_Test : MonoBehaviour
             //    DestroySelf();
             //}
 
-            if (bounced) DestroySelf();
+            if (currentBounces > MAX_BOUNCES) DestroySelf();
         }
     }
 
@@ -121,7 +121,7 @@ public class Bullet_Test : MonoBehaviour
         direction.Normalize();
         velocity = direction * speed;
         position = transform.position;
-        bounced = false;
+        currentBounces = 1;
     }
 
 
@@ -137,7 +137,7 @@ public class Bullet_Test : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, rot);
 
             // update bounced bool
-            StartCoroutine(SetBounced(true));
+            StartCoroutine(IncrementBounce());
         }
     }
 
@@ -147,9 +147,9 @@ public class Bullet_Test : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + direction * 5f);
     }
 
-    private IEnumerator SetBounced(bool value)
+    private IEnumerator IncrementBounce()
     {
         yield return 0; // make it wait 1 frame
-        bounced = value;
+        currentBounces++;
     }
 }

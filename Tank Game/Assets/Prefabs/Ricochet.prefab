@@ -102,6 +102,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
+  MAX_BOUNCES: 1
 --- !u!70 &4464248338577121229
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
