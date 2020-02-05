@@ -27,17 +27,17 @@ public class SceneFader : MonoBehaviour
 
     IEnumerator FadeIn()
     {
+        Debug.Log("Fade In");
         float t = fadeInTime;
 
         while (t > 0f) // Keep animating until t reaches 0
         {
+            Debug.Log("t = " + t);
             t -= Time.deltaTime;
             float a = curve.Evaluate(t);
             img.color = new Color(0f, 0f, 0f, a);
             yield return 0; // Skip to the next frame
         }
-
-        Time.timeScale = 1;
 
         gameObject.SetActive(false);
     }
