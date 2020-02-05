@@ -56,8 +56,13 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameStats.isInputEnabled = true;
+        GameStats.blueAdvance = false;
+        GameStats.redAdvance = false;
+
         Time.timeScale = 1;
         resetSpawnDelay();
+        SpawnFlag(new Vector3(0,-2,0));
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
@@ -271,21 +276,18 @@ public class Manager : MonoBehaviour
     /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
     private void Advance(int direction)
     {
-        
-
         targetpos += direction;
         
         if (Mathf.Abs(targetpos) > winBy)
         {
+            GameStats.isInputEnabled = false;
             //call some winning function
             switch (direction)
             {
                 case -1:
-                    Time.timeScale = 0;
                     redTankWinsUI.SetActive(true);
                     break;
                 case 1:
-                    Time.timeScale = 0;
                     blueTankWinsUI.SetActive(true);
                     break;
             }
@@ -311,9 +313,6 @@ public class Manager : MonoBehaviour
             Destroy(currentLeftBounds.gameObject);
             Destroy(currentRightBounds.gameObject);
 
-            //check if tanks are out of bounds
-            Checkbounds(activeRedTank);
-            Checkbounds(activeBlueTank);
         }
     }
 
@@ -330,9 +329,7 @@ public class Manager : MonoBehaviour
             Destroy(currentLeftBounds.gameObject);
             Destroy(currentRightBounds.gameObject);
 
-            //check if tanks are out of bounds
-            Checkbounds(activeRedTank);
-            Checkbounds(activeBlueTank);
+            
         }
     }
 
@@ -351,6 +348,10 @@ public class Manager : MonoBehaviour
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
+
+        //check if tanks are out of bounds
+        Checkbounds(activeRedTank);
+        Checkbounds(activeBlueTank);
     }
 
 

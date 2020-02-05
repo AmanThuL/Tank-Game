@@ -54,10 +54,13 @@ public class BlueTankControls : MonoBehaviour
     //get player input in update
     void Update()
     {
-        Rotate();
-        Move();
-        Decelerate();
-        ShootBullet();
+        if (GameStats.isInputEnabled)
+        {
+            Rotate();
+            Move();
+            Decelerate();
+            ShootBullet();
+        }
     }
 
     /// <summary>
