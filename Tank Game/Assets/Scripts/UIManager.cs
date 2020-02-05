@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     // Buttons
-    public string menuSceneName, gameSceneName;
+    public string menuSceneName, gameSceneName, controlsSceneName;
 
     public GameObject controlMenu, buttons;
+
+    public GameObject sceneFader;
 
     private bool isControlOn;
 
@@ -27,19 +29,29 @@ public class UIManager : MonoBehaviour
     // Button onclick
     public void StartGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(gameSceneName);
     }
 
-    public void ToggleControlScreen()
-    {
-        isControlOn = !isControlOn;
-        controlMenu.SetActive(isControlOn);
+    //public void ToggleControlScreen()
+    //{
+    //    isControlOn = !isControlOn;
+    //    controlMenu.SetActive(isControlOn);
 
-        buttons.SetActive(!isControlOn);
-    }
+    //    buttons.SetActive(!isControlOn);
+    //}
 
     public void ToMainMenu()
     {
-        SceneManager.LoadScene(menuSceneName);
+        //SceneManager.LoadScene(menuSceneName);
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
+    }
+
+    public void ToControlsScreen()
+    {
+        //SceneManager.LoadScene(controlsSceneName);
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(controlsSceneName);
     }
 }
