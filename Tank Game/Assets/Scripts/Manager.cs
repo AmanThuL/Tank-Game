@@ -12,22 +12,24 @@ public class Manager : MonoBehaviour
     [SerializeField] Vector3 redSpawnPosition;
 
     public GameObject activeRedTank, activeBlueTank;
-
+    
+    [Header("Respawn Information")]
     [SerializeField] [Range(0, 5)] float SpawnDelay;
     [SerializeField] [Range(0,2)] float spawnDelayIncrement;
     float currentRedSpawnDelay;
     float currentBlueSpawnDelay;
     float spawnTimerBlue = 0f;
     float spawnTimerRed = 0f;
-
     bool blueDead, redDead;
-
-    bool redInvincible, BlueInvincible;
+    bool redInvincible = false, BlueInvincible = false;
     [SerializeField] [Range(0, 5)] float invinciblityTime;
-    float redInvulnTimer, bluInvulnTimer;
+    float redInvulnTimer = 0, bluInvulnTimer=0;
+    Color normalColor = new Color(255, 255, 255, 255);
+    [SerializeField] Color InvulnColor = new Color(255, 255, 255, 100);
 
-
+    [Header("Screen Transition")]
     bool blueAdvance = false, redAdvance = false;
+    [SerializeField] GameObject flag; //holds the item that will be captured
     float currentpos = 0; //hold the position in game
     float targetpos = 0;
     bool screenMoving = false;
@@ -66,6 +68,7 @@ public class Manager : MonoBehaviour
     {
         UpdateRespawnTimer(Time.deltaTime);
         UpdateScreenMove(Time.deltaTime);
+        UpdateInvulnTimer(Time.deltaTime);
     }
 
     /// <summary>
@@ -136,6 +139,34 @@ public class Manager : MonoBehaviour
 
     }
 
+    void UpdateInvulnTimer(float dt)
+    {
+        if(redInvincible)
+        {
+            redInvulnTimer += dt;
+            if(redInvulnTimer > invinciblityTime)
+            {
+                redInvincible = false;
+                redInvulnTimer = 0;
+                SetTankAlpha(normalColor, activeRedTank);
+            }
+        }
+
+        if(BlueInvincible)
+        {
+            //increment timer
+            bluInvulnTimer += dt;
+            //check if invincibility is over
+            if(bluInvulnTimer > invinciblityTime)
+            {
+                BlueInvincible = false;
+                bluInvulnTimer = 0;
+                SetTankAlpha(normalColor, activeBlueTank);
+            }
+        }
+        
+    }
+
     /// <summary>
     /// respawn the blue players tank
     /// </summary>
@@ -145,6 +176,8 @@ public class Manager : MonoBehaviour
         blueDead = false;
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
+        BlueInvincible = true;
+        SetTankAlpha(InvulnColor,activeBlueTank);
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
@@ -160,6 +193,8 @@ public class Manager : MonoBehaviour
         redDead = false;
         //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
+        redInvincible = true;
+        SetTankAlpha(InvulnColor, activeRedTank);
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
@@ -171,16 +206,28 @@ public class Manager : MonoBehaviour
     /// </summary>
     public void KillBlueTank()
     {
+        if(BlueInvincible)
+        {
+            return;
+        }
+
         //begin the timer for the blue tank
         blueDead = true;
         spawnTimerBlue = 0f;
         currentBlueSpawnDelay += spawnDelayIncrement;
         //set which tank can advance to win
-        blueAdvance = false;
-        redAdvance = true;
+        //redAdvance = true;
+
+        Vector3 temp = activeBlueTank.transform.position;
 
         //destroy the blue tank
         GameObject.Destroy(activeBlueTank);
+
+        if(blueAdvance)
+        {
+            blueAdvance = false;
+            SpawnFlag(temp);
+        }
     }
 
     /// <summary>
@@ -188,16 +235,29 @@ public class Manager : MonoBehaviour
     /// </summary>
     public void KillRedTank()
     {
+        if(redInvincible)
+        {
+            return;
+        }
+
         //begin the timer for the red tank
         redDead = true;
         spawnTimerRed = 0f;
         currentRedSpawnDelay += spawnDelayIncrement;
         //set which tank can advance to win
-        blueAdvance = true;
-        redAdvance = false;
+        //blueAdvance = true;
+
+        Vector3 temp = activeRedTank.transform.position;
+        
 
         //destroy the red tank
         GameObject.Destroy(activeRedTank);
+
+        if(redAdvance)
+        {
+            redAdvance = false;
+            SpawnFlag(temp);
+        }
     }
 
     /// <summary>
@@ -286,15 +346,13 @@ public class Manager : MonoBehaviour
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
-
-
     }
 
 
     /// <summary>
     /// Checks to see if a tank is outside the bounds
     /// </summary>
-    /// <param name="tank"> the game object to check outside the bounds, if tank is null the check is not preformed as the tank is presumed daed</param>
+    /// <param name="tank"> the game object to check outside the bounds, if tank is null the check is not preformed as the tank is presumed dead</param>
     private void Checkbounds(GameObject tank)
     {
         if(tank == null)
@@ -324,6 +382,10 @@ public class Manager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// changes the properties on the active tank
+    /// </summary>
+    /// <param name="tank"></param>
     private void AssignTankProperties(GameObject tank)
     {
         tank.GetComponent<BlueTankControls>().AccelRate = accelRate;
@@ -332,10 +394,42 @@ public class Manager : MonoBehaviour
         tank.GetComponent<BlueTankControls>().TurnSpeed = turnSpeed;
     }
 
+    /// <summary>
+    /// resets the spawn delay, called when the scene is changed to set the spawn delay back to the initial spawn delay
+    /// </summary>
     private void resetSpawnDelay()
     {
         currentBlueSpawnDelay = SpawnDelay;
         currentRedSpawnDelay = SpawnDelay;
     }
 
+    /// <summary>
+    /// sets the tanks color to the given color
+    /// </summary>
+    /// <param name="alpha"> the color to change the tank</param>
+    /// <param name="tank">the tank to modify</param>
+    private void SetTankAlpha(Color alpha, GameObject tank)
+    {
+        tank.GetComponent<SpriteRenderer>().color = alpha;
+    }
+
+    public void RedCaptureFlag()
+    {
+        redAdvance = true;
+    }
+
+    public void BlueCaptureFlag()
+    {
+        blueAdvance = true;
+    }
+
+    /// <summary>
+    /// spawns a flag at the given location
+    /// </summary>
+    /// <param name="pos">the location to spawn the flag at</param>
+    void SpawnFlag(Vector3 pos)
+    {
+        GameObject temp = Instantiate(flag);
+        temp.transform.position = pos;
+    }
 }
