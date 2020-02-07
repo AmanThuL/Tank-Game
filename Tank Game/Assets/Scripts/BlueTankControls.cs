@@ -40,12 +40,15 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField] GameObject smoke;
     //Bullet fire rate
     public GameObject bullet;
-    float fireRate = .4f;
+    [SerializeField][Range (0,2)]float fireRate = .4f;
     float nextFire = 0f;
+    [SerializeField][Range(1,5)] int maxBullets = 3;
+    int bullets;
 
     // start is called before the first frame update
     void Start()
     {
+        bullets = maxBullets;
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
@@ -157,7 +160,7 @@ public class BlueTankControls : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire)
+        if (Input.GetKey(shoot) && Time.time > nextFire && bullets > 0)
         {
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -165,6 +168,15 @@ public class BlueTankControls : MonoBehaviour
             tempBullet.tag = gameObject.tag.Substring(0,3) + "Bullet";
             tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
             Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
+            bullets--;
+        }
+    }
+    
+    public void addBullet()
+    {
+        if (bullets < maxBullets)
+        {
+            bullets++;
         }
     }
 

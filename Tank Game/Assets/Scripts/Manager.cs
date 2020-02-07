@@ -497,4 +497,17 @@ public class Manager : MonoBehaviour
         }
 
     }
+
+    public void ReturnBullet(string bulletTag)
+    {
+        if( bulletTag[0] == 'R')
+        {
+            activeRedTank.GetComponent<BlueTankControls>().addBullet();
+        }
+
+        if(bulletTag[0] == 'B')
+        {
+            activeBlueTank.GetComponent<BlueTankControls>().addBullet();
+        }
+    }
 }
