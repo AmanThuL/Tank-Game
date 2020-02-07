@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_Test : MonoBehaviour
 {
     //GameObject tank;
-    [SerializeField] GameObject bulletTrail;
+    [SerializeField] GameObject explosion;
     [SerializeField] [Range (0,20)] private float speed;
     public Vector3 direction;
     [SerializeField] private Vector3 velocity;
@@ -98,6 +98,7 @@ public class Bullet_Test : MonoBehaviour
     /// </summary>
     void DestroySelf()
     {
+        Instantiate(explosion, transform.position, Quaternion.identity);
         GameObject.Destroy(gameObject);
     }
 
