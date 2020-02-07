@@ -69,6 +69,12 @@ public class UIManager : MonoBehaviour
         sceneFader.GetComponent<SceneFader>().FadeTo(controlsSceneName);
     }
 
+    public void RestartScene()
+    {
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(gameSceneName);
+    }
+
     private void SetArrowActive(GameObject arrow, bool value)
     {
         arrow.GetComponent<Image>().enabled = value;
@@ -77,4 +83,5 @@ public class UIManager : MonoBehaviour
             arrow.GetComponent<BlinkingUI>().SetBlinkingTimes = 0;
         }
     }
+
 }
