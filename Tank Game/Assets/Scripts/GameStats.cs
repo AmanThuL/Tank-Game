@@ -11,4 +11,7 @@ public static class GameStats
     public static bool isGetFlagUIDisplayed = true;
 
     public static int currScreenIndex = 0;
+
+    public static bool isPauseMenuEnabled = false;
+
 }
