@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117b914bfb6694c4394cc12a1dd4bf76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrail: {fileID: 0}
   explosion: {fileID: 4563170683846977219, guid: 5715cac4a27cf1549b6396266ef75e35,
     type: 3}
   speed: 8.5
@@ -107,7 +106,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
-  MAX_BOUNCES: 1
+  MAX_BOUNCES: 2
 --- !u!70 &4464248338577121229
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

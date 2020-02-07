@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Manager : MonoBehaviour
 {
     [Header("General")]
@@ -39,7 +40,7 @@ public class Manager : MonoBehaviour
     float screenTransSumTime = 0f;
     [SerializeField] GameObject cam; //holds the camera
     [SerializeField] [Range (0,5)]int winBy = 2;
-    int gameState = 0;
+    //int gameState = 0;
     [SerializeField] Vector3 ScreenWidth = new Vector3();
     //[SerializeField] float screenMoveSpeed;
     [SerializeField] GameObject rightbounds;
@@ -71,8 +72,8 @@ public class Manager : MonoBehaviour
         GameStats.redAdvance = false;
         GameStats.isGetFlagUIDisplayed = true;
         getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
+        GameStats.currScreenIndex = 0;
 
-        Time.timeScale = 1;
         resetSpawnDelay();
         SpawnFlag(new Vector3(0,-2,0));
         //spawn the red and blue tank
@@ -204,7 +205,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
-        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + gameState * ScreenWidth.x, 0, blueSpawnPosition.z);
+        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, blueSpawnPosition.z);
     }
 
     /// <summary>
@@ -221,7 +222,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
-        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + gameState * ScreenWidth.x,0,redSpawnPosition.z);
+        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x,0,redSpawnPosition.z);
     }
 
     /// <summary>
@@ -300,9 +301,9 @@ public class Manager : MonoBehaviour
         GameStats.isGetFlagUIDisplayed = false;
         getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
 
-        gameState += direction;
+        GameStats.currScreenIndex += direction;
         
-        if (Mathf.Abs(gameState) > winBy)
+        if (Mathf.Abs(GameStats.currScreenIndex) > winBy)
         {
             //call some winning function
             GameStats.isInputEnabled = false;
@@ -362,8 +363,8 @@ public class Manager : MonoBehaviour
         GameObject right = Instantiate(rightbounds);
         GameObject left = Instantiate(leftbounds);
         //place the left and right bounds
-        right.gameObject.transform.position = new Vector3(gameState * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
-        left.gameObject.transform.position = new Vector3(gameState * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
+        right.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
+        left.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
@@ -416,15 +417,15 @@ public class Manager : MonoBehaviour
         }
 
 
-        if (tank.transform.position.x > (gameState * ScreenWidth.x + .5f * ScreenWidth.x) && GameStats.redAdvance)
+        if (tank.transform.position.x > (GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x) && GameStats.redAdvance)
         {
-            tank.transform.position = new Vector3((gameState * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
+            tank.transform.position = new Vector3((GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
 
         }
 
-        if (tank.transform.position.x < (gameState * ScreenWidth.x - .5f * ScreenWidth.x) && GameStats.blueAdvance)
+        if (tank.transform.position.x < (GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x) && GameStats.blueAdvance)
         {
-            tank.transform.position = new Vector3(((gameState * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
+            tank.transform.position = new Vector3(((GameStats.currScreenIndex * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
 
         }
 
@@ -490,7 +491,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + gameState * ScreenWidth.x, 0, redSpawnPosition.z);
+            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
             BlueInvincible = true;
             bluInvulnTimer = 0f;
             
@@ -506,7 +507,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + gameState * ScreenWidth.x, 0, redSpawnPosition.z);
+            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
             redInvincible = true;
             redInvulnTimer = 0f;
             SetTankAlpha(InvulnColor, activeRedTank);
@@ -543,5 +544,16 @@ public class Manager : MonoBehaviour
             UnpauseGame();
         }
     }
+    public void ReturnBullet(string bulletTag)
+    {
+        if( bulletTag[0] == 'R')
+        {
+            activeRedTank.GetComponent<BlueTankControls>().addBullet();
+        }
 
+        if(bulletTag[0] == 'B')
+        {
+            activeBlueTank.GetComponent<BlueTankControls>().addBullet();
+        }
+    }
 }

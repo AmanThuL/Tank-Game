@@ -48,7 +48,7 @@ public class Bullet_Test : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
+        //Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
 
         if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3) || currentBounces > 1)
         {
@@ -102,6 +102,8 @@ public class Bullet_Test : MonoBehaviour
     void DestroySelf()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
+        //Debug.Log(gameObject.tag.Substring(0, 3) + "Tank");
+        GameObject.Find("Game Manager").GetComponent<Manager>().ReturnBullet(gameObject.tag);
         GameObject.Destroy(gameObject);
     }
 
