@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6105161328660253982}
   - component: {fileID: 4464248338577121229}
   - component: {fileID: -6095126520571045841}
-  - component: {fileID: 7646631976954096054}
-  - component: {fileID: 4183812021402102556}
+  - component: {fileID: 4630640030306443395}
+  - component: {fileID: 4243983052842778725}
   m_Layer: 0
   m_Name: Ricochet
   m_TagString: Untagged
@@ -144,7 +144,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!198 &7646631976954096054
+--- !u!198 &4630640030306443395
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,7 +334,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7169812, g: 0.4125097, b: 0, a: 1}
+      maxColor: {r: 0.6226415, g: 0.26914775, b: 0.0734247, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -772,7 +772,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 0
-    angle: 0
+    angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
@@ -4802,7 +4802,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &4183812021402102556
+--- !u!199 &4243983052842778725
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
