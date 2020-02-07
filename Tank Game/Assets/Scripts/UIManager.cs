@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
         sceneFader.SetActive(true);
         //Debug.Log("Loading Main Menu!");
         sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
+        GameStats.isPauseMenuEnabled = false;
     }
 
     public void ToControlsScreen()
