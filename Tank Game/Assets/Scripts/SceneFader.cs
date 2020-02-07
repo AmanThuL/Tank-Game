@@ -32,7 +32,7 @@ public class SceneFader : MonoBehaviour
 
         while (t > 0f) // Keep animating until t reaches 0
         {
-            Debug.Log("t = " + t);
+            //Debug.Log("t = " + t);
             t -= Time.deltaTime;
             float a = curve.Evaluate(t);
             img.color = new Color(0f, 0f, 0f, a);

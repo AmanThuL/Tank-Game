@@ -29,13 +29,17 @@ public class Manager : MonoBehaviour
 
     [Header("Screen Transition")]
     [SerializeField] GameObject flag; //holds the item that will be captured
-    float currentpos = 0; //hold the position in game
-    float targetpos = 0;
+    //float currentpos = 0; //hold the position in game
+    //float targetpos = 0;
     bool screenMoving = false;
+    [SerializeField] [Range(0,2)] float screenTransitionDuration = 1;
+    float screenTransStartX, screenTransEndX;
+    float screenTransSumTime = 0f;
     [SerializeField] GameObject cam; //holds the camera
     [SerializeField] [Range (0,5)]int winBy = 2;
+    int gameState = 0;
     [SerializeField] Vector3 ScreenWidth = new Vector3();
-    [SerializeField] float screenMoveSpeed;
+    //[SerializeField] float screenMoveSpeed;
     [SerializeField] GameObject rightbounds;
     [SerializeField] GameObject leftbounds;
 
@@ -121,30 +125,24 @@ public class Manager : MonoBehaviour
         if(!screenMoving)
         { return; }
 
-        //if the screen is in place do nothing and stop the screen from moving
-        if((targetpos <= currentpos + .01) && (targetpos >= currentpos - .01))
+        float percenttime = screenTransSumTime / screenTransitionDuration;
+
+        if (percenttime >= 1f)
         {
+            //turn off the screen movement
             screenMoving = false;
-            RespawnBounds();
-            return;
+            screenTransSumTime = 0f; //reset the sum time
+            RespawnBounds(); //put the bounds back around the ends of the screen
+            cam.transform.position = new Vector3(screenTransEndX, 0, ScreenWidth.z); //put the camera in it's final position
+            return; //exit the funciton
         }
 
-        //now we know the screen can move
-
-        //get what direction we are moving in
-        float dir = (targetpos - currentpos)/Mathf.Abs(targetpos - currentpos);
-        float dist = Mathf.Abs(targetpos - currentpos);
-        if (dist < screenMoveSpeed * dt)
-        {
-            currentpos = targetpos;
-        }
-        else
-        {
-            //move
-            currentpos += screenMoveSpeed * dir * dt;
-            //update the camera's position
-        }
-        cam.transform.position = new Vector3(currentpos * ScreenWidth.x, 0, ScreenWidth.z);
+        //get the current position
+        float currentpos = Mathf.Lerp(screenTransStartX,screenTransEndX, percenttime);
+        //increment the sum time for the current screen transition
+        screenTransSumTime += dt;
+        //set the position of the camera
+        cam.transform.position = new Vector3(currentpos, 0, ScreenWidth.z);
 
     }
 
@@ -190,7 +188,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
-        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + targetpos * ScreenWidth.x, 0, blueSpawnPosition.z);
+        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + gameState * ScreenWidth.x, 0, blueSpawnPosition.z);
     }
 
     /// <summary>
@@ -207,7 +205,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
-        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + targetpos * ScreenWidth.x,0,redSpawnPosition.z);
+        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + gameState * ScreenWidth.x,0,redSpawnPosition.z);
     }
 
     /// <summary>
@@ -227,10 +225,10 @@ public class Manager : MonoBehaviour
         //set which tank can advance to win
         //redAdvance = true;
 
+        //destroy the blue tank
+        GameObject.Destroy(activeBlueTank);
         Vector3 temp = activeBlueTank.transform.position;
 
-        //destroy the blue tank
-        GameObject.Destroy(activeBlueTank); 
         Instantiate(explosion, temp, Quaternion.identity);
         Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
@@ -239,6 +237,8 @@ public class Manager : MonoBehaviour
             GameStats.blueAdvance = false;
             SpawnFlag(temp);
         }
+
+        return;
     }
 
     /// <summary>
@@ -259,10 +259,9 @@ public class Manager : MonoBehaviour
         //blueAdvance = true;
 
         Vector3 temp = activeRedTank.transform.position;
-        
+        GameObject.Destroy(activeRedTank);
 
         //destroy the red tank
-        GameObject.Destroy(activeRedTank);
         Instantiate(explosion, temp, Quaternion.identity);
         Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
@@ -271,6 +270,9 @@ public class Manager : MonoBehaviour
             GameStats.redAdvance = false;
             SpawnFlag(temp);
         }
+
+        return;
+
     }
 
     /// <summary>
@@ -282,12 +284,12 @@ public class Manager : MonoBehaviour
         GameStats.isGetFlagUIDisplayed = false;
         getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
 
-        targetpos += direction;
+        gameState += direction;
         
-        if (Mathf.Abs(targetpos) > winBy)
+        if (Mathf.Abs(gameState) > winBy)
         {
-            GameStats.isInputEnabled = false;
             //call some winning function
+            GameStats.isInputEnabled = false;
             switch (direction)
             {
                 case -1:
@@ -302,7 +304,9 @@ public class Manager : MonoBehaviour
         }
 
         screenMoving = true;
-
+        screenTransStartX = cam.transform.position.x;
+        screenTransEndX = cam.transform.position.x + direction * ScreenWidth.x;
+        RemoveBounds();
         resetSpawnDelay();
 
     }
@@ -315,10 +319,7 @@ public class Manager : MonoBehaviour
         if(GameStats.redAdvance)
         {
             Advance(-1);
-            KillBlueTank();
-            Destroy(currentLeftBounds.gameObject);
-            Destroy(currentRightBounds.gameObject);
-
+            //ResetBlueTank();
         }
     }
 
@@ -331,11 +332,7 @@ public class Manager : MonoBehaviour
         if(GameStats.blueAdvance)
         {
             Advance(1);
-            KillRedTank();
-            Destroy(currentLeftBounds.gameObject);
-            Destroy(currentRightBounds.gameObject);
-
-            
+            //ResetRedTank();
         }
     }
 
@@ -349,15 +346,45 @@ public class Manager : MonoBehaviour
         GameObject right = Instantiate(rightbounds);
         GameObject left = Instantiate(leftbounds);
         //place the left and right bounds
-        right.gameObject.transform.position = new Vector3(targetpos * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
-        left.gameObject.transform.position = new Vector3(targetpos * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
+        right.gameObject.transform.position = new Vector3(gameState * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
+        left.gameObject.transform.position = new Vector3(gameState * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
 
         //check if tanks are out of bounds
-        Checkbounds(activeRedTank);
-        Checkbounds(activeBlueTank);
+        CheckBounds();
+        
+    }
+
+    void CheckBounds()
+    {
+        if(GameStats.redAdvance)
+        {
+            ResetBlueTank();
+            Checkbounds(activeRedTank);
+        }
+
+        if(GameStats.blueAdvance)
+        {
+            ResetRedTank();
+            Checkbounds(activeBlueTank);
+        }
+
+        //Checkbounds(activeBlueTank);
+        //Checkbounds(activeRedTank);
+
+        GameObject flag = GameObject.Find("Flag(clone)");
+        if(flag != null)
+        {
+            flag.transform.position = cam.transform.position;
+        }
+    }
+
+    void RemoveBounds()
+    {
+        Destroy(currentLeftBounds.gameObject);
+        Destroy(currentRightBounds.gameObject);
     }
 
 
@@ -367,31 +394,25 @@ public class Manager : MonoBehaviour
     /// <param name="tank"> the game object to check outside the bounds, if tank is null the check is not preformed as the tank is presumed dead</param>
     private void Checkbounds(GameObject tank)
     {
-        if(tank == null)
+        if (tank == null)
         {
             return;
         }
 
-        if (GameStats.redAdvance)
+
+        if (tank.transform.position.x > (gameState * ScreenWidth.x + .5f * ScreenWidth.x) && GameStats.redAdvance)
         {
-            if (tank.transform.position.x > (targetpos * ScreenWidth.x + .5f * ScreenWidth.x))
-            {
-                tank.transform.position = new Vector3((targetpos * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
-               
-            }
-        }
-        else if (GameStats.blueAdvance)
-        {
-            if (tank.transform.position.x < (targetpos * ScreenWidth.x - .5f * ScreenWidth.x))
-            {
-                tank.transform.position = new Vector3(((targetpos * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
-                
-            }
+            tank.transform.position = new Vector3((gameState * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
+
         }
 
-        
+        if (tank.transform.position.x < (gameState * ScreenWidth.x - .5f * ScreenWidth.x) && GameStats.blueAdvance)
+        {
+            tank.transform.position = new Vector3(((gameState * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
 
-        
+        }
+
+
     }
 
     /// <summary>
@@ -443,5 +464,37 @@ public class Manager : MonoBehaviour
     {
         GameObject temp = Instantiate(flag);
         temp.transform.position = pos;
+    }
+
+    void ResetBlueTank()
+    {
+        if (blueDead)
+        {
+            RespawnBlueTank();
+        }
+        else
+        {
+            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + gameState * ScreenWidth.x, 0, redSpawnPosition.z);
+            BlueInvincible = true;
+            bluInvulnTimer = 0f;
+            
+            SetTankAlpha(InvulnColor, activeBlueTank);
+        }
+    }
+
+    void ResetRedTank()
+    {
+        if (redDead)
+        {
+            RespawnRedTank();
+        }
+        else
+        {
+            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + gameState * ScreenWidth.x, 0, redSpawnPosition.z);
+            redInvincible = true;
+            redInvulnTimer = 0f;
+            SetTankAlpha(InvulnColor, activeRedTank);
+        }
+
     }
 }

@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
     {
         //SceneManager.LoadScene(menuSceneName);
         sceneFader.SetActive(true);
-        Debug.Log("Loading Main Menu!");
+        //Debug.Log("Loading Main Menu!");
         sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
     }
 
