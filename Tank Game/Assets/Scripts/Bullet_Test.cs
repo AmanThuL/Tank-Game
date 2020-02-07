@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_Test : MonoBehaviour
 {
     //GameObject tank;
-    [SerializeField] GameObject bulletTrail;
+    [SerializeField] GameObject explosion;
     [SerializeField] [Range (0,20)] private float speed;
     public Vector3 direction;
     [SerializeField] private Vector3 velocity;
@@ -42,19 +42,7 @@ public class Bullet_Test : MonoBehaviour
         transform.position = position;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if(collision.gameObject.tag == "Blue")
-    //    {
-    //        GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
-    //    }
-    //    if(collision.gameObject.tag == "RedTank")
-    //    {
-    //        GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
-    //    }
-
-    //    DestroySelf();
-    //}
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
@@ -72,6 +60,7 @@ public class Bullet_Test : MonoBehaviour
             if (collision.gameObject.tag == "RedTank")
             {
                 GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+                Debug.Log("weha");
                 DestroySelf();
                 return;
             }
@@ -109,6 +98,7 @@ public class Bullet_Test : MonoBehaviour
     /// </summary>
     void DestroySelf()
     {
+        Instantiate(explosion, transform.position, Quaternion.identity);
         GameObject.Destroy(gameObject);
     }
 
