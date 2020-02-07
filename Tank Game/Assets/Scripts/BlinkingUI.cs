@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class BlinkingUI : MonoBehaviour
 {
     private Image image;
+    [SerializeField] private int screenIndex;
     [SerializeField] private float blinkingRate;
     [SerializeField] private int blinkingTimes;
     [SerializeField] private int blinkingMaxCounts;
+    private bool hasBlinked = false;
 
     public int SetBlinkingTimes { set => blinkingTimes = value; }
 
@@ -16,11 +18,17 @@ public class BlinkingUI : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-        StartBlinking();
+        hasBlinked = false;
+        //StartBlinking();
     }
 
     void Update()
     {
+        if (!hasBlinked && GameStats.currScreenIndex == screenIndex)
+        {
+            StartBlinking();
+            hasBlinked = true;
+        }
     }
 
     private IEnumerator Blink()
