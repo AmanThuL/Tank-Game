@@ -12,7 +12,9 @@ public class Manager : MonoBehaviour
     [SerializeField] Vector3 redSpawnPosition;
 
     public GameObject activeRedTank, activeBlueTank;
-    
+
+    GameObject pauseObj;
+
     [Header("Respawn Information")]
     [SerializeField] [Range(0, 5)] float SpawnDelay;
     [SerializeField] [Range(0,2)] float spawnDelayIncrement;
@@ -61,6 +63,9 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseObj = GameObject.Find("PauseMenu");
+        pauseObj.SetActive(false);
+
         GameStats.isInputEnabled = true;
         GameStats.blueAdvance = false;
         GameStats.redAdvance = false;
@@ -74,14 +79,25 @@ public class Manager : MonoBehaviour
         RespawnBounds();
         RespawnBlueTank();
         RespawnRedTank();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateRespawnTimer(Time.deltaTime);
-        UpdateScreenMove(Time.deltaTime);
-        UpdateInvulnTimer(Time.deltaTime);
+        if (GameStats.isInputEnabled)
+        {
+            UpdateRespawnTimer(Time.deltaTime);
+            UpdateScreenMove(Time.deltaTime);
+            UpdateInvulnTimer(Time.deltaTime);
+
+            //Check for game pause
+            PauseGame();
+        }
+        else
+        {
+            UnpauseUsingEsc();
+        }
     }
 
     /// <summary>
@@ -497,4 +513,35 @@ public class Manager : MonoBehaviour
         }
 
     }
+
+    void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStats.isPauseMenuEnabled == false)
+        {
+            //Pause the game
+            GameStats.isInputEnabled = false;
+            GameStats.isPauseMenuEnabled = true;
+
+            pauseObj.SetActive(true);
+            
+        }
+    }
+
+    public void UnpauseGame()
+    {
+        GameStats.isInputEnabled = true;
+        GameStats.isPauseMenuEnabled = false;
+
+        //Destroy pause screen
+        pauseObj.SetActive(false);
+    }
+
+    void UnpauseUsingEsc()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStats.isPauseMenuEnabled == true)
+        {
+            UnpauseGame();
+        }
+    }
+
 }

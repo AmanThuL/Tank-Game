@@ -29,10 +29,13 @@ public class Bullet_Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveBullet();
+        if (GameStats.isInputEnabled)
+        {
+            MoveBullet();
 
-        if (currentBounces <= MAX_BOUNCES) 
-            RicochetBullet();
+            if (currentBounces <= MAX_BOUNCES)
+                RicochetBullet();
+        }
     }
 
 
