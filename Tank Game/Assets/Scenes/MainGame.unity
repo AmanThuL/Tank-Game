@@ -7837,6 +7837,23 @@ PrefabInstance:
       propertyPath: getFlagCanvasUI
       value: 
       objectReference: {fileID: 1318018739}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: screenTransitionDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 2991249485464585752, guid: 5cb56443a570227449fd19a6335a08a9,
+        type: 3}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: destroyedDecal
+      value: 
+      objectReference: {fileID: 3120459931105333190, guid: 2a583b73937af8e4aaa9b8638ca3fbe4,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dae555daa268a546b793977202a4484, type: 3}
 --- !u!1 &1886507420
