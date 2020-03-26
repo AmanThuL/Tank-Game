@@ -18,7 +18,7 @@ public class Manager : MonoBehaviour
 
     [Header("Respawn Information")]
     [SerializeField] [Range(0, 5)] float SpawnDelay;
-    [SerializeField] [Range(0,2)] float spawnDelayIncrement;
+    [SerializeField] [Range(0, 2)] float spawnDelayIncrement;
     float currentRedSpawnDelay;
     float currentBlueSpawnDelay;
     float spawnTimerBlue = 0f;
@@ -26,7 +26,7 @@ public class Manager : MonoBehaviour
     bool blueDead, redDead;
     bool redInvincible = false, BlueInvincible = false;
     [SerializeField] [Range(0, 5)] float invinciblityTime;
-    float redInvulnTimer = 0, bluInvulnTimer=0;
+    float redInvulnTimer = 0, bluInvulnTimer = 0;
     Color normalColor = new Color(255, 255, 255, 255);
     [SerializeField] Color InvulnColor = new Color(255, 255, 255, 100);
 
@@ -35,11 +35,11 @@ public class Manager : MonoBehaviour
     //float currentpos = 0; //hold the position in game
     //float targetpos = 0;
     bool screenMoving = false;
-    [SerializeField] [Range(0,2)] float screenTransitionDuration = 1;
+    [SerializeField] [Range(0, 2)] float screenTransitionDuration = 1;
     float screenTransStartX, screenTransEndX;
     float screenTransSumTime = 0f;
     [SerializeField] GameObject cam; //holds the camera
-    [SerializeField] [Range (0,5)]int winBy = 2;
+    [SerializeField] [Range(0, 5)] int winBy = 2;
     //int gameState = 0;
     [SerializeField] Vector3 ScreenWidth = new Vector3();
     //[SerializeField] float screenMoveSpeed;
@@ -75,7 +75,7 @@ public class Manager : MonoBehaviour
         GameStats.currScreenIndex = 0;
 
         resetSpawnDelay();
-        SpawnFlag(new Vector3(0,-2,0));
+        SpawnFlag(new Vector3(0, -2, 0));
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
@@ -121,7 +121,7 @@ public class Manager : MonoBehaviour
         }
 
         //if the red tank is dead
-        if(redDead)
+        if (redDead)
         {
             //update it's timer
             spawnTimerRed += dt;
@@ -137,9 +137,9 @@ public class Manager : MonoBehaviour
     /// Updates the screen movement
     /// </summary>
     void UpdateScreenMove(float dt)
-    { 
+    {
         //do nothing if the screen is not moving
-        if(!screenMoving)
+        if (!screenMoving)
         { return; }
 
         float percenttime = screenTransSumTime / screenTransitionDuration;
@@ -155,7 +155,7 @@ public class Manager : MonoBehaviour
         }
 
         //get the current position
-        float currentpos = Mathf.Lerp(screenTransStartX,screenTransEndX, percenttime);
+        float currentpos = Mathf.Lerp(screenTransStartX, screenTransEndX, percenttime);
         //increment the sum time for the current screen transition
         screenTransSumTime += dt;
         //set the position of the camera
@@ -165,10 +165,10 @@ public class Manager : MonoBehaviour
 
     void UpdateInvulnTimer(float dt)
     {
-        if(redInvincible)
+        if (redInvincible)
         {
             redInvulnTimer += dt;
-            if(redInvulnTimer > invinciblityTime)
+            if (redInvulnTimer > invinciblityTime)
             {
                 redInvincible = false;
                 redInvulnTimer = 0;
@@ -176,19 +176,19 @@ public class Manager : MonoBehaviour
             }
         }
 
-        if(BlueInvincible)
+        if (BlueInvincible)
         {
             //increment timer
             bluInvulnTimer += dt;
             //check if invincibility is over
-            if(bluInvulnTimer > invinciblityTime)
+            if (bluInvulnTimer > invinciblityTime)
             {
                 BlueInvincible = false;
                 bluInvulnTimer = 0;
                 SetTankAlpha(normalColor, activeBlueTank);
             }
         }
-        
+
     }
 
     /// <summary>
@@ -203,7 +203,7 @@ public class Manager : MonoBehaviour
         BlueInvincible = true;
 
         GameStats.blueBullets = 3;
-        SetTankAlpha(InvulnColor,activeBlueTank);
+        SetTankAlpha(InvulnColor, activeBlueTank);
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
@@ -226,7 +226,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
-        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x,0,redSpawnPosition.z);
+        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
     }
 
     /// <summary>
@@ -234,7 +234,7 @@ public class Manager : MonoBehaviour
     /// </summary>
     public void KillBlueTank()
     {
-        if(BlueInvincible)
+        if (BlueInvincible)
         {
             return;
         }
@@ -267,7 +267,7 @@ public class Manager : MonoBehaviour
     /// </summary>
     public void KillRedTank()
     {
-        if(redInvincible)
+        if (redInvincible)
         {
             return;
         }
@@ -306,7 +306,7 @@ public class Manager : MonoBehaviour
         getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
 
         GameStats.currScreenIndex += direction;
-        
+
         if (Mathf.Abs(GameStats.currScreenIndex) > winBy)
         {
             //call some winning function
@@ -337,7 +337,7 @@ public class Manager : MonoBehaviour
     public void RedAdvance()
     {
         //advance the red tank if you are able
-        if(GameStats.redAdvance)
+        if (GameStats.redAdvance)
         {
             Advance(-1);
             //ResetBlueTank();
@@ -350,7 +350,7 @@ public class Manager : MonoBehaviour
     public void BluAdvance()
     {
         //advance the blue tank if you are able
-        if(GameStats.blueAdvance)
+        if (GameStats.blueAdvance)
         {
             Advance(1);
             //ResetRedTank();
@@ -362,31 +362,31 @@ public class Manager : MonoBehaviour
     /// </summary>
     private void RespawnBounds()
     {
-        
+
         //create the left and right bounds
         GameObject right = Instantiate(rightbounds);
         GameObject left = Instantiate(leftbounds);
         //place the left and right bounds
-        right.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x,0f,0f);
-        left.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x,0f,0f);
+        right.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x, 0f, 0f);
+        left.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x, 0f, 0f);
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
 
         //check if tanks are out of bounds
         CheckBounds();
-        
+
     }
 
     void CheckBounds()
     {
-        if(GameStats.redAdvance)
+        if (GameStats.redAdvance)
         {
             ResetBlueTank();
             Checkbounds(activeRedTank);
         }
 
-        if(GameStats.blueAdvance)
+        if (GameStats.blueAdvance)
         {
             ResetRedTank();
             Checkbounds(activeBlueTank);
@@ -396,7 +396,7 @@ public class Manager : MonoBehaviour
         //Checkbounds(activeRedTank);
 
         GameObject flag = GameObject.Find("Flag(clone)");
-        if(flag != null)
+        if (flag != null)
         {
             flag.transform.position = cam.transform.position;
         }
@@ -498,7 +498,7 @@ public class Manager : MonoBehaviour
             activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
             BlueInvincible = true;
             bluInvulnTimer = 0f;
-            
+
             SetTankAlpha(InvulnColor, activeBlueTank);
         }
     }
@@ -528,7 +528,7 @@ public class Manager : MonoBehaviour
             GameStats.isPauseMenuEnabled = true;
 
             pauseObj.SetActive(true);
-            
+
         }
     }
 
@@ -550,12 +550,12 @@ public class Manager : MonoBehaviour
     }
     public void ReturnBullet(string bulletTag)
     {
-        if( bulletTag[0] == 'R')
+        if (bulletTag[0] == 'R')
         {
             GameStats.incrementBullets(bulletTag[0]);
         }
 
-        if(bulletTag[0] == 'B')
+        if (bulletTag[0] == 'B')
         {
             GameStats.incrementBullets(bulletTag[0]);
         }
