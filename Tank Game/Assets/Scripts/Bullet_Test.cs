@@ -63,7 +63,6 @@ public class Bullet_Test : MonoBehaviour
             if (collision.gameObject.tag == "RedTank")
             {
                 GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
-                Debug.Log("weha");
                 DestroySelf();
                 return;
             }

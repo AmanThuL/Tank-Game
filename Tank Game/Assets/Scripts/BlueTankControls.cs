@@ -160,24 +160,21 @@ public class BlueTankControls : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && bullets > 0)
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0)
         {
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
             tempBullet.tag = gameObject.tag.Substring(0,3) + "Bullet";
             tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
-            Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
-            bullets--;
+            //Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
+            GameStats.decrementBullets(gameObject.tag[0]);
         }
     }
     
     public void addBullet()
     {
-        if (bullets < maxBullets)
-        {
-            bullets++;
-        }
+        GameStats.incrementBullets(gameObject.tag[0]);
     }
 
 }

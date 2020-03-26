@@ -201,6 +201,8 @@ public class Manager : MonoBehaviour
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
         BlueInvincible = true;
+
+        GameStats.blueBullets = 3;
         SetTankAlpha(InvulnColor,activeBlueTank);
 
         AssignTankProperties(activeBlueTank);
@@ -218,6 +220,8 @@ public class Manager : MonoBehaviour
         //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
         redInvincible = true;
+
+        GameStats.redBullets = 3;
         SetTankAlpha(InvulnColor, activeRedTank);
 
         AssignTankProperties(activeRedTank);
@@ -548,12 +552,12 @@ public class Manager : MonoBehaviour
     {
         if( bulletTag[0] == 'R')
         {
-            activeRedTank.GetComponent<BlueTankControls>().addBullet();
+            GameStats.incrementBullets(bulletTag[0]);
         }
 
         if(bulletTag[0] == 'B')
         {
-            activeBlueTank.GetComponent<BlueTankControls>().addBullet();
+            GameStats.incrementBullets(bulletTag[0]);
         }
     }
 }
