@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
     public GameObject sceneFader;
 
     public GameObject redArrow, blueArrow;
+
+    public GameObject arrowUI;
 
     private bool isControlOn;
 
@@ -27,6 +30,20 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (arrowUI != null)
+        {
+            GameObject currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+            if (currentSelected != null)
+            {
+                PointToSelectedButton(currentSelected);
+            }
+            else
+            {
+                // set self invisible
+                arrowUI.SetActive(false);
+            }
+        }
+
         if (redArrow != null && blueArrow != null)
         {
             if (GameStats.blueAdvance)
@@ -85,4 +102,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void PointToSelectedButton(GameObject button)
+    {
+        arrowUI.SetActive(true);
+        RectTransform buttonTransform = button.GetComponent<RectTransform>();
+        arrowUI.GetComponent<RectTransform>().position = buttonTransform.position - new Vector3(buttonTransform.sizeDelta.x / 2f + 10f, 0, 0);
+    }
 }
