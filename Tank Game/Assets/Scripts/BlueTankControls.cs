@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlueTankControls : MonoBehaviour
 {
@@ -45,13 +46,20 @@ public class BlueTankControls : MonoBehaviour
     [SerializeField][Range(1,5)] int maxBullets = 3;
     int bullets;
 
+    //Bullet Limit
+    Text ammoText;
+    [SerializeField] [Range(1, 10)] int ammoCap = 5;
+    int ammo;
+
     // start is called before the first frame update
     void Start()
     {
+        ammo = ammoCap;
         bullets = maxBullets;
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
+        ammoText = GameObject.Find("BlueText").GetComponent<Text>();
     }
 
     //get player input in update
@@ -63,7 +71,13 @@ public class BlueTankControls : MonoBehaviour
             Move();
             Decelerate();
             ShootBullet();
+            AmmoText();
         }
+    }
+
+    void AmmoText()
+    {
+        ammoText.text = ammo.ToString();
     }
 
     /// <summary>
@@ -169,6 +183,7 @@ public class BlueTankControls : MonoBehaviour
             tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
             //Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
             GameStats.decrementBullets(gameObject.tag[0]);
+            ammo--;
         }
     }
     
