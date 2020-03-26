@@ -59,7 +59,7 @@ public class BlueTankControls : MonoBehaviour
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
-        ammoText = GameObject.Find("BlueText").GetComponent<Text>();
+        //ammoText = GameObject.Find("BlueText").GetComponent<Text>();
     }
 
     //get player input in update
@@ -77,7 +77,7 @@ public class BlueTankControls : MonoBehaviour
 
     void AmmoText()
     {
-        ammoText.text = ammo.ToString();
+        //ammoText.text = ammo.ToString();
     }
 
     /// <summary>
