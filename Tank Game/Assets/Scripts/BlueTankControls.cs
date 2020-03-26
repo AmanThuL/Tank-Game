@@ -85,7 +85,7 @@ public class BlueTankControls : MonoBehaviour
 
     void AmmoText()
     {
-        ammoText.text = ammo.ToString();
+        //ammoText.text = ammo.ToString();
     }
 
     public void addAmmo()
