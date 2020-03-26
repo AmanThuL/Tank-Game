@@ -59,7 +59,15 @@ public class BlueTankControls : MonoBehaviour
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
-        //ammoText = GameObject.Find("BlueText").GetComponent<Text>();
+
+        if (this.name == "Blue_Tank(Clone)")
+        {
+            ammoText = GameObject.Find("BlueText").GetComponent<Text>();
+        }
+        else
+        {
+            ammoText = GameObject.Find("RedText").GetComponent<Text>();
+        }
     }
 
     //get player input in update
@@ -78,6 +86,18 @@ public class BlueTankControls : MonoBehaviour
     void AmmoText()
     {
         //ammoText.text = ammo.ToString();
+    }
+
+    public void addAmmo()
+    {
+        if (ammo + 3 > ammoCap)
+        {
+            ammo = ammoCap;
+        }
+        else
+        {
+            ammo += 3;
+        }
     }
 
     /// <summary>
@@ -174,7 +194,7 @@ public class BlueTankControls : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0)
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0)
         {
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
