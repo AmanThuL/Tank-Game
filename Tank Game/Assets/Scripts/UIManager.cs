@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     public GameObject redArrow, blueArrow;
 
     public GameObject arrowUI;
+    public GameObject lastSelected;
+    private GameObject currentSelected;
 
     private bool isControlOn;
 
@@ -32,12 +34,15 @@ public class UIManager : MonoBehaviour
     {
         if (arrowUI != null)
         {
-            GameObject currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
-            if (currentSelected != null)
+            currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+
+            // Select on change
+            if (currentSelected != null && currentSelected != lastSelected)
             {
+                lastSelected = currentSelected;
                 PointToSelectedButton(currentSelected);
             }
-            else
+            else if (currentSelected == null)
             {
                 // set self invisible
                 arrowUI.SetActive(false);
@@ -106,6 +111,31 @@ public class UIManager : MonoBehaviour
     {
         arrowUI.SetActive(true);
         RectTransform buttonTransform = button.GetComponent<RectTransform>();
-        arrowUI.GetComponent<RectTransform>().position = buttonTransform.position - new Vector3(buttonTransform.sizeDelta.x / 2f + 10f, 0, 0);
+        
+        Vector3 startPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f + 25f, 0, 0);
+        Vector3 endPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f - 5f, 0, 0);
+        StopAllCoroutines();
+        StartCoroutine(MoveArrowHorizontally(arrowUI.GetComponent<RectTransform>(), startPos, endPos));
+    }
+
+    private IEnumerator MoveArrow(RectTransform arrowTransform, Vector3 startPos, Vector3 endPos, float time)
+    {
+        float i = 0f;
+        float rate = 1.0f / time;
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            arrowTransform.position = Vector3.Lerp(startPos, endPos, i);
+            yield return null;
+        }
+    }
+
+    private IEnumerator MoveArrowHorizontally(RectTransform arrowTransform, Vector3 startPos, Vector3 endPos)
+    {
+        while (true)
+        {
+            yield return StartCoroutine(MoveArrow(arrowTransform, startPos, endPos, 1.0f));
+            yield return StartCoroutine(MoveArrow(arrowTransform, endPos, startPos, 1.0f));
+        }
     }
 }
