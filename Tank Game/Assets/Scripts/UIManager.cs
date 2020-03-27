@@ -92,6 +92,12 @@ public class UIManager : MonoBehaviour
         sceneFader.GetComponent<SceneFader>().FadeTo(controlsSceneName);
     }
 
+    public void ToSelectionScreen()
+    {
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(selectionSceneName);
+    }
+
     public void RestartScene()
     {
         sceneFader.SetActive(true);

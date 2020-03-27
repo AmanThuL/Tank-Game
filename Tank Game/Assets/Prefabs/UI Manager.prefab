@@ -290,6 +290,11 @@ MonoBehaviour:
   menuSceneName: Menu
   gameSceneName: MainGame
   controlsSceneName: Controls
+  selectionSceneName: Selection
   controlMenu: {fileID: 0}
   buttons: {fileID: 0}
   sceneFader: {fileID: 676993963}
+  redArrow: {fileID: 0}
+  blueArrow: {fileID: 0}
+  arrowUI: {fileID: 0}
+  lastSelected: {fileID: 0}
