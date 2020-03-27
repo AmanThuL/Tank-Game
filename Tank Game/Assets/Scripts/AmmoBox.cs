@@ -25,7 +25,7 @@ public class AmmoBox : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
-            collision.gameObject.GetComponent<BlueTankControls>().addAmmo();
+            collision.gameObject.GetComponent<TankControls>().addAmmo();
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             respawnTime = Time.time + delay;

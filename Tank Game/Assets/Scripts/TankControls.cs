@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlueTankControls : MonoBehaviour
+public class TankControls : MonoBehaviour
 {
     // Movement
     [Header("Movement")]
@@ -196,6 +196,8 @@ public class BlueTankControls : MonoBehaviour
         GameObject tempBullet;
         if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0)
         {
+            Debug.Log(GameStats.blueBullets);
+
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));

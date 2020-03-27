@@ -202,7 +202,7 @@ public class Manager : MonoBehaviour
         activeBlueTank = GameObject.Instantiate(BlueTank);
         BlueInvincible = true;
 
-        GameStats.blueBullets = 3;
+        GameStats.blueBullets = 5;
         SetTankAlpha(InvulnColor, activeBlueTank);
 
         AssignTankProperties(activeBlueTank);
@@ -221,7 +221,7 @@ public class Manager : MonoBehaviour
         activeRedTank = GameObject.Instantiate(RedTank);
         redInvincible = true;
 
-        GameStats.redBullets = 3;
+        GameStats.redBullets = 5;
         SetTankAlpha(InvulnColor, activeRedTank);
 
         AssignTankProperties(activeRedTank);
@@ -442,10 +442,10 @@ public class Manager : MonoBehaviour
     /// <param name="tank"></param>
     private void AssignTankProperties(GameObject tank)
     {
-        tank.GetComponent<BlueTankControls>().AccelRate = accelRate;
-        tank.GetComponent<BlueTankControls>().Deceleration = deceleration;
-        tank.GetComponent<BlueTankControls>().MaxSpeed = maxSpeed;
-        tank.GetComponent<BlueTankControls>().TurnSpeed = turnSpeed;
+        tank.GetComponent<TankControls>().AccelRate = accelRate;
+        tank.GetComponent<TankControls>().Deceleration = deceleration;
+        tank.GetComponent<TankControls>().MaxSpeed = maxSpeed;
+        tank.GetComponent<TankControls>().TurnSpeed = turnSpeed;
     }
 
     /// <summary>
