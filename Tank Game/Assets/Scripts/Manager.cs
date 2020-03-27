@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class Manager : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour
 
     public GameObject activeRedTank, activeBlueTank;
 
-    GameObject pauseObj;
+    public GameObject pauseObj;
 
     [Header("Respawn Information")]
     [SerializeField] [Range(0, 5)] float SpawnDelay;
@@ -60,14 +60,15 @@ public class Manager : MonoBehaviour
     [SerializeField] GameObject explosion;
     [SerializeField] GameObject destroyedDecal;
 
+    private GameObject UIManager;
+    [SerializeField] private GameObject arrowUI;
+    [SerializeField] private GameObject resumeButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        pauseObj = GameObject.Find("PauseMenu");
         pauseObj.SetActive(false);
 
-        GameStats.isInputEnabled = true;
         GameStats.blueAdvance = false;
         GameStats.redAdvance = false;
         GameStats.isGetFlagUIDisplayed = true;
@@ -81,6 +82,7 @@ public class Manager : MonoBehaviour
         RespawnBlueTank();
         RespawnRedTank();
 
+        UIManager = GameObject.Find("UI Manager");
     }
 
     // Update is called once per frame
@@ -523,31 +525,26 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GameStats.isPauseMenuEnabled == false)
         {
+            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(resumeButton);
+
             //Pause the game
             GameStats.isInputEnabled = false;
             GameStats.isPauseMenuEnabled = true;
 
             pauseObj.SetActive(true);
-
+            UIManager.GetComponent<UIManager>().arrowUI = arrowUI;
         }
     }
 
-    public void UnpauseGame()
-    {
-        GameStats.isInputEnabled = true;
-        GameStats.isPauseMenuEnabled = false;
-
-        //Destroy pause screen
-        pauseObj.SetActive(false);
-    }
 
     void UnpauseUsingEsc()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GameStats.isPauseMenuEnabled == true)
         {
-            UnpauseGame();
+            UIManager.GetComponent<UIManager>().UnpauseGame();
         }
     }
+
     public void ReturnBullet(string bulletTag)
     {
         if (bulletTag[0] == 'R')

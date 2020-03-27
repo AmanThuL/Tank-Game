@@ -55,7 +55,5 @@ public static class GameStats
             blueBullets--;
             if (blueBullets < 0 ) blueBullets = 0;
         }
-
-
     }
 }

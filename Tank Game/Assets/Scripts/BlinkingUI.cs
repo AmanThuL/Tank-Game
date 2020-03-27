@@ -12,6 +12,8 @@ public class BlinkingUI : MonoBehaviour
     [SerializeField] private int blinkingMaxCounts;
     private bool hasBlinked = false;
 
+    [SerializeField] private float timeToWaitBeforeStart = 0f;
+
     public int SetBlinkingTimes { set => blinkingTimes = value; }
 
     // Start is called before the first frame update
@@ -33,6 +35,13 @@ public class BlinkingUI : MonoBehaviour
 
     private IEnumerator Blink()
     {
+        if (timeToWaitBeforeStart >= 0f + float.Epsilon)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+            yield return new WaitForSeconds(timeToWaitBeforeStart);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        }
+
         while (blinkingTimes <= blinkingMaxCounts)
         {
             switch (image.color.a.ToString())
