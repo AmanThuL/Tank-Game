@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class UIManager : MonoBehaviour
 {
     // Buttons
-    public string menuSceneName, gameSceneName, controlsSceneName;
+    public string menuSceneName, gameSceneName, controlsSceneName, selectionSceneName;
 
     public GameObject controlMenu, buttons;
 
