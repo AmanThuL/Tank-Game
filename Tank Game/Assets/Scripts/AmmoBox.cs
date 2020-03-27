@@ -23,11 +23,14 @@ public class AmmoBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<BlueTankControls>().addAmmo();
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        respawnTime = Time.time + delay;
-        dead = true;
+        if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
+        {
+            collision.gameObject.GetComponent<BlueTankControls>().addAmmo();
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            respawnTime = Time.time + delay;
+            dead = true;
+        }
     }
 
     void Respawn() {
