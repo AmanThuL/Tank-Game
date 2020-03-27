@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.18400002}
   m_AnchorMax: {x: 0.5, y: 0.18400002}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 574, y: 139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56154881
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3e25c01a4df8da847a0bdb332ed82d41, type: 3}
+  m_Texture: {fileID: 2800000, guid: 6af117f8c914f974aa704cbece146388, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -740,12 +740,12 @@ PrefabInstance:
     - target: {fileID: 8694613831901107095, guid: 9bd6d377bdaae9747a42988f8b6916f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -362
+      value: -366
       objectReference: {fileID: 0}
     - target: {fileID: 8694613831901107095, guid: 9bd6d377bdaae9747a42988f8b6916f3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -341.28
+      value: -391.28
       objectReference: {fileID: 0}
     - target: {fileID: 8694613831901107095, guid: 9bd6d377bdaae9747a42988f8b6916f3,
         type: 3}
