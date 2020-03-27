@@ -111,7 +111,10 @@ public class UIManager : MonoBehaviour
     {
         arrowUI.SetActive(true);
         RectTransform buttonTransform = button.GetComponent<RectTransform>();
-        
+
+        // Invert color
+        //arrowUI.GetComponent<Image>().color = Globals.Invert(arrowUI.GetComponent<Image>().color);
+
         Vector3 startPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f + 25f, 0, 0);
         Vector3 endPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f - 5f, 0, 0);
         StopAllCoroutines();
