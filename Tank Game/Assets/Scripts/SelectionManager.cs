@@ -38,6 +38,30 @@ public class SelectionManager : MonoBehaviour
     void Update()
     {
         ChangeSprites();
+        CheckInput();
+    }
+
+    void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            LeftTankLeft();
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            LeftTankRight();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            RightTankLeft();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RightTankRight();
+        }
     }
 
     void ChangeSprites()
