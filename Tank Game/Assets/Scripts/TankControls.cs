@@ -63,10 +63,18 @@ public class TankControls : MonoBehaviour
         if (this.name == "Blue_Tank(Clone)")
         {
             ammoText = GameObject.Find("BlueText").GetComponent<Text>();
+            if (GameStats.player1Color)
+            {
+                GetComponent<SpriteRenderer>().sprite = GameStats.player1Color;
+            }
         }
         else
         {
             ammoText = GameObject.Find("RedText").GetComponent<Text>();
+            if (GameStats.player2Color)
+            {
+                GetComponent<SpriteRenderer>().sprite = GameStats.player2Color;
+            }
         }
     }
 

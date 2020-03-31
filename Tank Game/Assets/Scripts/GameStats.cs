@@ -18,6 +18,10 @@ public static class GameStats
 
     public static int blueBullets = 5;
 
+    public static Sprite player1Color;
+
+    public static Sprite player2Color;
+
     public static int getBullets(char tankID)
     {
         if (tankID == 'R')
