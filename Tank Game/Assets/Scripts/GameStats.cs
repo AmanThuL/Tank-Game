@@ -14,9 +14,9 @@ public static class GameStats
 
     public static bool isPauseMenuEnabled = false;
 
-    public static int redBullets = 3;
+    public static int redBullets = 5;
 
-    public static int blueBullets = 3;
+    public static int blueBullets = 5;
 
     public static int getBullets(char tankID)
     {
@@ -32,12 +32,12 @@ public static class GameStats
         if (tankID == 'R')
         { 
             redBullets++;
-            if (redBullets > 3) redBullets = 3;
+            if (redBullets > 5) redBullets = 5;
         }
         if (tankID == 'B')
         { 
             blueBullets++;
-            if (blueBullets > 3) blueBullets = 3;
+            if (blueBullets > 5) blueBullets = 5;
         }
 
         
@@ -55,7 +55,5 @@ public static class GameStats
             blueBullets--;
             if (blueBullets < 0 ) blueBullets = 0;
         }
-
-
     }
 }
