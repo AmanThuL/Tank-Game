@@ -22,6 +22,11 @@ public static class GameStats
 
     public static Sprite player2Color;
 
+    //the number of screens from the middle screen you need to traverse to win.
+    //overrides winby in the game manager script if it isn't negative 1
+    //public static int NumScreens = 2;
+    //not currently in use
+
     public static int getBullets(char tankID)
     {
         if (tankID == 'R')

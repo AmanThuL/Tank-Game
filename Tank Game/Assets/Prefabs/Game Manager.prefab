@@ -50,26 +50,30 @@ MonoBehaviour:
   redSpawnPosition: {x: 8.5, y: 0, z: 0}
   activeRedTank: {fileID: 0}
   activeBlueTank: {fileID: 0}
-  SpawnDelay: 1
-  spawnDelayIncrement: 0
-  invinciblityTime: 0
-  InvulnColor: {r: 255, g: 255, b: 255, a: 100}
+  pauseObj: {fileID: 0}
+  SpawnDelay: 0.5
+  spawnDelayIncrement: 0.5
+  invinciblityTime: 1.2
+  InvulnColor: {r: 340.44495, g: 340.44495, b: 340.44495, a: 0.49019608}
   flag: {fileID: 0}
+  screenTransitionDuration: 1
   cam: {fileID: 0}
   winBy: 2
   ScreenWidth: {x: 21, y: 0, z: -10}
-  screenMoveSpeed: 10
   rightbounds: {fileID: 2235274277727372624, guid: 27c2a5064b2403044b8cf0c39d40957e,
     type: 3}
   leftbounds: {fileID: 674519392680065025, guid: afa963191b6925b43aabe874b399fc7e,
     type: 3}
   blueTankWinsUI: {fileID: 0}
   redTankWinsUI: {fileID: 0}
-  accelRate: 0
-  deceleration: 0
-  maxSpeed: 0
-  turnSpeed: 0
+  getFlagCanvasUI: {fileID: 0}
+  accelRate: 6.5
+  deceleration: 0.751
+  maxSpeed: 5.2
+  turnSpeed: 190
   explosion: {fileID: 2991249485464585752, guid: 5cb56443a570227449fd19a6335a08a9,
     type: 3}
   destroyedDecal: {fileID: 3120459931105333190, guid: 2a583b73937af8e4aaa9b8638ca3fbe4,
     type: 3}
+  arrowUI: {fileID: 0}
+  resumeButton: {fileID: 0}
