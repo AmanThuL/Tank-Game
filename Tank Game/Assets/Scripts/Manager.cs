@@ -82,6 +82,12 @@ public class Manager : MonoBehaviour
         RespawnBlueTank();
         RespawnRedTank();
 
+        //currently out of use
+        //if (GameStats.NumScreens > -1 && GameStats.NumScreens < 3)
+        //{
+        //    winBy = GameStats.NumScreens;
+        //}
+
         UIManager = GameObject.Find("UI Manager");
     }
 
