@@ -30,11 +30,21 @@ public class UIManager : MonoBehaviour
 
     private bool isControlOn;
 
+    private float scaler;
+
+    private void Awake()
+    {
+        Globals.resolution = new Vector2(Screen.width, Screen.height);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         isControlOn = false;
         sceneFader = transform.GetChild(0).gameObject;
+
+        // Calculate the scaler based on current resolution
+        scaler = Globals.GetScale(Screen.height, Screen.width, new Vector2(1920, 1080), 0.5f);
 
         if (SceneManager.GetActiveScene().name == "Controls")
         {
@@ -52,6 +62,19 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        if (Globals.resolution.x != Screen.width || Globals.resolution.y != Screen.height)
+        {
+            Globals.resolution.x = Screen.width;
+            Globals.resolution.y = Screen.height;
+
+            // do stuff
+            // update scaler
+            scaler = Globals.GetScale(Screen.height, Screen.width, new Vector2(1920, 1080), 1f);
+
+        }
+#endif //UNITY_EDITOR
+
         if (arrowUI != null)
         {
             currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
@@ -151,8 +174,8 @@ public class UIManager : MonoBehaviour
         // Invert color
         //arrowUI.GetComponent<Image>().color = Globals.Invert(arrowUI.GetComponent<Image>().color);
 
-        Vector3 startPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f + 25f, 0, 0);
-        Vector3 endPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f + 5f, 0, 0);
+        Vector3 startPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f * 1.15f * scaler, 0, 0);
+        Vector3 endPos = buttonTransform.position - new Vector3(buttonTransform.rect.width / 2f * 1.1f * scaler, 0, 0);
         StopAllCoroutines();
         StartCoroutine(MoveArrowHorizontally(arrowUI.GetComponent<RectTransform>(), startPos, endPos));
     }

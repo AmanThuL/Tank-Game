@@ -25,13 +25,14 @@ public static class GameStats
     public static int player1TankColor = 1;
 
     public static int player2TankColor = 0;
+
     // Tank Color
-    public static Hashtable tankColor = new Hashtable{
+    public static Hashtable tankColor = new Hashtable {
          { 0,       new Color32( 228, 27, 27, 255 ) },      // Red
          { 1,      new Color32( 45, 68, 219, 255 ) },       // Blue
          { 2,    new Color32( 157, 14, 160, 255 ) },        // Violet
          { 3,     new Color32( 13, 199, 39, 255 ) },        // Green
-         { 4,    new Color32( 196, 199, 13, 255 ) },         // Yellow
+         { 4,    new Color32( 196, 199, 13, 255 ) },        // Yellow
          { 5,    new Color32( 199, 106, 10, 255 ) },        // Orange
          { 6,      new Color32( 15, 177 , 169, 255 ) },     // Cyan
      };

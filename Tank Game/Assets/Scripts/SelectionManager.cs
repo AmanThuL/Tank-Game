@@ -24,8 +24,8 @@ public class SelectionManager : MonoBehaviour
 
     void Start()
     {
-        leftIndex = 0;
-        rightIndex = 1;
+        leftIndex = GameStats.player1TankColor;
+        rightIndex = GameStats.player2TankColor;
 
         sprites = new Sprite[7];
         sprites[0] = redTank;
