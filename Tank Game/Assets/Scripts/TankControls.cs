@@ -50,17 +50,22 @@ public class TankControls : MonoBehaviour
     Text ammoText;
     [SerializeField] [Range(1, 10)] int ammoCap = 5;
     int ammo;
-    bool powerUp;
+
+    //Power Ups
     bool infAmmo;
-    [SerializeField] [Range(1, 10)] int delay = 5;
-    float grabTime;
+    [SerializeField] [Range(1, 10)] int infAmmoDelay = 5;
+    float infAmmoTime;
+
+    bool speedUp;
+    [SerializeField] [Range(1, 10)] int speedUpDelay = 5;
+    float speedUpTime;
 
     // start is called before the first frame update
     void Start()
     {
         ammo = ammoCap;
-        powerUp = false;
         infAmmo = false;
+        speedUp = false;
         bullets = maxBullets;
         velocity = Vector3.zero;
         tankPos = transform.position;
@@ -117,17 +122,32 @@ public class TankControls : MonoBehaviour
 
     public void InfiniteAmmo()
     {
-        powerUp = true;
-        grabTime = Time.time;
+        infAmmoTime = Time.time;
         infAmmo = true;
     }
 
-    public void RemovePowerUp()
+    public void SpeedUp()
     {
-        if (powerUp == true && Time.time > grabTime + delay)
+        speedUp = true;
+        speedUpTime = Time.time;
+        accelRate += .4f;
+        maxSpeed += 2f;
+    }
+
+    public void RemovePowerUp()
+    {   
+        //Remove Infinite Ammo
+        if (infAmmo == true && Time.time > infAmmoTime + infAmmoDelay)
         {
-            powerUp = false;
             infAmmo = false;
+        }
+
+        //Remove Speed Up
+        if (speedUp == true && Time.time > speedUpTime + speedUpDelay)
+        {
+            speedUp = false;
+            accelRate -= .4f;
+            maxSpeed -= 2f;
         }
     }
 
@@ -227,7 +247,7 @@ public class TankControls : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0)
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
             Debug.Log(GameStats.blueBullets);
 
