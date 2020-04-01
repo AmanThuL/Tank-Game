@@ -74,11 +74,13 @@ public class Bullet_Test : MonoBehaviour
                 return;
             }
 
-            if(collision.gameObject.tag == "Bounds")
+            if(collision.gameObject.tag == "Bounds" || collision.gameObject.tag == "IceBlock")
             {
                 DestroySelf();
                 return;
             }
+
+       
 
             ////Collisions with walls
             //if (ricochet != true)

@@ -47,24 +47,28 @@ public class SelectionManager : MonoBehaviour
         {
             LeftTankLeft();
             GameStats.player1Color = sprites[leftIndex];
+            GameStats.player1TankColor = leftIndex;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             LeftTankRight();
             GameStats.player1Color = sprites[leftIndex];
+            GameStats.player1TankColor = leftIndex;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             RightTankLeft();
             GameStats.player2Color = sprites[rightIndex];
+            GameStats.player2TankColor = rightIndex;
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             RightTankRight();
             GameStats.player2Color = sprites[rightIndex];
+            GameStats.player2TankColor = rightIndex;
         }
     }
 
@@ -84,6 +88,11 @@ public class SelectionManager : MonoBehaviour
         {
             leftIndex--;
         }
+
+        if (leftIndex == rightIndex)
+        {
+            LeftTankLeft();
+        }
     }
 
     public void LeftTankRight()
@@ -95,6 +104,11 @@ public class SelectionManager : MonoBehaviour
         else
         {
             leftIndex++;
+        }
+
+        if (leftIndex == rightIndex)
+        {
+            LeftTankRight();
         }
     }
 
@@ -108,6 +122,11 @@ public class SelectionManager : MonoBehaviour
         {
             rightIndex--;
         }
+
+        if (leftIndex == rightIndex)
+        {
+            RightTankLeft();
+        }
     }
 
     public void RightTankRight()
@@ -119,6 +138,11 @@ public class SelectionManager : MonoBehaviour
         else
         {
             rightIndex++;
+        }
+
+        if (leftIndex == rightIndex)
+        {
+            RightTankRight();
         }
     }
 
