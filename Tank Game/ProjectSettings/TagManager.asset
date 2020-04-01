@@ -9,6 +9,8 @@ TagManager:
   - BluTank
   - BluBullet
   - Crate
+  - Bounds
+  - IceBlock
   layers:
   - Default
   - TransparentFX

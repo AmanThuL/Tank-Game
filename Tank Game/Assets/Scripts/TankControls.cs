@@ -196,6 +196,8 @@ public class TankControls : MonoBehaviour
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         }
+
+        rb.velocity = Vector2.zero;
     }
 
     /// <summary>
