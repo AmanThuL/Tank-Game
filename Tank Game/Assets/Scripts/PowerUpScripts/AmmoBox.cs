@@ -21,7 +21,7 @@ public class AmmoBox : MonoBehaviour
         Respawn();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
@@ -32,6 +32,7 @@ public class AmmoBox : MonoBehaviour
             dead = true;
         }
     }
+    
 
     void Respawn() {
         if (dead == true && Time.time > respawnTime)
