@@ -128,6 +128,7 @@ public class TankControls : MonoBehaviour
         {
             powerUp = false;
             infAmmo = false;
+            infAmmo = false;
         }
     }
 
@@ -227,7 +228,7 @@ public class TankControls : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0)
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
             Debug.Log(GameStats.blueBullets);
 
