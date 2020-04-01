@@ -7,8 +7,8 @@ public class IceBlockBehavior : MonoBehaviour
     [SerializeField] [Range(0, 100)] float maxSlideSpeed = 10;
     [SerializeField] [Range(0, 10)] float slideDeceleration = 1;
     [SerializeField] [Range(0, 10)] float ricochetSpeedReduction = 1;
-    float currentSpeed;
-    Vector3 direction;
+    public float currentSpeed;
+    public Vector3 direction;
     Rigidbody2D rb;
     private RaycastHit2D hit;
     public LayerMask collisionMask;
@@ -53,12 +53,13 @@ public class IceBlockBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        hit = Physics2D.Raycast(transform.position, direction, Time.deltaTime * currentSpeed + .1f, collisionMask);
-        if (hit.collider != null)
-        {
-            Vector2 reflectDir = Vector2.Reflect(direction, hit.normal);
-            direction = reflectDir;
-            currentSpeed -= ricochetSpeedReduction;
-        }
+
+        currentSpeed = 0;
+        
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //currentSpeed = 0;
     }
 }
