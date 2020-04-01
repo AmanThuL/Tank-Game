@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
     public Image p1Controls;
     public Image p2Controls;
 
+    public Image p1GoUI;
+    public Image p2GoUI;
+
     private bool isControlOn;
 
     // Start is called before the first frame update
@@ -37,6 +40,12 @@ public class UIManager : MonoBehaviour
         {
             p1Controls.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
             p2Controls.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
+        }
+
+        if (SceneManager.GetActiveScene().name == "MainGame")
+        {
+            p1GoUI.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
+            p2GoUI.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
         }
     }
 

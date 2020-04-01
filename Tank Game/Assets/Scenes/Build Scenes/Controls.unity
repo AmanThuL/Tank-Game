@@ -308,6 +308,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArrowUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8694613831901107094, guid: 9bd6d377bdaae9747a42988f8b6916f3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f556b72ecc2e39d48989ce33a9d45a25,
+        type: 3}
     - target: {fileID: 8694613831901107095, guid: 9bd6d377bdaae9747a42988f8b6916f3,
         type: 3}
       propertyPath: m_LocalPosition.x

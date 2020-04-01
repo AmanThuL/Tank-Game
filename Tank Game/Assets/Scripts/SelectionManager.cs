@@ -15,6 +15,7 @@ public class SelectionManager : MonoBehaviour
     public Sprite greenTank;
     public Sprite yellowTank;
     public Sprite orangeTank;
+    public Sprite cyanTank;
 
     Sprite[] sprites;
 
@@ -26,13 +27,14 @@ public class SelectionManager : MonoBehaviour
         leftIndex = 0;
         rightIndex = 1;
 
-        sprites = new Sprite[6];
+        sprites = new Sprite[7];
         sprites[0] = redTank;
         sprites[1] = blueTank;
         sprites[2] = violetTank;
         sprites[3] = greenTank;
         sprites[4] = yellowTank;
         sprites[5] = orangeTank;
+        sprites[6] = cyanTank;
     }
 
     void Update()
@@ -74,15 +76,15 @@ public class SelectionManager : MonoBehaviour
 
     void ChangeSprites()
     {
-        leftTank.GetComponent<SpriteRenderer>().sprite = sprites[leftIndex];
-        rightTank.GetComponent<SpriteRenderer>().sprite = sprites[rightIndex];
+        leftTank.GetComponent<Image>().sprite = sprites[leftIndex];
+        rightTank.GetComponent<Image>().sprite = sprites[rightIndex];
     }
 
     public void LeftTankLeft()
     {
         if (leftIndex == 0)
         {
-            leftIndex = 5;
+            leftIndex = 6;
         }
         else
         {
@@ -97,7 +99,7 @@ public class SelectionManager : MonoBehaviour
 
     public void LeftTankRight()
     {
-        if (leftIndex == 5)
+        if (leftIndex == 6)
         {
             leftIndex = 0;
         }
@@ -116,7 +118,7 @@ public class SelectionManager : MonoBehaviour
     {
         if (rightIndex == 0)
         {
-            rightIndex = 5;
+            rightIndex = 6;
         }
         else
         {
@@ -131,7 +133,7 @@ public class SelectionManager : MonoBehaviour
 
     public void RightTankRight()
     {
-        if (rightIndex == 5)
+        if (rightIndex == 6)
         {
             rightIndex = 0;
         }
