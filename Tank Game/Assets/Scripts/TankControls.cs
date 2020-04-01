@@ -50,11 +50,17 @@ public class TankControls : MonoBehaviour
     Text ammoText;
     [SerializeField] [Range(1, 10)] int ammoCap = 5;
     int ammo;
+    bool powerUp;
+    bool infAmmo;
+    [SerializeField] [Range(1, 10)] int delay = 5;
+    float grabTime;
 
     // start is called before the first frame update
     void Start()
     {
         ammo = ammoCap;
+        powerUp = false;
+        infAmmo = false;
         bullets = maxBullets;
         velocity = Vector3.zero;
         tankPos = transform.position;
@@ -88,6 +94,7 @@ public class TankControls : MonoBehaviour
             Decelerate();
             ShootBullet();
             AmmoText();
+            RemovePowerUp();
         }
     }
 
@@ -96,7 +103,7 @@ public class TankControls : MonoBehaviour
         ammoText.text = ammo.ToString();
     }
 
-    public void addAmmo()
+    public void AddAmmo()
     {
         if (ammo + 3 > ammoCap)
         {
@@ -105,6 +112,22 @@ public class TankControls : MonoBehaviour
         else
         {
             ammo += 3;
+        }
+    }
+
+    public void InfiniteAmmo()
+    {
+        powerUp = true;
+        grabTime = Time.time;
+        infAmmo = true;
+    }
+
+    public void RemovePowerUp()
+    {
+        if (powerUp == true && Time.time > grabTime + delay)
+        {
+            powerUp = false;
+            infAmmo = false;
         }
     }
 
@@ -213,7 +236,12 @@ public class TankControls : MonoBehaviour
             tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
             //Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
             GameStats.decrementBullets(gameObject.tag[0]);
-            ammo--;
+
+            if (!infAmmo)
+            {
+                ammo--;
+            }
+
         }
     }
     
