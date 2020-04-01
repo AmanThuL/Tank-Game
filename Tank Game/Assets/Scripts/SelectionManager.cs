@@ -84,6 +84,11 @@ public class SelectionManager : MonoBehaviour
         {
             leftIndex--;
         }
+
+        if (leftIndex == rightIndex)
+        {
+            LeftTankLeft();
+        }
     }
 
     public void LeftTankRight()
@@ -95,6 +100,11 @@ public class SelectionManager : MonoBehaviour
         else
         {
             leftIndex++;
+        }
+
+        if (leftIndex == rightIndex)
+        {
+            LeftTankRight();
         }
     }
 
@@ -108,6 +118,11 @@ public class SelectionManager : MonoBehaviour
         {
             rightIndex--;
         }
+
+        if (leftIndex == rightIndex)
+        {
+            RightTankLeft();
+        }
     }
 
     public void RightTankRight()
@@ -119,6 +134,11 @@ public class SelectionManager : MonoBehaviour
         else
         {
             rightIndex++;
+        }
+
+        if (leftIndex == rightIndex)
+        {
+            RightTankRight();
         }
     }
 
