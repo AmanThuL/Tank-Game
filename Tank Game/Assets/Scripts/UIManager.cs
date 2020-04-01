@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject pauseObj;
 
+    public Image p1Controls;
+    public Image p2Controls;
+
     private bool isControlOn;
 
     // Start is called before the first frame update
@@ -29,6 +32,12 @@ public class UIManager : MonoBehaviour
     {
         isControlOn = false;
         sceneFader = transform.GetChild(0).gameObject;
+
+        if (SceneManager.GetActiveScene().name == "Controls")
+        {
+            p1Controls.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
+            p2Controls.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
+        }
     }
 
     // Update is called once per frame

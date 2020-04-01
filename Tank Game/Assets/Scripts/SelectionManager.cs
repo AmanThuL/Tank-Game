@@ -47,24 +47,28 @@ public class SelectionManager : MonoBehaviour
         {
             LeftTankLeft();
             GameStats.player1Color = sprites[leftIndex];
+            GameStats.player1TankColor = leftIndex;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             LeftTankRight();
             GameStats.player1Color = sprites[leftIndex];
+            GameStats.player1TankColor = leftIndex;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             RightTankLeft();
             GameStats.player2Color = sprites[rightIndex];
+            GameStats.player2TankColor = rightIndex;
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             RightTankRight();
             GameStats.player2Color = sprites[rightIndex];
+            GameStats.player2TankColor = rightIndex;
         }
     }
 
