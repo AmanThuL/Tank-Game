@@ -82,6 +82,8 @@ public class Manager : MonoBehaviour
         RespawnBlueTank();
         RespawnRedTank();
 
+        activeRedTank.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(0, -1) * Mathf.Rad2Deg);
+
         //currently out of use
         //if (GameStats.NumScreens > -1 && GameStats.NumScreens < 3)
         //{
