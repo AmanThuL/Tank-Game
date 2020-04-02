@@ -63,7 +63,7 @@ public class SoloTank : MonoBehaviour
     // start is called before the first frame update
     void Start()
     {
-        GameStats.isInputEnabled = true;
+        Time.timeScale = 1;
         ammo = ammoCap;
         infAmmo = false;
         speedUp = false;
@@ -76,21 +76,15 @@ public class SoloTank : MonoBehaviour
     //get player input in update
     void Update()
     {
-        if (GameStats.isInputEnabled)
-        {
-            Rotate();
-            Move();
-            Decelerate();
-            ShootBullet();
-            //AmmoText();
-            RemovePowerUp();
-        }
+        
+        Rotate();
+        Move();
+        Decelerate();
+        ShootBullet();
+        //AmmoText();
+        RemovePowerUp();
+        
     }
-
-    //void AmmoText()
-    //{
-    //    ammoText.text = ammo.ToString();
-    //}
 
     public void AddAmmo()
     {
