@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TankControls : MonoBehaviour
 {
@@ -92,7 +93,7 @@ public class TankControls : MonoBehaviour
     //get player input in update
     void Update()
     {
-        if (GameStats.isInputEnabled)
+        if (GameStats.isInputEnabled || SceneManager.GetActiveScene().name == "AI Tank Test Scene")
         {
             Rotate();
             Move();
