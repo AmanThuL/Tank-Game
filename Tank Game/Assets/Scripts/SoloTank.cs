@@ -8,7 +8,7 @@ public class SoloTank : MonoBehaviour
     // Movement
     [Header("Movement")]
     [SerializeField] private Vector3 acceleration;
-    [SerializeField] [Range(0, 5)] private float accelRate;
+    [SerializeField] [Range(0, 10)] private float accelRate;
     [SerializeField] [Range(0, 1)] private float deceleration;
     [SerializeField] [Range(0, 20)] private float maxSpeed;
 
@@ -135,6 +135,7 @@ public class SoloTank : MonoBehaviour
     protected void SetTransform()
     {
         //update info
+        Debug.Log("AH");
         transform.rotation = Quaternion.Euler(0f,0f,Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg);
         transform.position += velocity * Time.deltaTime;
     }
