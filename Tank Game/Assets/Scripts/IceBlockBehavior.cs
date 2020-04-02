@@ -30,6 +30,7 @@ public class IceBlockBehavior : MonoBehaviour
 
         Vector3 movement = direction * currentSpeed * Time.deltaTime;
 
+        rb.velocity = Vector2.zero;
         rb.MovePosition(transform.position + movement);
     }
 
