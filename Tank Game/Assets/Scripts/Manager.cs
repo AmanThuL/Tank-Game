@@ -434,16 +434,12 @@ public class Manager : MonoBehaviour
         if (tank.transform.position.x > (GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x) && GameStats.redAdvance)
         {
             tank.transform.position = new Vector3((GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
-
         }
 
         if (tank.transform.position.x < (GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x) && GameStats.blueAdvance)
         {
             tank.transform.position = new Vector3(((GameStats.currScreenIndex * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
-
         }
-
-
     }
 
     /// <summary>
