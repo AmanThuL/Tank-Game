@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 1602452727}
   - component: {fileID: 1602452726}
   m_Layer: 5
-  m_Name: PlayBtn
+  m_Name: NextBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f146111f5da24042b5a081888cb61c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2514e21e2fffd74b9f49e14f09ea575, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

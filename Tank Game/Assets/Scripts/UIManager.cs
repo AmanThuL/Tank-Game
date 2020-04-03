@@ -15,7 +15,7 @@ public enum Levels
 public class UIManager : MonoBehaviour
 {
     // Buttons
-    public string menuSceneName, gameSceneName, controlsSceneName, selectionSceneName;
+    public string menuSceneName, gameSceneName, controlsSceneName, tankSelectionSceneName, levelSelectionSceneName;
 
     public GameObject controlMenu, buttons;
 
@@ -145,7 +145,13 @@ public class UIManager : MonoBehaviour
     public void ToSelectionScreen()
     {
         sceneFader.SetActive(true);
-        sceneFader.GetComponent<SceneFader>().FadeTo(selectionSceneName);
+        sceneFader.GetComponent<SceneFader>().FadeTo(tankSelectionSceneName);
+    }
+
+    public void ToLevelSelectionScreen()
+    {
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(levelSelectionSceneName);
     }
 
     public void ToSelectedLevel()
