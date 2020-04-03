@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public enum Levels
+{
+    DesertLevel,
+    IceLevel,
+    JungleLevel
+}
+
 public class UIManager : MonoBehaviour
 {
     // Buttons
@@ -141,10 +148,36 @@ public class UIManager : MonoBehaviour
         sceneFader.GetComponent<SceneFader>().FadeTo(selectionSceneName);
     }
 
-    public void RestartScene()
+    public void ToSelectedLevel()
     {
         sceneFader.SetActive(true);
-        sceneFader.GetComponent<SceneFader>().FadeTo(gameSceneName);
+
+        Debug.Log(GameStats.selectedLevel.ToString());
+        sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.selectedLevel.ToString());
+    }
+
+    public void Desert()
+    {
+        GameStats.selectedLevel = Levels.DesertLevel;
+        ToSelectedLevel();
+    }
+
+    public void Ice()
+    {
+        GameStats.selectedLevel = Levels.IceLevel;
+        ToSelectedLevel();
+    }
+
+    public void Jungle()
+    {
+        GameStats.selectedLevel = Levels.JungleLevel;
+        ToSelectedLevel();
+    }
+
+    public void RestartGameLevel()
+    {
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.selectedLevel.ToString());
     }
 
     public void UnpauseGame()

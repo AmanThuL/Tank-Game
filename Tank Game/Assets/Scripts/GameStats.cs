@@ -26,6 +26,8 @@ public static class GameStats
 
     public static int player2TankColor = 0;
 
+    public static Levels selectedLevel = 0;
+
     //Game Options Vars
     public static float changeTime = 0;
     public static bool limitedAmmo = true;

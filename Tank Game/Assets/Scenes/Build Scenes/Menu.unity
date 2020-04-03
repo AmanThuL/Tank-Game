@@ -663,6 +663,11 @@ PrefabInstance:
       propertyPath: arrowUI
       value: 
       objectReference: {fileID: 128648525}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: selectionSceneName
+      value: TankSelection
+      objectReference: {fileID: 0}
     - target: {fileID: 671212266999557639, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}
       propertyPath: m_Name
