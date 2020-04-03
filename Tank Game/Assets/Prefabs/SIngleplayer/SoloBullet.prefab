@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5458742235253828458
+--- !u!1 &1991757098696864577
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5458742235253828453}
-  - component: {fileID: 5458742235253828454}
-  - component: {fileID: 5458742235253828456}
-  - component: {fileID: 5458742235253828457}
-  - component: {fileID: 5458742235253828461}
+  - component: {fileID: 1344889268871332493}
+  - component: {fileID: 603215655392068048}
+  - component: {fileID: 67377464512483530}
+  - component: {fileID: 1617548719025723176}
+  - component: {fileID: 1129063985439620943}
   m_Layer: 0
-  m_Name: Solo Tank
-  m_TagString: BluTank
+  m_Name: SoloBullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5458742235253828453
+--- !u!4 &1344889268871332493
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458742235253828458}
+  m_GameObject: {fileID: 1991757098696864577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9559574, y: -0.21921492, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: -15.77261, y: -9.070533, z: 0}
+  m_LocalScale: {x: 4.798585, y: 4.798585, z: 4.798585}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5458742235253828454
+--- !u!212 &603215655392068048
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458742235253828458}
+  m_GameObject: {fileID: 1991757098696864577}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,25 +72,41 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8fb88bc693c58943ac814e3959e0b28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3028dd9145deaf749be1e71c66fdfec3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.18, y: 0.31}
+  m_Size: {x: 0.08, y: 0.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &5458742235253828456
+--- !u!70 &67377464512483530
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991757098696864577}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.08, y: 0.05}
+  m_Direction: 1
+--- !u!50 &1617548719025723176
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458742235253828458}
+  m_GameObject: {fileID: 1991757098696864577}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -104,62 +120,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &5458742235253828457
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458742235253828458}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.18}
-    newSize: {x: 0.18, y: 0.31}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.31, y: 0.18}
-  m_EdgeRadius: 0
---- !u!114 &5458742235253828461
+--- !u!114 &1129063985439620943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458742235253828458}
+  m_GameObject: {fileID: 1991757098696864577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8ffda276d5b734bbfd3a44c8301dcb, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e0f695b3edbe047be5bc5b4149f05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: {x: 0, y: 0, z: 0}
-  accelRate: 6.2
-  deceleration: 0.751
-  maxSpeed: 5.2
-  turnSpeed: 190
-  tankPos: {x: 0, y: 0, z: 0}
+  explosion: {fileID: 2991249485464585752, guid: 5cb56443a570227449fd19a6335a08a9,
+    type: 3}
+  speed: 8
+  direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  direction: {x: 1, y: 0, z: 0}
-  moveUp: 119
-  moveDown: 115
-  moveLeft: 97
-  moveRight: 100
-  shoot: 32
-  rb: {fileID: 5458742235253828456}
-  smoke: {fileID: 0}
-  bullet: {fileID: 1991757098696864577, guid: 52637b58b5378194a86c9aebb7614e82, type: 3}
-  fireRate: 0.4
-  maxBullets: 3
-  ammoCap: 5
-  infAmmoDelay: 5
-  speedUpDelay: 5
+  position: {x: 0, y: 0, z: 0}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  MAX_BOUNCES: 2

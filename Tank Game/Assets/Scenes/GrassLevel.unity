@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 283173447}
   - component: {fileID: 283173448}
   m_Layer: 0
-  m_Name: Desert_Background
+  m_Name: Grass_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -864,7 +864,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e7279c1594c4f5f48b5eea6be3b881e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fde5872dc45d6b847a8f5d8df9be2f51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 430521353}
   - component: {fileID: 430521354}
   m_Layer: 0
-  m_Name: Desert_Background (1)
+  m_Name: Grass_Background (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1364,7 +1364,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e7279c1594c4f5f48b5eea6be3b881e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fde5872dc45d6b847a8f5d8df9be2f51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8538,7 +8538,7 @@ GameObject:
   - component: {fileID: 1584336487}
   - component: {fileID: 1584336488}
   m_Layer: 0
-  m_Name: Desert_Background (4)
+  m_Name: Grass_Background (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8596,7 +8596,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e7279c1594c4f5f48b5eea6be3b881e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fde5872dc45d6b847a8f5d8df9be2f51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8693,7 +8693,7 @@ GameObject:
   - component: {fileID: 1616219162}
   - component: {fileID: 1616219163}
   m_Layer: 0
-  m_Name: Desert_Background (3)
+  m_Name: Grass_Background (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8751,7 +8751,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e7279c1594c4f5f48b5eea6be3b881e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fde5872dc45d6b847a8f5d8df9be2f51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8883,7 +8883,7 @@ PrefabInstance:
     - target: {fileID: 6508754655094587589, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
         type: 3}
       propertyPath: winBy
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ff502d6e2163f4f82f39eabdca9e5b, type: 3}
@@ -9617,7 +9617,7 @@ GameObject:
   - component: {fileID: 1929105729}
   - component: {fileID: 1929105730}
   m_Layer: 0
-  m_Name: Desert_Background (2)
+  m_Name: Grass_Background (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9675,7 +9675,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e7279c1594c4f5f48b5eea6be3b881e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fde5872dc45d6b847a8f5d8df9be2f51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
