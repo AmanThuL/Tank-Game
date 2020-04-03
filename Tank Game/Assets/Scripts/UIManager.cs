@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
             p2Controls.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
         }
 
-        if (SceneManager.GetActiveScene().name == "MainGame")
+        if (System.Enum.IsDefined(typeof(Levels), SceneManager.GetActiveScene().name))
         {
             p1GoUI.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
             p2GoUI.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
@@ -93,7 +93,13 @@ public class UIManager : MonoBehaviour
             GameObject tempSelectedGO = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
 
             if (tempSelectedGO && tempSelectedGO.CompareTag("NavigatableButton"))
+            {
                 currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+            }
+            else if (SceneManager.GetActiveScene().name.Equals("TankSelection"))
+            {
+                EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(currentSelected);
+            }
 
             // Select on change
             if (currentSelected != null && currentSelected != lastSelected)
