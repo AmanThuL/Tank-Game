@@ -10018,6 +10018,11 @@ PrefabInstance:
       propertyPath: winBy
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6508754655094587589, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: deceleration
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ff502d6e2163f4f82f39eabdca9e5b, type: 3}
 --- !u!4 &1994156743 stripped
