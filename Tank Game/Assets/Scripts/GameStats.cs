@@ -26,6 +26,11 @@ public static class GameStats
 
     public static int player2TankColor = 0;
 
+    //Game Options Vars
+    public static bool limitedAmmo = true;
+    public static bool speedUp = true;
+    public static bool infAmmo = true;
+
     // Tank Color
     public static Hashtable tankColor = new Hashtable {
          { 0,       new Color32( 228, 27, 27, 255 ) },      // Red
