@@ -12,7 +12,7 @@ public class TankAI : MonoBehaviour
 
     public State state;
 
-    public void Awake()
+    public void Start()
     {
         state = State.EnterMineAndDigForNuggets;
 
@@ -20,14 +20,14 @@ public class TankAI : MonoBehaviour
         StartCoroutine(FSM());
     }
 
-    IEnumerator FSM()
+    private IEnumerator FSM()
     {
         // Execute the current coroutine (state)
         while (true)
             yield return StartCoroutine(state.ToString());
     }
 
-    IEnumerator EnterMineAndDigForNuggets()
+    private IEnumerator EnterMineAndDigForNuggets()
     {
         /* This part works as the Enter function
         of the previous post (it's optional) */
@@ -54,7 +54,7 @@ public class TankAI : MonoBehaviour
         state = State.EnterBankAndDepositGold;
     }
 
-    IEnumerator EnterBankAndDepositGold()
+    private IEnumerator EnterBankAndDepositGold()
     {
         //Enter
         print("Entering the bank...");
