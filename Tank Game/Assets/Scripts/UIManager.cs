@@ -64,6 +64,12 @@ public class UIManager : MonoBehaviour
             p1GoUI.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
             p2GoUI.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
         }
+
+        // setup arrow UI
+        if (arrowUI)
+        {
+            PointToSelectedButton(EventSystem.current.GetComponent<EventSystem>().firstSelectedGameObject);
+        }
     }
 
     // Update is called once per frame
@@ -84,7 +90,10 @@ public class UIManager : MonoBehaviour
 
         if (arrowUI != null)
         {
-            currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+            GameObject tempSelectedGO = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+
+            if (tempSelectedGO && tempSelectedGO.CompareTag("NavigatableButton"))
+                currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
 
             // Select on change
             if (currentSelected != null && currentSelected != lastSelected)
@@ -154,7 +163,7 @@ public class UIManager : MonoBehaviour
         sceneFader.GetComponent<SceneFader>().FadeTo(levelSelectionSceneName);
     }
 
-    public void ToSelectedLevel()
+    private void ToSelectedLevel()
     {
         sceneFader.SetActive(true);
 

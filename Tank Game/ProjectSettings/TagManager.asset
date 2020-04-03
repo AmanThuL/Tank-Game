@@ -11,6 +11,7 @@ TagManager:
   - Crate
   - Bounds
   - IceBlock
+  - NavigatableButton
   layers:
   - Default
   - TransparentFX
