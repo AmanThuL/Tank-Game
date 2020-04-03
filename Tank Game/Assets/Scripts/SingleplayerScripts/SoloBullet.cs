@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Test : MonoBehaviour
+public class SoloBullet : MonoBehaviour
 {
     //GameObject tank;
     [SerializeField] GameObject explosion;
-    [SerializeField] [Range (0,20)] private float speed;
+    [SerializeField] [Range(0, 20)] private float speed;
     public Vector3 direction;
     [SerializeField] private Vector3 velocity;
     public Vector3 position;
+    private bool ricochet;
+    private Ray2D ray;
     private RaycastHit2D hit;
     public LayerMask collisionMask;
 
-    [SerializeField]private int MAX_BOUNCES;
+    float nextUpdate;
+    float updateRate;
+
+    [SerializeField] private int MAX_BOUNCES;
     private int currentBounces;
 
     // Start is called before the first frame update
@@ -24,13 +29,12 @@ public class Bullet_Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStats.isInputEnabled)
-        {
-            MoveBullet();
+    
+        MoveBullet();
 
-            if (currentBounces <= MAX_BOUNCES)
-                RicochetBullet();
-        }
+        if (currentBounces <= MAX_BOUNCES)
+            RicochetBullet();
+    
     }
 
 
@@ -40,24 +44,24 @@ public class Bullet_Test : MonoBehaviour
         transform.position = position;
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.gameObject.tag +", "+ gameObject.tag);
 
-        if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3) || currentBounces > 1)
+        if (collision.gameObject.tag.Substring(0, 3) != gameObject.tag.Substring(0, 3) || currentBounces > 1)
         {
-           
+
             //Collisions with tanks
             if (collision.gameObject.tag == "BluTank")
             {
-                GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+                //GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
                 DestroySelf();
                 return;
             }
             if (collision.gameObject.tag == "RedTank")
             {
-                GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+                //GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
                 DestroySelf();
                 return;
             }
@@ -69,24 +73,12 @@ public class Bullet_Test : MonoBehaviour
                 return;
             }
 
-            if(collision.gameObject.tag == "Bounds" || collision.gameObject.tag == "IceBlock")
+            if (collision.gameObject.tag == "Bounds" || collision.gameObject.tag == "IceBlock")
             {
                 DestroySelf();
                 return;
             }
 
-       
-
-            ////Collisions with walls
-            //if (ricochet != true)
-            //{
-            //    RicochetBullet(collision.gameObject);
-            //    ricochet = true;
-            //}
-            //else
-            //{
-            //    DestroySelf();
-            //}
 
             if (currentBounces > MAX_BOUNCES) DestroySelf();
         }
@@ -110,9 +102,9 @@ public class Bullet_Test : MonoBehaviour
     void DestroySelf(float delay)
     {
         GameObject.Destroy(this, delay);
-    } 
+    }
 
-    public void Initialize( Vector3 dir)
+    public void Initialize(Vector3 dir)
     {
         direction = dir;
         direction.Normalize();
