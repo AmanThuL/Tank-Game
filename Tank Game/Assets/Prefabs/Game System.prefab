@@ -2356,6 +2356,11 @@ PrefabInstance:
       objectReference: {fileID: 6090104431497998975}
     - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
         type: 3}
+      propertyPath: flagSpawnPos.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
       propertyPath: InvulnColor.r
       value: 1
       objectReference: {fileID: 0}
@@ -2388,7 +2393,7 @@ PrefabInstance:
     - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
         type: 3}
       propertyPath: winBy
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
         type: 3}
@@ -2555,10 +2560,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3844498361117505249}
     m_Modifications:
-    - target: {fileID: 138939811, guid: c8267337aafea8d4a9ccfce55633aab0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 671212266999557637, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}
       propertyPath: m_LocalPosition.x

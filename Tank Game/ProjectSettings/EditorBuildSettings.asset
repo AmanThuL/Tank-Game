@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Build Scenes/Controls.unity
     guid: ce8cbe106e51f3743a1186d24c5874b0
   - enabled: 1
+    path: Assets/Scenes/Build Scenes/LevelSelection.unity
+    guid: f158e924409ccd4479e743996e3fe1c4
+  - enabled: 1
     path: Assets/Scenes/Build Scenes/DesertLevel.unity
     guid: 9dfc814684512f74c9872ae709772f97
   - enabled: 1

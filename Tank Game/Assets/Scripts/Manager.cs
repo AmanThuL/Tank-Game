@@ -17,6 +17,7 @@ public class Manager : MonoBehaviour
     public GameObject pauseObj;
 
     [Header("Respawn Information")]
+    [SerializeField] private Vector3 flagSpawnPos;
     [SerializeField] [Range(0, 5)] float SpawnDelay;
     [SerializeField] [Range(0, 2)] float spawnDelayIncrement;
     float currentRedSpawnDelay;
@@ -76,7 +77,7 @@ public class Manager : MonoBehaviour
         GameStats.currScreenIndex = 0;
 
         resetSpawnDelay();
-        SpawnFlag(new Vector3(0, -2, 0));
+        SpawnFlag(flagSpawnPos);
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();

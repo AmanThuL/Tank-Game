@@ -508,6 +508,16 @@ PrefabInstance:
       propertyPath: p2Controls
       value: 
       objectReference: {fileID: 1496034821}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: levelSelectionSceneName
+      value: LevelSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: tankSelectionSceneName
+      value: TankSelection
+      objectReference: {fileID: 0}
     - target: {fileID: 671212266999557639, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}
       propertyPath: m_Name
@@ -546,7 +556,7 @@ GameObject:
   - component: {fileID: 987503731}
   m_Layer: 5
   m_Name: Back Button
-  m_TagString: Untagged
+  m_TagString: NavigatableButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -565,10 +575,10 @@ RectTransform:
   m_Father: {fileID: 381708073}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 959.8, y: -794}
-  m_SizeDelta: {x: 574.54, y: 138.1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -417}
+  m_SizeDelta: {x: 574.54004, y: 138.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987503731
 MonoBehaviour:
@@ -817,7 +827,7 @@ GameObject:
   - component: {fileID: 1324982562}
   m_Layer: 5
   m_Name: Play Button
-  m_TagString: Untagged
+  m_TagString: NavigatableButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -836,10 +846,10 @@ RectTransform:
   m_Father: {fileID: 381708073}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 959.8, y: -957}
-  m_SizeDelta: {x: 574.54, y: 138.1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -254}
+  m_SizeDelta: {x: 574.54004, y: 138.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324982562
 MonoBehaviour:
@@ -885,7 +895,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 649924505}
-        m_MethodName: StartGame
+        m_MethodName: ToLevelSelectionScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -913,7 +923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f146111f5da24042b5a081888cb61c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2514e21e2fffd74b9f49e14f09ea575, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
