@@ -43,13 +43,7 @@ public class SoloTank : MonoBehaviour
     public GameObject bullet;
     [SerializeField][Range (0,2)]float fireRate = .4f;
     float nextFire = 0f;
-    [SerializeField][Range(1,5)] int maxBullets = 3;
-    int bullets;
-
-    //Bullet Limit
-    Text ammoText;
-    [SerializeField] [Range(1, 10)] int ammoCap = 5;
-    int ammo;
+    char tankID;
 
     //Power Ups
     bool infAmmo;
@@ -63,11 +57,10 @@ public class SoloTank : MonoBehaviour
     // start is called before the first frame update
     void Start()
     {
+        tankID = gameObject.tag[0];
         Time.timeScale = 1;
-        ammo = ammoCap;
         infAmmo = false;
         speedUp = false;
-        bullets = maxBullets;
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
@@ -88,13 +81,9 @@ public class SoloTank : MonoBehaviour
 
     public void AddAmmo()
     {
-        if (ammo + 3 > ammoCap)
+        for (int j = 0; j < 3; j++)
         {
-            ammo = ammoCap;
-        }
-        else
-        {
-            ammo += 3;
+            GameStats.incrementBullets(tankID);
         }
     }
 
@@ -135,7 +124,6 @@ public class SoloTank : MonoBehaviour
     protected void SetTransform()
     {
         //update info
-        Debug.Log("AH");
         transform.rotation = Quaternion.Euler(0f,0f,Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg);
         transform.position += velocity * Time.deltaTime;
     }
@@ -226,22 +214,20 @@ public class SoloTank : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
-            Debug.Log(GameStats.blueBullets);
 
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
             tempBullet.tag = gameObject.tag.Substring(0,3) + "Bullet";
-            tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
+            tempBullet.GetComponent<SoloBullet>().Initialize(direction);
             //Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
-            GameStats.decrementBullets(gameObject.tag[0]);
 
-            if (!infAmmo)
-            {
-                ammo--;
-            }
+            //if (!infAmmo)
+            //{
+            //    GameStats.decrementBullets(tankID);
+            //}
 
         }
     }

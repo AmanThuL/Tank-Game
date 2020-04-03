@@ -44,13 +44,10 @@ public class TankControls : MonoBehaviour
     public GameObject bullet;
     [SerializeField][Range (0,2)]float fireRate = .4f;
     float nextFire = 0f;
-    [SerializeField][Range(1,5)] int maxBullets = 3;
-    int bullets;
 
-    //Bullet Limit
+    //Bullet Related Fields
     Text ammoText;
-    [SerializeField] [Range(1, 10)] int ammoCap = 5;
-    int ammo;
+    char tankID;
 
     //Power Ups
     bool infAmmo;
@@ -64,13 +61,12 @@ public class TankControls : MonoBehaviour
     // start is called before the first frame update
     void Start()
     {
-        ammo = ammoCap;
         infAmmo = false;
         speedUp = false;
-        bullets = maxBullets;
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
+        tankID = gameObject.tag[0];
 
         if (this.name == "Blue_Tank(Clone)")
         {
@@ -106,18 +102,14 @@ public class TankControls : MonoBehaviour
 
     void AmmoText()
     {
-        ammoText.text = ammo.ToString();
+        ammoText.text = GameStats.getBullets(tankID).ToString();
     }
 
     public void AddAmmo()
     {
-        if (ammo + 3 > ammoCap)
+        for (int j = 0; j < 3; j++)
         {
-            ammo = ammoCap;
-        }
-        else
-        {
-            ammo += 3;
+            GameStats.incrementBullets(tankID);
         }
     }
 
@@ -248,7 +240,7 @@ public class TankControls : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(gameObject.tag[0]) > 0 && ammo > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
             Debug.Log(GameStats.blueBullets);
 
@@ -258,11 +250,10 @@ public class TankControls : MonoBehaviour
             tempBullet.tag = gameObject.tag.Substring(0,3) + "Bullet";
             tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
             //Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
-            GameStats.decrementBullets(gameObject.tag[0]);
 
             if (!infAmmo)
             {
-                ammo--;
+                GameStats.decrementBullets(tankID);
             }
 
         }
