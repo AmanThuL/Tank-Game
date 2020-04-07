@@ -22,6 +22,9 @@ public class SelectionManager : MonoBehaviour
     int rightIndex;
     int leftIndex;
 
+    public GameObject leftL, leftR, rightL, rightR;
+    private Button leftL_btn, leftR_btn, rightL_btn, rightR_btn;
+
     void Start()
     {
         leftIndex = GameStats.player1TankColor;
@@ -35,6 +38,11 @@ public class SelectionManager : MonoBehaviour
         sprites[4] = yellowTank;
         sprites[5] = orangeTank;
         sprites[6] = cyanTank;
+
+        leftL_btn = leftL.GetComponent<Button>();
+        leftR_btn = leftR.GetComponent<Button>();
+        rightL_btn = rightL.GetComponent<Button>();
+        rightR_btn = rightR.GetComponent<Button>();
     }
 
     void Update()
@@ -47,30 +55,59 @@ public class SelectionManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
+            // Button interaction with keypress
+
+            ButtonFadesToColor(leftL, leftL_btn.colors.pressedColor);
+
             LeftTankLeft();
             GameStats.player1Color = sprites[leftIndex];
             GameStats.player1TankColor = leftIndex;
         }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            ButtonFadesToColor(leftL, leftL_btn.colors.normalColor);
+        }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
+            // Button interaction with keypress
+            ButtonFadesToColor(leftR, leftR_btn.colors.pressedColor);
+
             LeftTankRight();
             GameStats.player1Color = sprites[leftIndex];
             GameStats.player1TankColor = leftIndex;
         }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            ButtonFadesToColor(leftR, leftR_btn.colors.normalColor);
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            // Button interaction with keypress
+            ButtonFadesToColor(rightL, rightL_btn.colors.pressedColor);
+
             RightTankLeft();
             GameStats.player2Color = sprites[rightIndex];
             GameStats.player2TankColor = rightIndex;
         }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            ButtonFadesToColor(rightL, rightL_btn.colors.normalColor);
+        }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            // Button interaction with keypress
+            ButtonFadesToColor(rightR, rightR_btn.colors.pressedColor);
+
             RightTankRight();
             GameStats.player2Color = sprites[rightIndex];
             GameStats.player2TankColor = rightIndex;
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            ButtonFadesToColor(rightR, rightR_btn.colors.normalColor);
         }
     }
 
@@ -146,6 +183,13 @@ public class SelectionManager : MonoBehaviour
         {
             RightTankRight();
         }
+    }
+
+    private void ButtonFadesToColor(GameObject button, Color targetColor)
+    {
+        Graphic graphic = button.GetComponent<Graphic>();
+        Button btn = button.GetComponent<Button>();
+        graphic.CrossFadeColor(targetColor, btn.colors.fadeDuration, true, true);
     }
 
 }
