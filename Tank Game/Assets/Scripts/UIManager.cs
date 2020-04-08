@@ -9,7 +9,8 @@ public enum Levels
 {
     DesertLevel,
     IceLevel,
-    JungleLevel
+    JungleLevel,
+    FireLevel
 }
 
 public class UIManager : MonoBehaviour
@@ -192,6 +193,12 @@ public class UIManager : MonoBehaviour
     public void Jungle()
     {
         GameStats.selectedLevel = Levels.JungleLevel;
+        ToSelectedLevel();
+    }
+
+    public void Fire()
+    {
+        GameStats.selectedLevel = Levels.FireLevel;
         ToSelectedLevel();
     }
 
