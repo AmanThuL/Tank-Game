@@ -59,11 +59,19 @@ public class TankControls : MonoBehaviour
     [SerializeField] [Range(1, 10)] int speedUpDelay = 5;
     float speedUpTime;
 
+    bool doubleShot;
+    [SerializeField] [Range(1, 10)] int doubleShotDelay = 2;
+    float doubleShotTime;
+
+    public bool shield;
+
     // start is called before the first frame update
     void Start()
     {
         infAmmo = false;
         speedUp = false;
+        doubleShot = false;
+        shield = false;
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
@@ -114,6 +122,12 @@ public class TankControls : MonoBehaviour
         }
     }
 
+    public void DoubleShot()
+    {
+        doubleShotTime = Time.time;
+        doubleShot = true;
+    }
+
     public void InfiniteAmmo()
     {
         infAmmoTime = Time.time;
@@ -126,6 +140,11 @@ public class TankControls : MonoBehaviour
         speedUpTime = Time.time;
         accelRate += .4f;
         maxSpeed += 2f;
+    }
+
+    public void Shield()
+    {
+        shield = true;
     }
 
     public void RemovePowerUp()
@@ -142,6 +161,11 @@ public class TankControls : MonoBehaviour
             speedUp = false;
             accelRate -= .4f;
             maxSpeed -= 2f;
+        }
+
+        if (doubleShot == true && Time.time > doubleShotTime + doubleShotDelay)
+        {
+            doubleShot = false;
         }
     }
 
@@ -240,16 +264,32 @@ public class TankControls : MonoBehaviour
 
     void ShootBullet()
     {
-        GameObject tempBullet;
+        GameObject tempBullet1;
+        GameObject tempBullet2;
         if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
             Debug.Log(GameStats.blueBullets);
 
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            tempBullet = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
-            tempBullet.tag = gameObject.tag.Substring(0,3) + "Bullet";
-            tempBullet.GetComponent<Bullet_Test>().Initialize(direction);
+
+            if (doubleShot)
+            {
+                tempBullet1 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+                tempBullet1.tag = gameObject.tag.Substring(0, 3) + "Bullet";
+                tempBullet1.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 1);
+
+                tempBullet2 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+                tempBullet2.tag = gameObject.tag.Substring(0, 3) + "Bullet";
+                tempBullet2.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 2);
+            }
+            else
+            {
+                tempBullet1 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+                tempBullet1.tag = gameObject.tag.Substring(0, 3) + "Bullet";
+                tempBullet1.GetComponent<Bullet_Test>().Initialize(direction);
+            }
+
             //Instantiate(smoke, new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z), Quaternion.identity);
 
             if (!infAmmo)
