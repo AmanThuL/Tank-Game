@@ -12,6 +12,7 @@ public class TankControls : MonoBehaviour
     [SerializeField] [Range(0, 5)] private float accelRate;
     [SerializeField] [Range(0, 1)] private float deceleration;
     [SerializeField] [Range(0, 20)] private float maxSpeed;
+    [SerializeField] private bool isMovable = false;
 
     [Header("Rotation")]
     [SerializeField] [Range(30, 200)] private float turnSpeed;
@@ -89,7 +90,7 @@ public class TankControls : MonoBehaviour
     //get player input in update
     void Update()
     {
-        if (GameStats.isInputEnabled || SceneManager.GetActiveScene().name == "AI Tank Test Scene")
+        if (GameStats.isInputEnabled)
         {
             Rotate();
             Move();
@@ -264,4 +265,21 @@ public class TankControls : MonoBehaviour
         GameStats.incrementBullets(gameObject.tag[0]);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject collisionObj = collision.gameObject;
+        if (collisionObj.tag == "Crate" || collisionObj.layer == LayerMask.NameToLayer("Tiles"))
+        {
+            isMovable = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        GameObject collisionObj = collision.gameObject;
+        if (collisionObj.tag == "Crate" || collisionObj.layer == LayerMask.NameToLayer("Tiles"))
+        {
+            isMovable = true;
+        }
+    }
 }
