@@ -112,8 +112,11 @@ MonoBehaviour:
   smoke: {fileID: 7514399529307528851, guid: 06d365a3d0cb60d4fbc8a4e7be808340, type: 3}
   bullet: {fileID: 2792031396910480454, guid: 33130a4b1b2a47a45aa7791a99a5fa0a, type: 3}
   fireRate: 0.4
-  maxBullets: 5
-  ammoCap: 5
+  infAmmoDelay: 5
+  speedUpDelay: 5
+  doubleBullet: {fileID: 3742379048018450530, guid: dd53abb3ee05ad54c8efaa43cf837d02,
+    type: 3}
+  doubleShotDelay: 2
 --- !u!50 &9208099354787253962
 Rigidbody2D:
   serializedVersion: 4
