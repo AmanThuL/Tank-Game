@@ -1,5 +1,203 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &670744718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670744719}
+  - component: {fileID: 670744722}
+  - component: {fileID: 670744721}
+  - component: {fileID: 670744720}
+  m_Layer: 5
+  m_Name: RedAmmoBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &670744719
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670744718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1350595310377864375}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 759.6, y: -493.2}
+  m_SizeDelta: {x: 286.6, y: 94.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &670744722
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670744718}
+  m_CullTransparentMesh: 0
+--- !u!114 &670744721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670744718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9019608}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 34763f264209b6a48b0b8e0d048675d9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &670744720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670744718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 89
+    m_Right: 0
+    m_Top: -1
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: -14.58
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+--- !u!1 &1662545830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662545831}
+  - component: {fileID: 1662545833}
+  - component: {fileID: 1662545832}
+  - component: {fileID: 1662545834}
+  m_Layer: 5
+  m_Name: BlueAmmoBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1662545831
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662545830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1350595308992843969}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -759.60004, y: -493.2}
+  m_SizeDelta: {x: 286.6, y: 94.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1662545833
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662545830}
+  m_CullTransparentMesh: 0
+--- !u!114 &1662545832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662545830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9019608}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ae8dddb0bfd7a77438345fa052ddc3b9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1662545834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662545830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 110
+    m_Top: -1
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: -14.58
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!1 &3885250950794921221
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,11 +2590,6 @@ PrefabInstance:
       objectReference: {fileID: 6090104430702550766}
     - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
         type: 3}
-      propertyPath: winBy
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
-        type: 3}
       propertyPath: blueTankWinsUI
       value: 
       objectReference: {fileID: 6090104431752252735}
@@ -2545,11 +2738,33 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5060395553608704357, guid: aede733a3b069854588090df89dcb34c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060395553675022228, guid: aede733a3b069854588090df89dcb34c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aede733a3b069854588090df89dcb34c, type: 3}
 --- !u!224 &1350595309791086283 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5060395553519379545, guid: aede733a3b069854588090df89dcb34c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6090104430971396754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1350595308992843969 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5060395552182039123, guid: aede733a3b069854588090df89dcb34c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6090104430971396754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1350595310377864375 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5060395554005364261, guid: aede733a3b069854588090df89dcb34c,
     type: 3}
   m_PrefabInstance: {fileID: 6090104430971396754}
   m_PrefabAsset: {fileID: 0}
@@ -2640,6 +2855,22 @@ PrefabInstance:
       propertyPath: p2GoUI
       value: 
       objectReference: {fileID: 6090104431067762521}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: blueAmmoUI
+      value: 
+      objectReference: {fileID: 1662545830}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: redAmmoUI
+      value: 
+      objectReference: {fileID: 670744718}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: tank_shell_UI
+      value: 
+      objectReference: {fileID: 6434042243942990318, guid: 73451674647a6df419da29280bd33458,
+        type: 3}
     - target: {fileID: 671212266999557639, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}
       propertyPath: m_Name

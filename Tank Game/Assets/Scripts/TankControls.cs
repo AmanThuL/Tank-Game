@@ -59,6 +59,9 @@ public class TankControls : MonoBehaviour
     [SerializeField] [Range(1, 10)] int speedUpDelay = 5;
     float speedUpTime;
 
+    // UI
+    private GameObject UIManager;
+    
     bool doubleShot;
     [SerializeField] [Range(1, 10)] int doubleShotDelay = 2;
     float doubleShotTime;
@@ -76,6 +79,8 @@ public class TankControls : MonoBehaviour
         tankPos = transform.position;
         velocity = Vector3.zero;
         tankID = gameObject.tag[0];
+
+        UIManager = GameObject.Find("UI Manager");
 
         if (this.name == "Blue_Tank(Clone)")
         {
@@ -111,7 +116,14 @@ public class TankControls : MonoBehaviour
 
     void AmmoText()
     {
-        ammoText.text = GameStats.getBullets(tankID).ToString();
+        int currAmmonText = int.Parse(ammoText.text);
+
+        // Check if UI needs update
+        if (currAmmonText != GameStats.getBullets(tankID))
+        {
+            ammoText.text = GameStats.getBullets(tankID).ToString();
+            UIManager.GetComponent<UIManager>().UpdateAmmoUI(tankID);
+        }
     }
 
     public void AddAmmo()

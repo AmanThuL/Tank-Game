@@ -40,6 +40,14 @@ public class UIManager : MonoBehaviour
 
     private float scaler;
 
+    [Header("Tank UI")]
+    public GameObject blueAmmoUI;
+    public GameObject redAmmoUI;
+    public GameObject tank_shell_UI;
+    public GameObject tank_shell_UI_blank;
+    [SerializeField] private List<GameObject> blueTankBulletsUIList;
+    [SerializeField] private List<GameObject> redTankBulletsUIList;
+
     private void Awake()
     {
         Globals.resolution = new Vector2(Screen.width, Screen.height);
@@ -60,10 +68,32 @@ public class UIManager : MonoBehaviour
             p2Controls.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
         }
 
+        // If the active scene is one of the levels
         if (System.Enum.IsDefined(typeof(Levels), SceneManager.GetActiveScene().name))
         {
-            p1GoUI.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
-            p2GoUI.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
+            Color p1Color, p2Color;
+            p1Color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
+            p2Color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
+
+            p1GoUI.color = p1Color;
+            p2GoUI.color = p2Color;
+
+            blueAmmoUI.GetComponent<Image>().color = p1Color;
+            redAmmoUI.GetComponent<Image>().color = p2Color;
+
+            // Initiate the ammo UI
+            for (int i = 0; i < GameStats.blueBullets; ++i)
+            {
+                GameObject bulletUI1 = Instantiate(tank_shell_UI, Vector3.zero, Quaternion.identity);
+                bulletUI1.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, 90f));
+                bulletUI1.transform.SetParent(blueAmmoUI.transform);
+                blueTankBulletsUIList.Add(bulletUI1);
+
+                GameObject bulletUI2 = Instantiate(tank_shell_UI, Vector3.zero, Quaternion.identity);
+                bulletUI2.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, 90f));
+                bulletUI2.transform.SetParent(redAmmoUI.transform);
+                redTankBulletsUIList.Add(bulletUI2);
+            }
         }
 
         // setup arrow UI
@@ -259,6 +289,31 @@ public class UIManager : MonoBehaviour
         {
             yield return StartCoroutine(MoveArrow(arrowTransform, startPos, endPos, 1.0f));
             yield return StartCoroutine(MoveArrow(arrowTransform, endPos, startPos, 1.0f));
+        }
+    }
+
+    public void UpdateAmmoUI(char color)
+    {
+        int currentBulletCount;
+        int maxBulletCount;
+        switch(color)
+        {
+            case 'B':
+                currentBulletCount = GameStats.blueBullets;
+                maxBulletCount = GameStats.blueMaxBullets;
+                for (int i = 0; i < maxBulletCount; i++)
+                {
+                    blueTankBulletsUIList[i].GetComponent<Image>().enabled = i < currentBulletCount ? true : false;
+                }
+                break;
+            case 'R':
+                currentBulletCount = GameStats.redBullets;
+                maxBulletCount = GameStats.redMaxBullets;
+                for (int i = 0; i < maxBulletCount; i++)
+                {
+                    redTankBulletsUIList[i].GetComponent<Image>().enabled = i < currentBulletCount ? true : false;
+                }
+                break;
         }
     }
 }
