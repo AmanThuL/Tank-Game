@@ -115,6 +115,11 @@ MonoBehaviour:
   fireRate: 0.4
   infAmmoDelay: 5
   speedUpDelay: 5
+
+  doubleBullet: {fileID: 3742379048018450530, guid: dd53abb3ee05ad54c8efaa43cf837d02,
+    type: 3}
+  doubleShotDelay: 2
+
 --- !u!50 &9208099354787253962
 Rigidbody2D:
   serializedVersion: 4

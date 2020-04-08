@@ -16,6 +16,8 @@ public class Bullet_Test : MonoBehaviour
     [SerializeField]private int MAX_BOUNCES;
     private int currentBounces;
 
+    float dbOffset = .2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,13 +53,27 @@ public class Bullet_Test : MonoBehaviour
             //Collisions with tanks
             if (collision.gameObject.tag == "BluTank")
             {
-                GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+                if (collision.gameObject.GetComponent<TankControls>().shield)
+                {
+                    collision.gameObject.GetComponent<TankControls>().shield = false;
+                }
+                else
+                {
+                    GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
+                }
                 DestroySelf();
                 return;
             }
             if (collision.gameObject.tag == "RedTank")
             {
-                GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+                if (collision.gameObject.GetComponent<TankControls>().shield)
+                {
+                    collision.gameObject.GetComponent<TankControls>().shield = false;
+                }
+                else
+                {
+                    GameObject.Find("Game Manager").GetComponent<Manager>().KillRedTank();
+                }
                 DestroySelf();
                 return;
             }
@@ -117,6 +133,23 @@ public class Bullet_Test : MonoBehaviour
         direction = dir;
         direction.Normalize();
         velocity = direction * speed;
+        position = transform.position;
+        currentBounces = 1;
+    }
+
+    public void InitializeDoubleBullet(Vector3 dir, int num)
+    {
+        direction = dir;
+        direction.Normalize();
+        velocity = direction * speed;
+        if (num == 1)
+        {
+            transform.position += transform.up * dbOffset;
+        }
+        else
+        {
+            transform.position += -transform.up * dbOffset;
+        }
         position = transform.position;
         currentBounces = 1;
     }

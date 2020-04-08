@@ -226,6 +226,12 @@ public class UIManager : MonoBehaviour
         ToSelectedLevel();
     }
 
+    public void Fire()
+    {
+        GameStats.selectedLevel = Levels.FireLevel;
+        ToSelectedLevel();
+    }
+
     public void RestartGameLevel()
     {
         sceneFader.SetActive(true);

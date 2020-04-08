@@ -35,6 +35,7 @@ public static class GameStats
     public static bool limitedAmmo = true;
     public static bool speedUp = true;
     public static bool infAmmo = true;
+    public static bool doubleShot = true;
 
     // Tank Color
     public static Hashtable tankColor = new Hashtable {
