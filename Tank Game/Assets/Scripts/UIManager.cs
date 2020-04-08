@@ -78,8 +78,8 @@ public class UIManager : MonoBehaviour
             p1GoUI.color = p1Color;
             p2GoUI.color = p2Color;
 
-            blueAmmoUI.GetComponent<Image>().color = p1Color;
-            redAmmoUI.GetComponent<Image>().color = p2Color;
+            blueAmmoUI.GetComponent<Image>().color = new Color(p1Color.r, p1Color.g, p1Color.b, 0.8f);
+            redAmmoUI.GetComponent<Image>().color = new Color(p2Color.r, p2Color.g, p2Color.b, 0.8f);
 
             // Initiate the ammo UI
             for (int i = 0; i < GameStats.blueBullets; ++i)
