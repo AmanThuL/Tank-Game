@@ -14,8 +14,10 @@ public static class GameStats
 
     public static bool isPauseMenuEnabled = false;
 
+    // Bullet Stats
+    public const int redMaxBullets = 5;
+    public const int blueMaxBullets = 5;
     public static int redBullets = 5;
-
     public static int blueBullets = 5;
 
     public static Sprite player1Color;
@@ -64,15 +66,13 @@ public static class GameStats
         if (tankID == 'R')
         {
             redBullets++;
-            if (redBullets > 5) redBullets = 5;
+            redBullets = redBullets > redMaxBullets ? redMaxBullets : redBullets;
         }
         if (tankID == 'B')
         {
             blueBullets++;
-            if (blueBullets > 5) blueBullets = 5;
+            blueBullets = blueBullets > blueMaxBullets ? blueMaxBullets : blueBullets;
         }
-
-
     }
 
     public static void decrementBullets(char tankID)
@@ -80,12 +80,12 @@ public static class GameStats
         if (tankID == 'R')
         {
             redBullets--;
-            if (redBullets < 0) redBullets = 0;
+            redBullets = redBullets < 0 ? 0 : redBullets;
         }
         if (tankID == 'B')
         {
             blueBullets--;
-            if (blueBullets < 0) blueBullets = 0;
+            blueBullets = blueBullets < 0 ? 0 : blueBullets;
         }
     }
 }
