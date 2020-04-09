@@ -104,7 +104,7 @@ public class Bullet_Test : MonoBehaviour
             //    DestroySelf();
             //}
 
-            if (currentBounces > MAX_BOUNCES) DestroySelf();
+            if (currentBounces > MAX_BOUNCES && !collision.GetComponent<Collider2D>().isTrigger) DestroySelf();
         }
     }
 
