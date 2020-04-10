@@ -13,6 +13,15 @@ public enum Levels
     FireLevel
 }
 
+public enum Powerup
+{
+    DoubleShot,
+    InfAmmo,
+    Shield,
+    SpeedUp,
+    SpreadShot
+}
+
 public class UIManager : MonoBehaviour
 {
     // Buttons
@@ -47,6 +56,9 @@ public class UIManager : MonoBehaviour
     public GameObject tank_shell_UI_blank;
     [SerializeField] private List<GameObject> blueTankBulletsUIList;
     [SerializeField] private List<GameObject> redTankBulletsUIList;
+
+    public GameObject bluePowerupUI, redPowerupUI;
+    [SerializeField] private List<Sprite> powerUpSprites;
 
     private void Awake()
     {
