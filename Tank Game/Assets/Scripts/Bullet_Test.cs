@@ -17,8 +17,8 @@ public class Bullet_Test : MonoBehaviour
     private int currentBounces;
 
     float dbOffset = .2f;
-    float ssOffset = .2f;
-    float ssAngle = 30;
+    float ssOffset = .4f;
+    float ssAngle = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -162,13 +162,13 @@ public class Bullet_Test : MonoBehaviour
         if (num == 1)
         {
             //Right
-            direction = dir + new Vector3(0,0,ssAngle);
+            direction = Quaternion.Euler(0,0,ssAngle) * dir;
             transform.position += transform.up * ssOffset;
         }
         else if (num == 2)
         {
             //Left
-            direction = dir - new Vector3(0,0,ssAngle);
+            direction = Quaternion.Euler(0, 0, -ssAngle) * dir;
             transform.position += -transform.up * ssOffset;
         }
         else

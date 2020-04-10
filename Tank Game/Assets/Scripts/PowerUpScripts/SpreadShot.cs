@@ -8,7 +8,7 @@ public class SpreadShot : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
-            //Infinite ammo for limited time
+            //Spread shot for limited time
             collision.gameObject.GetComponent<TankControls>().SpreadShot();
             GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
