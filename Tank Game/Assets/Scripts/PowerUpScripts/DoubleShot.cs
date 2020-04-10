@@ -22,7 +22,7 @@ public class DoubleShot : MonoBehaviour
         {
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().DoubleShot();
-            GameStats.changeTime = Time.time;
+            GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
         }
     }

@@ -22,7 +22,7 @@ public class Shield : MonoBehaviour
         {
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().Shield();
-            GameStats.changeTime = Time.time;
+            GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
         }
     }

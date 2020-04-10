@@ -2,43 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameStats
+public class GameStats : Singleton<GameStats>
 {
-    public static bool blueAdvance = false, redAdvance = false;
+    #region Fields
 
-    public static bool isInputEnabled = false;
+    public bool blueAdvance = false, redAdvance = false;
 
-    public static bool isGetFlagUIDisplayed = true;
+    public bool isInputEnabled = false;
 
-    public static int currScreenIndex = 0;
+    public bool isGetFlagUIDisplayed = true;
 
-    public static bool isPauseMenuEnabled = false;
+    public int currScreenIndex = 0;
+
+    public bool isPauseMenuEnabled = false;
 
     // Bullet Stats
-    public const int redMaxBullets = 5;
-    public const int blueMaxBullets = 5;
-    public static int redBullets = 5;
-    public static int blueBullets = 5;
+    public int redMaxBullets = 5;
+    public int blueMaxBullets = 5;
+    public int redBullets = 5;
+    public int blueBullets = 5;
 
-    public static Sprite player1Color;
+    public Sprite player1Color;
 
-    public static Sprite player2Color;
+    public Sprite player2Color;
 
-    public static int player1TankColor = 1;
+    public int player1TankColor = 1;
 
-    public static int player2TankColor = 0;
+    public int player2TankColor = 0;
 
-    public static Levels selectedLevel = 0;
+    public Levels selectedLevel = 0;
 
     //Game Options Vars
-    public static float changeTime = 0;
-    public static bool limitedAmmo = true;
-    public static bool speedUp = true;
-    public static bool infAmmo = true;
-    public static bool doubleShot = true;
+    public float changeTime = 0;
+    public bool limitedAmmo = true;
+    public bool speedUp = true;
+    public bool infAmmo = true;
+    public bool doubleShot = true;
 
     // Tank Color
-    public static Hashtable tankColor = new Hashtable {
+    public Hashtable tankColor = new Hashtable {
          { 0,       new Color32( 228, 27, 27, 255 ) },      // Red
          { 1,      new Color32( 45, 68, 219, 255 ) },       // Blue
          { 2,    new Color32( 157, 14, 160, 255 ) },        // Violet
@@ -48,12 +50,15 @@ public static class GameStats
          { 6,      new Color32( 15, 177 , 169, 255 ) },     // Cyan
      };
 
+    #endregion
+  
+
     //the number of screens from the middle screen you need to traverse to win.
     //overrides winby in the game manager script if it isn't negative 1
     //public static int NumScreens = 2;
     //not currently in use
 
-    public static int getBullets(char tankID)
+    public int getBullets(char tankID)
     {
         if (tankID == 'R')
         { return redBullets; }
@@ -62,7 +67,7 @@ public static class GameStats
         return -1;
     }
 
-    public static void incrementBullets(char tankID)
+    public void incrementBullets(char tankID)
     {
         if (tankID == 'R')
         {
@@ -76,7 +81,7 @@ public static class GameStats
         }
     }
 
-    public static void decrementBullets(char tankID)
+    public void decrementBullets(char tankID)
     {
         if (tankID == 'R')
         {
@@ -89,4 +94,5 @@ public static class GameStats
             blueBullets = blueBullets < 0 ? 0 : blueBullets;
         }
     }
+
 }

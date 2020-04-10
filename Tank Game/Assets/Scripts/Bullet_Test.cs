@@ -26,7 +26,7 @@ public class Bullet_Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStats.isInputEnabled)
+        if (GameStats.Instance.isInputEnabled)
         {
             MoveBullet();
 

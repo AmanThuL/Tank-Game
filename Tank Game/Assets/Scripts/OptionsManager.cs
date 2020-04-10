@@ -18,8 +18,8 @@ public class OptionsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameStats.speedUp = speedUpToggle.isOn;
-        GameStats.infAmmo = infAmmoToggle.isOn;
-        GameStats.limitedAmmo = limitedAmmoToggle.isOn;
+        GameStats.Instance.speedUp = speedUpToggle.isOn;
+        GameStats.Instance.infAmmo = infAmmoToggle.isOn;
+        GameStats.Instance.limitedAmmo = limitedAmmoToggle.isOn;
     }
 }

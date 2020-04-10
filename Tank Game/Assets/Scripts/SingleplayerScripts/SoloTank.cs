@@ -83,7 +83,7 @@ public class SoloTank : MonoBehaviour
     {
         for (int j = 0; j < 3; j++)
         {
-            GameStats.incrementBullets(tankID);
+            GameStats.Instance.incrementBullets(tankID);
         }
     }
 
@@ -214,7 +214,7 @@ public class SoloTank : MonoBehaviour
     void ShootBullet()
     {
         GameObject tempBullet;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.Instance.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
 
             nextFire = Time.time + fireRate;
@@ -226,7 +226,7 @@ public class SoloTank : MonoBehaviour
 
             //if (!infAmmo)
             //{
-            //    GameStats.decrementBullets(tankID);
+            //    GameStats.Instance.decrementBullets(tankID);
             //}
 
         }
@@ -234,7 +234,7 @@ public class SoloTank : MonoBehaviour
     
     public void addBullet()
     {
-        GameStats.incrementBullets(gameObject.tag[0]);
+        GameStats.Instance.incrementBullets(gameObject.tag[0]);
     }
 
 }

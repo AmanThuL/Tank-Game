@@ -27,8 +27,8 @@ public class SelectionManager : MonoBehaviour
 
     void Start()
     {
-        leftIndex = GameStats.player1TankColor;
-        rightIndex = GameStats.player2TankColor;
+        leftIndex = GameStats.Instance.player1TankColor;
+        rightIndex = GameStats.Instance.player2TankColor;
 
         sprites = new Sprite[7];
         sprites[0] = redTank;
@@ -60,8 +60,8 @@ public class SelectionManager : MonoBehaviour
             ButtonFadesToColor(leftL, leftL_btn.colors.pressedColor);
 
             LeftTankLeft();
-            GameStats.player1Color = sprites[leftIndex];
-            GameStats.player1TankColor = leftIndex;
+            GameStats.Instance.player1Color = sprites[leftIndex];
+            GameStats.Instance.player1TankColor = leftIndex;
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
@@ -74,8 +74,8 @@ public class SelectionManager : MonoBehaviour
             ButtonFadesToColor(leftR, leftR_btn.colors.pressedColor);
 
             LeftTankRight();
-            GameStats.player1Color = sprites[leftIndex];
-            GameStats.player1TankColor = leftIndex;
+            GameStats.Instance.player1Color = sprites[leftIndex];
+            GameStats.Instance.player1TankColor = leftIndex;
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
@@ -88,8 +88,8 @@ public class SelectionManager : MonoBehaviour
             ButtonFadesToColor(rightL, rightL_btn.colors.pressedColor);
 
             RightTankLeft();
-            GameStats.player2Color = sprites[rightIndex];
-            GameStats.player2TankColor = rightIndex;
+            GameStats.Instance.player2Color = sprites[rightIndex];
+            GameStats.Instance.player2TankColor = rightIndex;
         }
         else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
@@ -102,8 +102,8 @@ public class SelectionManager : MonoBehaviour
             ButtonFadesToColor(rightR, rightR_btn.colors.pressedColor);
 
             RightTankRight();
-            GameStats.player2Color = sprites[rightIndex];
-            GameStats.player2TankColor = rightIndex;
+            GameStats.Instance.player2Color = sprites[rightIndex];
+            GameStats.Instance.player2TankColor = rightIndex;
         }
         else if (Input.GetKeyUp(KeyCode.RightArrow))
         {

@@ -40,6 +40,8 @@ public class TankControls : MonoBehaviour
 
 
     public Rigidbody2D rb;
+
+    [Header("Bullet Fire")]
     [SerializeField] GameObject smoke;
     //Bullet fire rate
     public GameObject bullet;
@@ -50,6 +52,7 @@ public class TankControls : MonoBehaviour
     Text ammoText;
     char tankID;
 
+    [Header("Power Ups")]
     //Power Ups
     bool infAmmo;
     [SerializeField] [Range(1, 10)] int infAmmoDelay = 5;
@@ -59,14 +62,16 @@ public class TankControls : MonoBehaviour
     [SerializeField] [Range(1, 10)] int speedUpDelay = 5;
     float speedUpTime;
 
-    // UI
-    private GameObject UIManager;
-    
     bool doubleShot;
     [SerializeField] [Range(1, 10)] int doubleShotDelay = 2;
     float doubleShotTime;
 
     public bool shield;
+
+
+    // UI
+    private GameObject UIManager;
+   
 
     // start is called before the first frame update
     void Start()
@@ -85,17 +90,17 @@ public class TankControls : MonoBehaviour
         if (this.name == "Blue_Tank(Clone)")
         {
             ammoText = GameObject.Find("BlueText").GetComponent<Text>();
-            if (GameStats.player1Color)
+            if (GameStats.Instance.player1Color)
             {
-                GetComponent<SpriteRenderer>().sprite = GameStats.player1Color;
+                GetComponent<SpriteRenderer>().sprite = GameStats.Instance.player1Color;
             }
         }
         else
         {
             ammoText = GameObject.Find("RedText").GetComponent<Text>();
-            if (GameStats.player2Color)
+            if (GameStats.Instance.player2Color)
             {
-                GetComponent<SpriteRenderer>().sprite = GameStats.player2Color;
+                GetComponent<SpriteRenderer>().sprite = GameStats.Instance.player2Color;
             }
         }
     }
@@ -103,7 +108,7 @@ public class TankControls : MonoBehaviour
     //get player input in update
     void Update()
     {
-        if (GameStats.isInputEnabled)
+        if (GameStats.Instance.isInputEnabled)
         {
             Rotate();
             Move();
@@ -119,9 +124,9 @@ public class TankControls : MonoBehaviour
         int currAmmonText = int.Parse(ammoText.text);
 
         // Check if UI needs update
-        if (currAmmonText != GameStats.getBullets(tankID))
+        if (currAmmonText != GameStats.Instance.getBullets(tankID))
         {
-            ammoText.text = GameStats.getBullets(tankID).ToString();
+            ammoText.text = GameStats.Instance.getBullets(tankID).ToString();
             UIManager.GetComponent<UIManager>().UpdateAmmoUI(tankID);
         }
     }
@@ -130,7 +135,7 @@ public class TankControls : MonoBehaviour
     {
         for (int j = 0; j < 3; j++)
         {
-            GameStats.incrementBullets(tankID);
+            GameStats.Instance.incrementBullets(tankID);
         }
     }
 
@@ -278,9 +283,9 @@ public class TankControls : MonoBehaviour
     {
         GameObject tempBullet1;
         GameObject tempBullet2;
-        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.Instance.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
-            Debug.Log(GameStats.blueBullets);
+            Debug.Log(GameStats.Instance.blueBullets);
 
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -306,7 +311,7 @@ public class TankControls : MonoBehaviour
 
             if (!infAmmo)
             {
-                GameStats.decrementBullets(tankID);
+                GameStats.Instance.decrementBullets(tankID);
             }
 
         }
@@ -314,7 +319,7 @@ public class TankControls : MonoBehaviour
     
     public void addBullet()
     {
-        GameStats.incrementBullets(gameObject.tag[0]);
+        GameStats.Instance.incrementBullets(gameObject.tag[0]);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

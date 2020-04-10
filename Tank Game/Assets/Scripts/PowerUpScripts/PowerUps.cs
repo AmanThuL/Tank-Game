@@ -14,12 +14,12 @@ public class PowerUps : MonoBehaviour
     {
         powerUps = new List<GameObject>();
 
-        if (GameStats.speedUp)
+        if (GameStats.Instance.speedUp)
         {
             powerUps.Add(speedUp);
         }
 
-        if (GameStats.infAmmo)
+        if (GameStats.Instance.infAmmo)
         {
             powerUps.Add(infAmmo);
         }
@@ -37,10 +37,10 @@ public class PowerUps : MonoBehaviour
 
     void spawnPowerUp()
     {
-        if (GameStats.changeTime != 0 && Time.time > GameStats.changeTime + 10)
+        if (GameStats.Instance.changeTime != 0 && Time.time > GameStats.Instance.changeTime + 10)
         {
             Instantiate(powerUps[Random.Range(0, powerUps.Count)], new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 10), Quaternion.identity);
-            GameStats.changeTime = 0;
+            GameStats.Instance.changeTime = 0;
         }
     }
 
