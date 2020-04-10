@@ -18,7 +18,7 @@ public class Bullet_Test : MonoBehaviour
 
     float dbOffset = .2f;
     float ssOffset = .4f;
-    float ssAngle = 20f;
+    float ssAngle = 10f;
 
     // Start is called before the first frame update
     void Start()
