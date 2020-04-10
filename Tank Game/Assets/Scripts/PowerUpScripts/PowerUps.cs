@@ -27,17 +27,23 @@ public class PowerUps : MonoBehaviour
 
         powerUps = new List<GameObject>();
 
-        if (GameStats.speedUp){         powerUps.Add(speedUp);}
+        if (GameStats.Instance.speedUp)
+        {
+            powerUps.Add(speedUp);
+        }
 
-        if (GameStats.infAmmo){         powerUps.Add(infAmmo);}
+        if (GameStats.Instance.infAmmo)
+        {
+            powerUps.Add(infAmmo);
+        }
 
-        if (GameStats.doubleShot){      powerUps.Add(doubleShot);}
+        if (GameStats.Instance.doubleShot){      powerUps.Add(doubleShot);}
 
-        if (GameStats.shield) {         powerUps.Add(shield);}
+        if (GameStats.Instance.shield) {         powerUps.Add(shield);}
 
         //Spawn random enabled powerUp
         Instantiate(powerUps[Random.Range(0, powerUps.Count)], spawnOffset, Quaternion.identity);
-        GameStats.powerUpSpawned = true;
+        GameStats.Instance.powerUpSpawned = true;
     }
 
     // Update is called once per frame
@@ -49,12 +55,12 @@ public class PowerUps : MonoBehaviour
     void spawnPowerUp()
     {
         
-        if (GameStats.changeTime != 0 && Time.time > GameStats.changeTime + currentPowerUpSpawnDelay && !GameStats.powerUpSpawned)
+        if (GameStats.Instance.changeTime != 0 && Time.time > GameStats.Instance.changeTime + currentPowerUpSpawnDelay && !GameStats.Instance.powerUpSpawned)
         {
             currentPowerup = Instantiate
                 (
                 powerUps[Random.Range(0, powerUps.Count)], 
-                new Vector3(Camera.main.transform.position.x + GameStats.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1,2) * spawnOffset.y, 10),
+                new Vector3(Camera.main.transform.position.x + GameStats.Instance.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1,2) * spawnOffset.y, 10),
                 Quaternion.identity
                 );
 
@@ -77,7 +83,7 @@ public class PowerUps : MonoBehaviour
         if (currentPowerup != null)
         {
             GameObject.Destroy(currentPowerup);
-            GameStats.powerUpSpawned = false;
+            GameStats.Instance.powerUpSpawned = false;
         }
     }
 

@@ -70,11 +70,11 @@ public class Manager : MonoBehaviour
     {
         pauseObj.SetActive(false);
 
-        GameStats.blueAdvance = false;
-        GameStats.redAdvance = false;
-        GameStats.isGetFlagUIDisplayed = true;
-        getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
-        GameStats.currScreenIndex = 0;
+        GameStats.Instance.blueAdvance = false;
+        GameStats.Instance.redAdvance = false;
+        GameStats.Instance.isGetFlagUIDisplayed = true;
+        getFlagCanvasUI.SetActive(GameStats.Instance.isGetFlagUIDisplayed);
+        GameStats.Instance.currScreenIndex = 0;
 
         resetSpawnDelay();
         SpawnFlag(flagSpawnPos);
@@ -86,9 +86,9 @@ public class Manager : MonoBehaviour
         activeRedTank.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(0, -1) * Mathf.Rad2Deg);
 
         //currently out of use
-        //if (GameStats.NumScreens > -1 && GameStats.NumScreens < 3)
+        //if (GameStats.Instance.NumScreens > -1 && GameStats.Instance.NumScreens < 3)
         //{
-        //    winBy = GameStats.NumScreens;
+        //    winBy = GameStats.Instance.NumScreens;
         //}
 
         UIManager = GameObject.Find("UI Manager");
@@ -97,7 +97,7 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStats.isInputEnabled)
+        if (GameStats.Instance.isInputEnabled)
         {
             UpdateRespawnTimer(Time.deltaTime);
             UpdateScreenMove(Time.deltaTime);
@@ -213,12 +213,12 @@ public class Manager : MonoBehaviour
         activeBlueTank = GameObject.Instantiate(BlueTank);
         BlueInvincible = true;
 
-        GameStats.blueBullets = 5;
+        GameStats.Instance.blueBullets = 5;
         SetTankAlpha(InvulnColor, activeBlueTank);
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
-        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, blueSpawnPosition.z);
+        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, blueSpawnPosition.z);
     }
 
     /// <summary>
@@ -232,12 +232,12 @@ public class Manager : MonoBehaviour
         activeRedTank = GameObject.Instantiate(RedTank);
         redInvincible = true;
 
-        GameStats.redBullets = 5;
+        GameStats.Instance.redBullets = 5;
         SetTankAlpha(InvulnColor, activeRedTank);
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
-        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
+        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
     }
 
     /// <summary>
@@ -264,9 +264,9 @@ public class Manager : MonoBehaviour
         Instantiate(explosion, temp, Quaternion.identity);
         Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
-        if (GameStats.blueAdvance)
+        if (GameStats.Instance.blueAdvance)
         {
-            GameStats.blueAdvance = false;
+            GameStats.Instance.blueAdvance = false;
             SpawnFlag(temp);
         }
 
@@ -297,9 +297,9 @@ public class Manager : MonoBehaviour
         Instantiate(explosion, temp, Quaternion.identity);
         Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
-        if (GameStats.redAdvance)
+        if (GameStats.Instance.redAdvance)
         {
-            GameStats.redAdvance = false;
+            GameStats.Instance.redAdvance = false;
             SpawnFlag(temp);
         }
 
@@ -313,15 +313,15 @@ public class Manager : MonoBehaviour
     /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
     private void Advance(int direction)
     {
-        GameStats.isGetFlagUIDisplayed = false;
-        getFlagCanvasUI.SetActive(GameStats.isGetFlagUIDisplayed);
+        GameStats.Instance.isGetFlagUIDisplayed = false;
+        getFlagCanvasUI.SetActive(GameStats.Instance.isGetFlagUIDisplayed);
 
-        GameStats.currScreenIndex += direction;
+        GameStats.Instance.currScreenIndex += direction;
 
-        if (Mathf.Abs(GameStats.currScreenIndex) > winBy)
+        if (Mathf.Abs(GameStats.Instance.currScreenIndex) > winBy)
         {
             //call some winning function
-            GameStats.isInputEnabled = false;
+            GameStats.Instance.isInputEnabled = false;
             switch (direction)
             {
                 case -1:
@@ -348,7 +348,7 @@ public class Manager : MonoBehaviour
     public void RedAdvance()
     {
         //advance the red tank if you are able
-        if (GameStats.redAdvance)
+        if (GameStats.Instance.redAdvance)
         {
             Advance(-1);
             //ResetBlueTank();
@@ -361,7 +361,7 @@ public class Manager : MonoBehaviour
     public void BluAdvance()
     {
         //advance the blue tank if you are able
-        if (GameStats.blueAdvance)
+        if (GameStats.Instance.blueAdvance)
         {
             Advance(1);
             //ResetRedTank();
@@ -378,8 +378,8 @@ public class Manager : MonoBehaviour
         GameObject right = Instantiate(rightbounds);
         GameObject left = Instantiate(leftbounds);
         //place the left and right bounds
-        right.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x, 0f, 0f);
-        left.gameObject.transform.position = new Vector3(GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x, 0f, 0f);
+        right.gameObject.transform.position = new Vector3(GameStats.Instance.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x, 0f, 0f);
+        left.gameObject.transform.position = new Vector3(GameStats.Instance.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x, 0f, 0f);
         //keep track of the left and right bounds
         currentRightBounds = right;
         currentLeftBounds = left;
@@ -394,13 +394,13 @@ public class Manager : MonoBehaviour
 
     void CheckBounds()
     {
-        if (GameStats.redAdvance)
+        if (GameStats.Instance.redAdvance)
         {
             ResetBlueTank();
             Checkbounds(activeRedTank);
         }
 
-        if (GameStats.blueAdvance)
+        if (GameStats.Instance.blueAdvance)
         {
             ResetRedTank();
             Checkbounds(activeBlueTank);
@@ -435,14 +435,14 @@ public class Manager : MonoBehaviour
         }
 
 
-        if (tank.transform.position.x > (GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x) && GameStats.redAdvance)
+        if (tank.transform.position.x > (GameStats.Instance.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x) && GameStats.Instance.redAdvance)
         {
-            tank.transform.position = new Vector3((GameStats.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
+            tank.transform.position = new Vector3((GameStats.Instance.currScreenIndex * ScreenWidth.x + .5f * ScreenWidth.x - .25f), tank.transform.position.y, tank.transform.position.z);
         }
 
-        if (tank.transform.position.x < (GameStats.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x) && GameStats.blueAdvance)
+        if (tank.transform.position.x < (GameStats.Instance.currScreenIndex * ScreenWidth.x - .5f * ScreenWidth.x) && GameStats.Instance.blueAdvance)
         {
-            tank.transform.position = new Vector3(((GameStats.currScreenIndex * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
+            tank.transform.position = new Vector3(((GameStats.Instance.currScreenIndex * ScreenWidth.x) - (.5f * ScreenWidth.x) + .25f), tank.transform.position.y, tank.transform.position.z);
         }
     }
 
@@ -479,12 +479,12 @@ public class Manager : MonoBehaviour
 
     public void RedCaptureFlag()
     {
-        GameStats.redAdvance = true;
+        GameStats.Instance.redAdvance = true;
     }
 
     public void BlueCaptureFlag()
     {
-        GameStats.blueAdvance = true;
+        GameStats.Instance.blueAdvance = true;
     }
 
     /// <summary>
@@ -505,7 +505,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
+            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
             BlueInvincible = true;
             bluInvulnTimer = 0f;
 
@@ -521,7 +521,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
+            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
             redInvincible = true;
             redInvulnTimer = 0f;
             SetTankAlpha(InvulnColor, activeRedTank);
@@ -531,13 +531,13 @@ public class Manager : MonoBehaviour
 
     void PauseGame()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameStats.isPauseMenuEnabled == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStats.Instance.isPauseMenuEnabled == false)
         {
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(resumeButton);
 
             //Pause the game
-            GameStats.isInputEnabled = false;
-            GameStats.isPauseMenuEnabled = true;
+            GameStats.Instance.isInputEnabled = false;
+            GameStats.Instance.isPauseMenuEnabled = true;
 
             pauseObj.SetActive(true);
             UIManager.GetComponent<UIManager>().arrowUI = arrowUI;
@@ -547,7 +547,7 @@ public class Manager : MonoBehaviour
 
     void UnpauseUsingEsc()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameStats.isPauseMenuEnabled == true)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStats.Instance.isPauseMenuEnabled == true)
         {
             UIManager.GetComponent<UIManager>().UnpauseGame();
         }
@@ -557,12 +557,12 @@ public class Manager : MonoBehaviour
     {
         if (bulletTag[0] == 'R')
         {
-            GameStats.incrementBullets(bulletTag[0]);
+            GameStats.Instance.incrementBullets(bulletTag[0]);
         }
 
         if (bulletTag[0] == 'B')
         {
-            GameStats.incrementBullets(bulletTag[0]);
+            GameStats.Instance.incrementBullets(bulletTag[0]);
         }
     }
 }

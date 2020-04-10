@@ -64,16 +64,16 @@ public class UIManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Controls")
         {
-            p1Controls.color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
-            p2Controls.color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
+            p1Controls.color = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player1TankColor];
+            p2Controls.color = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player2TankColor];
         }
 
         // If the active scene is one of the levels
         if (System.Enum.IsDefined(typeof(Levels), SceneManager.GetActiveScene().name))
         {
             Color p1Color, p2Color;
-            p1Color = (Color32)GameStats.tankColor[GameStats.player1TankColor];
-            p2Color = (Color32)GameStats.tankColor[GameStats.player2TankColor];
+            p1Color = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player1TankColor];
+            p2Color = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player2TankColor];
 
             p1GoUI.color = p1Color;
             p2GoUI.color = p2Color;
@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
             redAmmoUI.GetComponent<Image>().color = new Color(p2Color.r, p2Color.g, p2Color.b, 0.8f);
 
             // Initiate the ammo UI
-            for (int i = 0; i < GameStats.blueBullets; ++i)
+            for (int i = 0; i < GameStats.Instance.blueBullets; ++i)
             {
                 GameObject bulletUI1 = Instantiate(tank_shell_UI, Vector3.zero, Quaternion.identity);
                 bulletUI1.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, 90f));
@@ -147,11 +147,11 @@ public class UIManager : MonoBehaviour
 
         if (redArrow != null && blueArrow != null)
         {
-            if (GameStats.blueAdvance)
+            if (GameStats.Instance.blueAdvance)
                 SetArrowActive(blueArrow, true);
             else SetArrowActive(blueArrow, false);
 
-            if (GameStats.redAdvance)
+            if (GameStats.Instance.redAdvance)
                 SetArrowActive(redArrow, true);
             else SetArrowActive(redArrow, false);
         }
@@ -178,7 +178,7 @@ public class UIManager : MonoBehaviour
         sceneFader.SetActive(true);
         //Debug.Log("Loading Main Menu!");
         sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
-        GameStats.isPauseMenuEnabled = false;
+        GameStats.Instance.isPauseMenuEnabled = false;
     }
 
     public void ToControlsScreen()
@@ -204,44 +204,44 @@ public class UIManager : MonoBehaviour
     {
         sceneFader.SetActive(true);
 
-        Debug.Log(GameStats.selectedLevel.ToString());
-        sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.selectedLevel.ToString());
+        Debug.Log(GameStats.Instance.selectedLevel.ToString());
+        sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.Instance.selectedLevel.ToString());
     }
 
     public void Desert()
     {
-        GameStats.selectedLevel = Levels.DesertLevel;
+        GameStats.Instance.selectedLevel = Levels.DesertLevel;
         ToSelectedLevel();
     }
 
     public void Ice()
     {
-        GameStats.selectedLevel = Levels.IceLevel;
+        GameStats.Instance.selectedLevel = Levels.IceLevel;
         ToSelectedLevel();
     }
 
     public void Jungle()
     {
-        GameStats.selectedLevel = Levels.JungleLevel;
+        GameStats.Instance.selectedLevel = Levels.JungleLevel;
         ToSelectedLevel();
     }
 
     public void Fire()
     {
-        GameStats.selectedLevel = Levels.FireLevel;
+        GameStats.Instance.selectedLevel = Levels.FireLevel;
         ToSelectedLevel();
     }
 
     public void RestartGameLevel()
     {
         sceneFader.SetActive(true);
-        sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.selectedLevel.ToString());
+        sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.Instance.selectedLevel.ToString());
     }
 
     public void UnpauseGame()
     {
-        GameStats.isInputEnabled = true;
-        GameStats.isPauseMenuEnabled = false;
+        GameStats.Instance.isInputEnabled = true;
+        GameStats.Instance.isPauseMenuEnabled = false;
 
         arrowUI = null;
         //Destroy pause screen
@@ -299,16 +299,16 @@ public class UIManager : MonoBehaviour
         switch(color)
         {
             case 'B':
-                currentBulletCount = GameStats.blueBullets;
-                maxBulletCount = GameStats.blueMaxBullets;
+                currentBulletCount = GameStats.Instance.blueBullets;
+                maxBulletCount = GameStats.Instance.blueMaxBullets;
                 for (int i = 0; i < maxBulletCount; i++)
                 {
                     blueTankBulletsUIList[i].GetComponent<Image>().enabled = i < currentBulletCount ? true : false;
                 }
                 break;
             case 'R':
-                currentBulletCount = GameStats.redBullets;
-                maxBulletCount = GameStats.redMaxBullets;
+                currentBulletCount = GameStats.Instance.redBullets;
+                maxBulletCount = GameStats.Instance.redMaxBullets;
                 for (int i = 0; i < maxBulletCount; i++)
                 {
                     redTankBulletsUIList[i].GetComponent<Image>().enabled = i < currentBulletCount ? true : false;

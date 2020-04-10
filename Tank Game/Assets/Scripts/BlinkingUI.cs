@@ -26,7 +26,7 @@ public class BlinkingUI : MonoBehaviour
 
     void Update()
     {
-        if (!hasBlinked && GameStats.currScreenIndex == screenIndex)
+        if (!hasBlinked && GameStats.Instance.currScreenIndex == screenIndex)
         {
             StartBlinking();
             hasBlinked = true;
