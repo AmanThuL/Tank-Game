@@ -9,11 +9,13 @@ public class PowerUps : MonoBehaviour
     [SerializeField] [Range(0f, 20f)] float minPowerupSpawnDelay = 10.0f;
     [SerializeField] [Range(0f, 2f)] float powerupSpawnDelayIncrement = .2f;
     float currentPowerUpSpawnDelay;
-    [SerializeField] Vector2 spawnOffset = new Vector2(0,2);
+    [SerializeField] Camera cam;
 
     //not yet implemented, for spawn full measure
-    [SerializeField] List<GameObject> spawns = new List<GameObject>();
+    List<GameObject> spawns = new List<GameObject>();
     List<GameObject> activeSpawns = new List<GameObject>();
+    bool hasCheckedFirstScreen = false;
+    float spawnTimer;
 
 
     GameObject currentPowerup;
@@ -24,7 +26,7 @@ public class PowerUps : MonoBehaviour
     void Start()
     {
         currentPowerUpSpawnDelay = minPowerupSpawnDelay;
-
+        spawnTimer = currentPowerUpSpawnDelay;
         powerUps = new List<GameObject>();
 
         if (GameStats.Instance.speedUp)
@@ -40,51 +42,70 @@ public class PowerUps : MonoBehaviour
         if (GameStats.Instance.doubleShot){      powerUps.Add(doubleShot);}
 
         if (GameStats.Instance.shield) {         powerUps.Add(shield);}
+        GameStats.Instance.powerUpSpawned = false;
 
-        //Spawn random enabled powerUp
-        Instantiate(powerUps[Random.Range(0, powerUps.Count)], spawnOffset, Quaternion.identity);
-        GameStats.Instance.powerUpSpawned = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnPowerUp();
+        if (!hasCheckedFirstScreen) { ChangeScreen(); hasCheckedFirstScreen = true; }
+        SpawnPowerUp(Time.deltaTime);
     }
 
-    void spawnPowerUp()
+    void SpawnPowerUp(float dt)
     {
-        
-        if (GameStats.Instance.changeTime != 0 && Time.time > GameStats.Instance.changeTime + currentPowerUpSpawnDelay && !GameStats.Instance.powerUpSpawned)
-        {
-            currentPowerup = Instantiate
-                (
-                powerUps[Random.Range(0, powerUps.Count)], 
-                new Vector3(Camera.main.transform.position.x + GameStats.Instance.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1,2) * spawnOffset.y, 10),
-                Quaternion.identity
-                );
+        if (!GameStats.Instance.powerUpSpawned){
+            spawnTimer -= dt;
+            if (spawnTimer < 0 )
+            {
+                //get the location at which to spawn the powerup
+                int spawnLocation = Random.Range(0, activeSpawns.Count);
 
-            
-            /*currentPowerup = Instantiate
-                (
-                powerUps[Random.Range(0, powerUps.Count)],
-                new Vector3(Camera.main.transform.position.x + GameStats.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1, 2) * spawnOffset.y, 10),
-                Quaternion.identity
-                );*/
-            GameStats.Instance.changeTime = 0;
-            GameStats.Instance.powerUpSpawned = true;
-            currentPowerUpSpawnDelay = Mathf.Min(currentPowerUpSpawnDelay + powerupSpawnDelayIncrement, maxPowerupSpawnDelay);
-            
+                //spawn the power up
+                currentPowerup = Instantiate
+                    (
+                    powerUps[Random.Range(0, powerUps.Count)],
+                    new Vector3(activeSpawns[spawnLocation].transform.position.x, activeSpawns[spawnLocation].transform.position.y, 10),
+                    Quaternion.identity
+                    );
+
+                //tell the game we have spawned the powerup
+                GameStats.Instance.powerUpSpawned = true;
+
+                //reset the timer
+                currentPowerUpSpawnDelay = Mathf.Min(currentPowerUpSpawnDelay + powerupSpawnDelayIncrement, maxPowerupSpawnDelay);
+                spawnTimer = currentPowerUpSpawnDelay;
+            }
         }
     }
 
-    public void changeScreen()
+    public void ChangeScreen()
     {
         if (currentPowerup != null)
         {
             GameObject.Destroy(currentPowerup);
             GameStats.Instance.powerUpSpawned = false;
         }
+
+        spawnTimer = currentPowerUpSpawnDelay;
+        activeSpawns.Clear();
+        for (int i = 0; i < spawns.Count; i++)
+        {
+            Vector3 screenPoint = Camera.main.WorldToViewportPoint(spawns[i].transform.position);
+            bool onScreen = screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+            if (onScreen)
+            {
+                activeSpawns.Add(spawns[i]);
+            }
+        }
+        //Debug.Log(activeSpawns.Count);
+
+    }
+
+    public void addToSpawnLocations(GameObject spawn)
+    {
+        spawns.Add(spawn);
     }
 
 }
