@@ -86,7 +86,7 @@ public class PowerUps : MonoBehaviour
     {
         if (currentPowerup != null)
         {
-            GameObject.Destroy(currentPowerup);
+            Destroy(currentPowerup);
             GameStats.Instance.powerUpSpawned = false;
         }
 

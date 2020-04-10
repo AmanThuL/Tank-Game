@@ -23,7 +23,6 @@ public class GameStats : Singleton<GameStats>
     public int blueBullets = 5;
 
     public Sprite player1Color;
-
     public Sprite player2Color;
 
     public int player1TankColor = 1;
@@ -52,6 +51,9 @@ public class GameStats : Singleton<GameStats>
          { 5,    new Color32( 199, 106, 10, 255 ) },        // Orange
          { 6,      new Color32( 15, 177 , 169, 255 ) },     // Cyan
      };
+
+    // UI
+    public Powerup? currActivePowerup = null;
 
     #endregion
   

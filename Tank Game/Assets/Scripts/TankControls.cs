@@ -38,7 +38,6 @@ public class TankControls : MonoBehaviour
     [SerializeField] KeyCode moveRight;
     [SerializeField] KeyCode shoot;
 
-
     public Rigidbody2D rb;
 
     [Header("Bullet Fire")]
@@ -148,17 +147,30 @@ public class TankControls : MonoBehaviour
     {
         doubleShotTime = Time.time;
         doubleShot = true;
+        GameStats.Instance.currActivePowerup = Powerup.DoubleShot;
+
+        // Enable UI
+        UIManager.GetComponent<UIManager>().ActivatePowerupUI(doubleShotDelay, tankID == 'B');
     }
 
     public void InfiniteAmmo()
     {
         infAmmoTime = Time.time;
         infAmmo = true;
+        GameStats.Instance.currActivePowerup = Powerup.InfAmmo;
+
+        // Enable UI
+        UIManager.GetComponent<UIManager>().ActivatePowerupUI(doubleShotDelay, tankID == 'B');
     }
 
     public void SpeedUp()
     {
         speedUp = true;
+        GameStats.Instance.currActivePowerup = Powerup.SpeedUp;
+
+        // Enable UI
+        UIManager.GetComponent<UIManager>().ActivatePowerupUI(doubleShotDelay, tankID == 'B');
+
         speedUpTime = Time.time;
         accelRate += .4f;
         maxSpeed += 2f;
@@ -167,16 +179,26 @@ public class TankControls : MonoBehaviour
     public void Shield()
     {
         shield = true;
+        GameStats.Instance.currActivePowerup = Powerup.Shield;
+
+        // Enable UI
+        UIManager.GetComponent<UIManager>().ActivatePowerupUI(doubleShotDelay, tankID == 'B');
     }
 
     public void SpreadShot()
     {
         spreadShot = true;
+        GameStats.Instance.currActivePowerup = Powerup.SpreadShot;
+
+        // Enable UI
+        UIManager.GetComponent<UIManager>().ActivatePowerupUI(doubleShotDelay, tankID == 'B');
+
         spreadShotTime = Time.time;
     }
 
     public void RemovePowerUp()
-    {   
+    {
+        GameStats.Instance.currActivePowerup = null;
         //Remove Infinite Ammo
         if (infAmmo == true && Time.time > infAmmoTime + infAmmoDelay)
         {

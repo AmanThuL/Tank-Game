@@ -57,8 +57,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> blueTankBulletsUIList;
     [SerializeField] private List<GameObject> redTankBulletsUIList;
 
-    public GameObject bluePowerupUI, redPowerupUI;
-    [SerializeField] private List<Sprite> powerUpSprites;
+    public Image bluePowerupUI, redPowerupUI;
+    [SerializeField] private List<Sprite> powerupSprites;
 
     private void Awake()
     {
@@ -86,6 +86,10 @@ public class UIManager : MonoBehaviour
             Color p1Color, p2Color;
             p1Color = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player1TankColor];
             p2Color = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player2TankColor];
+
+            // Powerup UI starts disabled
+            bluePowerupUI.enabled = false;
+            redPowerupUI.enabled = false;
 
             p1GoUI.color = p1Color;
             p2GoUI.color = p2Color;
@@ -131,7 +135,6 @@ public class UIManager : MonoBehaviour
             // do stuff
             // update scaler
             scaler = Globals.GetScale(Screen.height, Screen.width, new Vector2(1920, 1080), 1f);
-
         }
 #endif //UNITY_EDITOR
 
@@ -331,5 +334,28 @@ public class UIManager : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void ActivatePowerupUI(float delay, bool isBlue)
+    {
+        StartCoroutine(PowerupUITimer(delay, isBlue));
+    }
+
+    private IEnumerator PowerupUITimer(float delay, bool isBlue)
+    {
+        Image powerupUI = isBlue ? bluePowerupUI : redPowerupUI;
+        powerupUI.enabled = true;
+        powerupUI.sprite = powerupSprites[(int)(GameStats.Instance.currActivePowerup)];
+        powerupUI.fillAmount = 1;
+
+        float time = delay;
+        while (time > 0.0f)
+        {
+            time -= 0.1f;
+            powerupUI.fillAmount = time / delay;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        powerupUI.enabled = false;
     }
 }
