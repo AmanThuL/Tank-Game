@@ -8,11 +8,11 @@ public class Shield : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
-            //Infinite ammo for limited time
+            //Shield for one shot
             collision.gameObject.GetComponent<TankControls>().Shield();
             GameStats.Instance.changeTime = Time.time;
-            Destroy(this.gameObject);
             GameStats.Instance.powerUpSpawned = false;
+            Destroy(this.gameObject);
         }
     }
 }

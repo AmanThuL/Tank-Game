@@ -322,15 +322,15 @@ public class TankControls : MonoBehaviour
             {
                 tempBullet1 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
                 tempBullet1.tag = gameObject.tag.Substring(0, 3) + "Bullet";
-                tempBullet1.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 1);
+                tempBullet1.GetComponent<Bullet_Test>().InitializeSpreadShot(direction, 1);
 
                 tempBullet2 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
                 tempBullet2.tag = gameObject.tag.Substring(0, 3) + "Bullet";
-                tempBullet2.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 2);
+                tempBullet2.GetComponent<Bullet_Test>().InitializeSpreadShot(direction, 2);
 
                 tempBullet3 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
                 tempBullet3.tag = gameObject.tag.Substring(0, 3) + "Bullet";
-                tempBullet3.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 3);
+                tempBullet3.GetComponent<Bullet_Test>().InitializeSpreadShot(direction, 3);
             }
             else
             {

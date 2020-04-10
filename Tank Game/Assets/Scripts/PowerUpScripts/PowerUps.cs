@@ -59,20 +59,22 @@ public class PowerUps : MonoBehaviour
             spawnTimer -= dt;
             if (spawnTimer < 0 )
             {
-                //get the location at which to spawn the powerup
-                int spawnLocation = Random.Range(0, activeSpawns.Count);
+                if (spawns.Count > 0 && activeSpawns.Count > 0)
+                {
+                    //get the location at which to spawn the powerup
+                    int spawnLocation = Random.Range(0, activeSpawns.Count);
 
-                //spawn the power up
-                currentPowerup = Instantiate
-                    (
-                    powerUps[Random.Range(0, powerUps.Count)],
-                    new Vector3(activeSpawns[spawnLocation].transform.position.x, activeSpawns[spawnLocation].transform.position.y, 10),
-                    Quaternion.identity
-                    );
+                    //spawn the power up
+                    currentPowerup = Instantiate
+                        (
+                        powerUps[Random.Range(0, powerUps.Count)],
+                        new Vector3(activeSpawns[spawnLocation].transform.position.x, activeSpawns[spawnLocation].transform.position.y, 10),
+                        Quaternion.identity
+                        );
 
-                //tell the game we have spawned the powerup
-                GameStats.Instance.powerUpSpawned = true;
-
+                    //tell the game we have spawned the powerup
+                    GameStats.Instance.powerUpSpawned = true;
+                }
                 //reset the timer
                 currentPowerUpSpawnDelay = Mathf.Min(currentPowerUpSpawnDelay + powerupSpawnDelayIncrement, maxPowerupSpawnDelay);
                 spawnTimer = currentPowerUpSpawnDelay;

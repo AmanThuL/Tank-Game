@@ -11,8 +11,8 @@ public class SpeedUp : MonoBehaviour
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().SpeedUp();
             GameStats.Instance.changeTime = Time.time;
-            Destroy(this.gameObject);
             GameStats.Instance.powerUpSpawned = false;
+            Destroy(this.gameObject);
         }
     }
 

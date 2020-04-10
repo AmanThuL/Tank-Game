@@ -11,6 +11,7 @@ public class InfiniteAmmo : MonoBehaviour
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().InfiniteAmmo();
             GameStats.Instance.changeTime = Time.time;
+            GameStats.Instance.powerUpSpawned = false;
             Destroy(this.gameObject); 
         }
     }
