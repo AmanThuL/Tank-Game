@@ -68,6 +68,10 @@ public class TankControls : MonoBehaviour
 
     public bool shield;
 
+    bool spreadShot;
+    [SerializeField] [Range(1, 10)] int spreadShotDelay = 2;
+    float spreadShotTime;
+
 
     // UI
     private GameObject UIManager;
@@ -80,6 +84,7 @@ public class TankControls : MonoBehaviour
         speedUp = false;
         doubleShot = false;
         shield = false;
+        spreadShot = false;
         velocity = Vector3.zero;
         tankPos = transform.position;
         velocity = Vector3.zero;
@@ -164,6 +169,12 @@ public class TankControls : MonoBehaviour
         shield = true;
     }
 
+    public void SpreadShot()
+    {
+        spreadShot = true;
+        spreadShotTime = Time.time;
+    }
+
     public void RemovePowerUp()
     {   
         //Remove Infinite Ammo
@@ -183,6 +194,11 @@ public class TankControls : MonoBehaviour
         if (doubleShot == true && Time.time > doubleShotTime + doubleShotDelay)
         {
             doubleShot = false;
+        }
+
+        if (spreadShot == true && Time.time > spreadShotTime + spreadShotDelay)
+        {
+            spreadShot = false;
         }
     }
 
@@ -283,6 +299,8 @@ public class TankControls : MonoBehaviour
     {
         GameObject tempBullet1;
         GameObject tempBullet2;
+        GameObject tempBullet3;
+
         if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.Instance.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
             Debug.Log(GameStats.Instance.blueBullets);
@@ -299,6 +317,20 @@ public class TankControls : MonoBehaviour
                 tempBullet2 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
                 tempBullet2.tag = gameObject.tag.Substring(0, 3) + "Bullet";
                 tempBullet2.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 2);
+            }
+            else if (spreadShot)
+            {
+                tempBullet1 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+                tempBullet1.tag = gameObject.tag.Substring(0, 3) + "Bullet";
+                tempBullet1.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 1);
+
+                tempBullet2 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+                tempBullet2.tag = gameObject.tag.Substring(0, 3) + "Bullet";
+                tempBullet2.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 2);
+
+                tempBullet3 = Instantiate(bullet, transform.position + direction * .35f, Quaternion.Euler(0, 0, angle));
+                tempBullet3.tag = gameObject.tag.Substring(0, 3) + "Bullet";
+                tempBullet3.GetComponent<Bullet_Test>().InitializeDoubleBullet(direction, 3);
             }
             else
             {

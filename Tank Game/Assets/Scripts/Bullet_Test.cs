@@ -17,6 +17,8 @@ public class Bullet_Test : MonoBehaviour
     private int currentBounces;
 
     float dbOffset = .2f;
+    float ssOffset = .2f;
+    float ssAngle = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -150,6 +152,33 @@ public class Bullet_Test : MonoBehaviour
         {
             transform.position += -transform.up * dbOffset;
         }
+        position = transform.position;
+        currentBounces = 1;
+    }
+
+    public void InitializeSpreadShot(Vector3 dir, int num)
+    {
+        
+        if (num == 1)
+        {
+            //Right
+            direction = dir + new Vector3(0,0,ssAngle);
+            transform.position += transform.up * ssOffset;
+        }
+        else if (num == 2)
+        {
+            //Left
+            direction = dir - new Vector3(0,0,ssAngle);
+            transform.position += -transform.up * ssOffset;
+        }
+        else
+        {
+            //Middle
+            direction = dir;
+        }
+        
+        direction.Normalize();
+        velocity = direction * speed;
         position = transform.position;
         currentBounces = 1;
     }

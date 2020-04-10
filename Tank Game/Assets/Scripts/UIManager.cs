@@ -85,13 +85,17 @@ public class UIManager : MonoBehaviour
             for (int i = 0; i < GameStats.Instance.blueBullets; ++i)
             {
                 GameObject bulletUI1 = Instantiate(tank_shell_UI, Vector3.zero, Quaternion.identity);
-                bulletUI1.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, 90f));
+                RectTransform rect1 = bulletUI1.GetComponent<RectTransform>();
+                rect1.Rotate(new Vector3(0, 0, 90f));
                 bulletUI1.transform.SetParent(blueAmmoUI.transform);
+                rect1.localScale = new Vector3(1f, 1f, 1f);
                 blueTankBulletsUIList.Add(bulletUI1);
 
                 GameObject bulletUI2 = Instantiate(tank_shell_UI, Vector3.zero, Quaternion.identity);
-                bulletUI2.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, 90f));
+                RectTransform rect2 = bulletUI2.GetComponent<RectTransform>();
+                rect2.Rotate(new Vector3(0, 0, 90f));
                 bulletUI2.transform.SetParent(redAmmoUI.transform);
+                rect2.localScale = new Vector3(1f, 1f, 1f);
                 redTankBulletsUIList.Add(bulletUI2);
             }
         }
