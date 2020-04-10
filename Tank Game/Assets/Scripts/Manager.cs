@@ -387,7 +387,7 @@ public class Manager : MonoBehaviour
         //check if tanks are out of bounds
         CheckBounds();
         //update the power up
-        GameObject.Find("PowerUp Manager").GetComponent<PowerUps>().changeScreen();
+        GameObject.Find("PowerUp Manager").GetComponent<PowerUps>().ChangeScreen();
 
 
     }
