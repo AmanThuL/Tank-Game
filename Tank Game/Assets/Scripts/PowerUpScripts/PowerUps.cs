@@ -71,8 +71,8 @@ public class PowerUps : MonoBehaviour
                 new Vector3(Camera.main.transform.position.x + GameStats.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1, 2) * spawnOffset.y, 10),
                 Quaternion.identity
                 );*/
-            GameStats.changeTime = 0;
-            GameStats.powerUpSpawned = true;
+            GameStats.Instance.changeTime = 0;
+            GameStats.Instance.powerUpSpawned = true;
             currentPowerUpSpawnDelay = Mathf.Min(currentPowerUpSpawnDelay + powerupSpawnDelayIncrement, maxPowerupSpawnDelay);
             
         }
