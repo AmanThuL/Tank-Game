@@ -38,6 +38,9 @@ public class GameStats : Singleton<GameStats>
     public bool speedUp = true;
     public bool infAmmo = true;
     public bool doubleShot = true;
+    public bool shield = true;
+
+    public bool powerUpSpawned;
 
     // Tank Color
     public Hashtable tankColor = new Hashtable {

@@ -12,7 +12,7 @@ public class Shield : MonoBehaviour
             collision.gameObject.GetComponent<TankControls>().Shield();
             GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
-            GameStats.powerUpSpawned = false;
+            GameStats.Instance.powerUpSpawned = false;
         }
     }
 }

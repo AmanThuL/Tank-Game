@@ -12,7 +12,7 @@ public class SpeedUp : MonoBehaviour
             collision.gameObject.GetComponent<TankControls>().SpeedUp();
             GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
-            GameStats.powerUpSpawned = false;
+            GameStats.Instance.powerUpSpawned = false;
         }
     }
 

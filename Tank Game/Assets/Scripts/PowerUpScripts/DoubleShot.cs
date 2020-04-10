@@ -12,7 +12,7 @@ public class DoubleShot : MonoBehaviour
             collision.gameObject.GetComponent<TankControls>().DoubleShot();
             GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
-            GameStats.powerUpSpawned = false;
+            GameStats.Instance.powerUpSpawned = false;
         }
     }
 }
