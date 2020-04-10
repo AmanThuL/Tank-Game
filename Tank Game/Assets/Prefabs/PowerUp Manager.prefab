@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedUp: {fileID: 8229357266249227705, guid: b328fc7d2b4ef0f468cd479002c286fd, type: 3}
   infAmmo: {fileID: 3708232786614512127, guid: 80dc664bfc333864bbd2150b535eb2d7, type: 3}
+  shield: {fileID: 383583862093382196, guid: 5c0a74f34f6e5b943a00f7968ada8052, type: 3}
+  doubleShot: {fileID: 7612987093177888399, guid: 2d96fbfad18bd4c44b7772cae71fca18,
+    type: 3}

@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class SpeedUp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
@@ -24,6 +12,7 @@ public class SpeedUp : MonoBehaviour
             collision.gameObject.GetComponent<TankControls>().SpeedUp();
             GameStats.changeTime = Time.time;
             Destroy(this.gameObject);
+            GameStats.powerUpSpawned = false;
         }
     }
 
