@@ -36,7 +36,7 @@ public class IceBlockBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag[3]);
+        //Debug.Log(collision.tag[3]);
         if (collision.gameObject.tag[3] == 'B')
         {
             Vector3 collisionDirection = gameObject.transform.position - collision.gameObject.transform.position;
