@@ -10,6 +10,12 @@ public class PowerUps : MonoBehaviour
     [SerializeField] [Range(0f, 2f)] float powerupSpawnDelayIncrement = .2f;
     float currentPowerUpSpawnDelay;
     [SerializeField] Vector2 spawnOffset = new Vector2(0,2);
+
+    //not yet implemented, for spawn full measure
+    [SerializeField] List<GameObject> spawns = new List<GameObject>();
+    List<GameObject> activeSpawns = new List<GameObject>();
+
+
     GameObject currentPowerup;
 
     List<GameObject> powerUps;
@@ -51,6 +57,14 @@ public class PowerUps : MonoBehaviour
                 new Vector3(Camera.main.transform.position.x + GameStats.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1,2) * spawnOffset.y, 10),
                 Quaternion.identity
                 );
+
+            
+            /*currentPowerup = Instantiate
+                (
+                powerUps[Random.Range(0, powerUps.Count)],
+                new Vector3(Camera.main.transform.position.x + GameStats.currScreenIndex + Random.Range(-1, 2) * spawnOffset.x, Camera.main.transform.position.y + Random.Range(-1, 2) * spawnOffset.y, 10),
+                Quaternion.identity
+                );*/
             GameStats.changeTime = 0;
             GameStats.powerUpSpawned = true;
             currentPowerUpSpawnDelay = Mathf.Min(currentPowerUpSpawnDelay + powerupSpawnDelayIncrement, maxPowerupSpawnDelay);
