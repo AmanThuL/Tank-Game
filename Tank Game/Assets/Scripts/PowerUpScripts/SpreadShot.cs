@@ -11,8 +11,8 @@ public class SpreadShot : MonoBehaviour
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().SpreadShot();
             GameStats.Instance.changeTime = Time.time;
-            Destroy(this.gameObject);
             GameStats.Instance.powerUpSpawned = false;
+            Destroy(this.gameObject);
         }
     }
 }

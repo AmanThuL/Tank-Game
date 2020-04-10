@@ -11,8 +11,8 @@ public class DoubleShot : MonoBehaviour
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().DoubleShot();
             GameStats.Instance.changeTime = Time.time;
-            Destroy(this.gameObject);
             GameStats.Instance.powerUpSpawned = false;
+            Destroy(this.gameObject);
         }
     }
 }
