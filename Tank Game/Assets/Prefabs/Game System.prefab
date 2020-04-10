@@ -1858,7 +1858,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6090104432124984063}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6090104431351710521}
@@ -2618,6 +2618,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8221419402695922539, guid: 7a156fd7c49e32541b349cd2127ff5ee,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 6090104430702550764}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a156fd7c49e32541b349cd2127ff5ee, type: 3}
 --- !u!4 &3832361439301724681 stripped
@@ -2749,6 +2754,11 @@ PrefabInstance:
       propertyPath: getFlagCanvasUI
       value: 
       objectReference: {fileID: 6090104432124984063}
+    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
+        type: 3}
+      propertyPath: deceleration
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
         type: 3}
       propertyPath: arrowUI

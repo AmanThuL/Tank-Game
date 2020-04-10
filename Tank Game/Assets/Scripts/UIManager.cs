@@ -351,9 +351,9 @@ public class UIManager : MonoBehaviour
         float time = delay;
         while (time > 0.0f)
         {
-            time -= 0.1f;
+            time -= Time.deltaTime;
             powerupUI.fillAmount = time / delay;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForEndOfFrame();
         }
 
         powerupUI.enabled = false;

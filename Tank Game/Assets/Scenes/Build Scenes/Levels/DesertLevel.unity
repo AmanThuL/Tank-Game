@@ -8829,6 +8829,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game System
       objectReference: {fileID: 0}
+    - target: {fileID: 6090104431067762520, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104431067762520, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104431067762520, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104431067762520, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104432698350107, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104432698350107, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104432698350107, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090104432698350107, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ff502d6e2163f4f82f39eabdca9e5b, type: 3}
 --- !u!1001 &1670636652
