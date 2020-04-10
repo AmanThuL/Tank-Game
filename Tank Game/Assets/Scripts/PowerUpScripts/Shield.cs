@@ -11,8 +11,8 @@ public class Shield : MonoBehaviour
             //Shield for one shot
             collision.gameObject.GetComponent<TankControls>().Shield();
             GameStats.Instance.changeTime = Time.time;
-            Destroy(this.gameObject);
             GameStats.Instance.powerUpSpawned = false;
+            Destroy(this.gameObject);
         }
     }
 }
