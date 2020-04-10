@@ -6973,7 +6973,7 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: -22, y: -2, z: 0}
+  - first: {x: -21, y: -2, z: 0}
     second:
       m_TileIndex: 3
       m_TileSpriteIndex: 3
@@ -7810,7 +7810,7 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: 21, y: 1, z: 0}
+  - first: {x: 20, y: 1, z: 0}
     second:
       m_TileIndex: 3
       m_TileSpriteIndex: 3
@@ -12483,6 +12483,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3832361439301724680, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: spawnOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3844498361117505249, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12622,6 +12627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: flagSpawnPos.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508754655094587589, guid: 46ff502d6e2163f4f82f39eabdca9e5b,
+        type: 3}
+      propertyPath: winBy
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ff502d6e2163f4f82f39eabdca9e5b, type: 3}

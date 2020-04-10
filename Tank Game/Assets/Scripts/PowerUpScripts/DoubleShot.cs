@@ -4,26 +4,15 @@ using UnityEngine;
 
 public class DoubleShot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().DoubleShot();
-            GameStats.changeTime = Time.time;
+            GameStats.Instance.changeTime = Time.time;
             Destroy(this.gameObject);
+            GameStats.Instance.powerUpSpawned = false;
         }
     }
 }

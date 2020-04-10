@@ -38,7 +38,7 @@ public class CountDown : MonoBehaviour
         num.text = "GO!";
 
         yield return new WaitForSeconds(1f);
-        GameStats.isInputEnabled = true;
+        GameStats.Instance.isInputEnabled = true;
         gameObject.SetActive(false);
     }
 }

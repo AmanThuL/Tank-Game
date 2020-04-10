@@ -14,14 +14,14 @@ public class Bounds : MonoBehaviour
             Debug.Log("blue tank has moved");
             //if we are the right bounds we advance the blue tank
             GameObject.Find("Game Manager").GetComponent<Manager>().BluAdvance();
-            GameStats.changeTime = Time.time;
+            GameStats.Instance.changeTime = Time.time;
         }
         else if(!isRightBounds &&  collision.gameObject.tag =="RedTank")
         {
             Debug.Log("red tank has moved");
             //if we are the left bounds we advance the red tank
             GameObject.Find("Game Manager").GetComponent<Manager>().RedAdvance();
-            GameStats.changeTime = Time.time;
+            GameStats.Instance.changeTime = Time.time;
         }
     }
 }
