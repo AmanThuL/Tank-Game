@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameMode
+{
+    Flag = 0,
+    Time = 1,
+    Lives = 2
+}
+
 public class GameStats : Singleton<GameStats>
 {
     #region Fields
@@ -39,7 +46,18 @@ public class GameStats : Singleton<GameStats>
     public bool doubleShot = true;
     public bool shield = true;
 
-    public bool powerUpSpawned;
+    public GameMode mode = GameMode.Flag;
+
+    #region Lives
+    //death occurs when reduced below zero, so if lives = 1 you must die 2 times before the game ends
+    public int maxLives = 5;
+    #endregion
+
+    #region Time
+    public float lengthInSeconds = 120f; 
+	#endregion
+
+	public bool powerUpSpawned;
 
     // Tank Color
     public Hashtable tankColor = new Hashtable {
@@ -51,6 +69,7 @@ public class GameStats : Singleton<GameStats>
          { 5,    new Color32( 199, 106, 10, 255 ) },        // Orange
          { 6,      new Color32( 15, 177 , 169, 255 ) },     // Cyan
      };
+
 
     // UI
     public Powerup? currActivePowerup = null;
