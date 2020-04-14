@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour
 {
     private Text num;
+    [SerializeField] Font countDownFont;
 
     // Start is called before the first frame update
     void Start()
     {
         num = GetComponent<Text>();
+        num.font = countDownFont;
         StartCoroutine(Countdown(3));
     }
 

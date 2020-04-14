@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4923658e25c5c9a49a8010ee615a913a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countDownFont: {fileID: 12800000, guid: a050754e98420534fabf3ac4fefb8b36, type: 3}
 --- !u!1 &6090104430923010589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2941,6 +2942,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3844498361117505249}
     m_Modifications:
+    - target: {fileID: 138939811, guid: c8267337aafea8d4a9ccfce55633aab0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 671212266999557637, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}
       propertyPath: m_LocalPosition.x

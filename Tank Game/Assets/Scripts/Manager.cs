@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Manager : MonoBehaviour
 {
+
+
+
     [Header("General")]
     [SerializeField] GameObject BlueTank;
     [SerializeField] GameObject RedTank;
@@ -65,6 +69,9 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject arrowUI;
     [SerializeField] private GameObject resumeButton;
 
+    int redScore, blueScore;
+    float timeOnClock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +84,10 @@ public class Manager : MonoBehaviour
         GameStats.Instance.currScreenIndex = 0;
 
         resetSpawnDelay();
-        SpawnFlag(flagSpawnPos);
+        if (GameStats.Instance.mode == GameMode.Flag)
+        {
+            SpawnFlag(flagSpawnPos);
+        }
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
@@ -91,6 +101,17 @@ public class Manager : MonoBehaviour
         //    winBy = GameStats.Instance.NumScreens;
         //}
 
+        if (GameStats.Instance.mode == GameMode.Lives)
+        {
+            redScore = GameStats.Instance.maxLives;
+            blueScore = GameStats.Instance.maxLives;
+        }
+
+        if (GameStats.Instance.mode == GameMode.Time)
+        {
+            timeOnClock = GameStats.Instance.lengthInSeconds;
+        }
+
         UIManager = GameObject.Find("UI Manager");
     }
 
@@ -103,12 +124,33 @@ public class Manager : MonoBehaviour
             UpdateScreenMove(Time.deltaTime);
             UpdateInvulnTimer(Time.deltaTime);
 
+            if (GameStats.Instance.mode == GameMode.Time)
+            {
+                UpdateClock(Time.deltaTime);
+            }
+
             //Check for game pause
             PauseGame();
         }
         else
         {
             UnpauseUsingEsc();
+        }
+    }
+
+    private void UpdateClock(float dt)
+    {
+        timeOnClock -= dt;
+        if (timeOnClock <= 0f)
+        {
+            if (redScore > blueScore)
+            {
+                redTankWinsUI.SetActive(true);
+            }
+            else if (blueScore > redScore)
+            { 
+                blueTankWinsUI.SetActive(true);
+            }
         }
     }
 
@@ -250,6 +292,7 @@ public class Manager : MonoBehaviour
             return;
         }
 
+        ScoreTank('B');
         //begin the timer for the blue tank
         blueDead = true;
         spawnTimerBlue = 0f;
@@ -273,6 +316,8 @@ public class Manager : MonoBehaviour
         return;
     }
 
+ 
+
     /// <summary>
     /// Kill the red tank
     /// </summary>
@@ -282,6 +327,8 @@ public class Manager : MonoBehaviour
         {
             return;
         }
+
+        ScoreTank('R');
 
         //begin the timer for the red tank
         redDead = true;
@@ -415,6 +462,58 @@ public class Manager : MonoBehaviour
             flag.transform.position = cam.transform.position;
         }
     }
+
+
+
+    /// <summary>
+    /// Scores tank based on which ID is given
+    /// </summary>
+    /// <param name="tankID">The blueside tank is B the red side tank is R</param>
+    private void ScoreTank(char tankID)
+    {
+        if (tankID == 'B')
+        {
+            switch (GameStats.Instance.mode)
+            {
+                case GameMode.Lives:
+                    blueScore--;
+                    if (blueScore < 0)
+                    {
+                        redTankWinsUI.SetActive(true);
+                    }
+                    break;
+                case GameMode.Time:
+                    redScore++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (tankID == 'R')
+        {
+            switch (GameStats.Instance.mode)
+            {
+                case GameMode.Lives:
+                    redScore--;
+                    if (redScore < 0)
+                    {
+                        blueTankWinsUI.SetActive(true);                    
+                    }
+
+                    break;
+                case GameMode.Time:
+                    blueScore++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            throw new ArgumentException();
+        }
+    }
+
 
     void RemoveBounds()
     {
