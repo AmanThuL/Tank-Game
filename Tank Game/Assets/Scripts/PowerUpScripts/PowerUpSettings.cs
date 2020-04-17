@@ -11,20 +11,45 @@ public class PowerUpSettings : MonoBehaviour
     public Button infAmmoButton;
     public Button shieldButton;
 
-    //Cancel symbols
-    public Image speedUpCancel;
-    public Image doubleShotCancel;
-    public Image infAmmoCancel;
-    public Image shieldCancel;
+    //Colors
+    ColorBlock offColor;
+    ColorBlock onColor;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        offColor = ColorBlock.defaultColorBlock;
+        offColor.normalColor = new Color(41, 41, 41);
+
+        onColor = ColorBlock.defaultColorBlock;
+        onColor.normalColor = new Color(255, 255, 255);
+
         speedUpButton.onClick.AddListener(SpeedUpCheck);
         doubleShotButton.onClick.AddListener(DoubleShotCheck);
         infAmmoButton.onClick.AddListener(InfAmmoCheck);
         shieldButton.onClick.AddListener(ShieldCheck);
+
+        if (!GameStats.Instance.speedUp)
+        {
+            speedUpButton.GetComponent<Button>().colors = offColor;
+        }
+
+        if (!GameStats.Instance.doubleShot)
+        {
+            doubleShotButton.GetComponent<Button>().colors = offColor;
+        }
+
+        if (!GameStats.Instance.infAmmo)
+        {
+            infAmmoButton.GetComponent<Button>().colors = offColor;
+        }
+
+        if (!GameStats.Instance.shield)
+        {
+            shieldButton.GetComponent<Button>().colors = offColor;
+        }
+
     }
 
     // Update is called once per frame
@@ -38,12 +63,12 @@ public class PowerUpSettings : MonoBehaviour
         if (GameStats.Instance.speedUp)
         {
             GameStats.Instance.speedUp = false;
-            speedUpCancel.enabled = true;
+            speedUpButton.GetComponent<Button>().colors = offColor;
         }
         else
         {
             GameStats.Instance.speedUp = true;
-            speedUpCancel.enabled = false;
+            speedUpButton.GetComponent<Button>().colors = onColor;
         }
     }
 
@@ -52,12 +77,12 @@ public class PowerUpSettings : MonoBehaviour
         if (GameStats.Instance.doubleShot)
         {
             GameStats.Instance.doubleShot = false;
-            doubleShotCancel.enabled = true;
+            doubleShotButton.GetComponent<Button>().colors = offColor;
         }
         else
         {
             GameStats.Instance.doubleShot = true;
-            doubleShotCancel.enabled = false;
+            doubleShotButton.GetComponent<Button>().colors = onColor;
         }
     }
 
@@ -66,12 +91,12 @@ public class PowerUpSettings : MonoBehaviour
         if (GameStats.Instance.infAmmo)
         {
             GameStats.Instance.infAmmo = false;
-            infAmmoCancel.enabled = true;
+            infAmmoButton.GetComponent<Button>().colors = offColor;
         }
         else
         {
             GameStats.Instance.infAmmo = true;
-            infAmmoCancel.enabled = false;
+            infAmmoButton.GetComponent<Button>().colors = onColor;
         }
     }
 
@@ -80,12 +105,12 @@ public class PowerUpSettings : MonoBehaviour
         if (GameStats.Instance.shield)
         {
             GameStats.Instance.shield = false;
-            shieldCancel.enabled = true;
+            shieldButton.GetComponent<Button>().colors = offColor;
         }
         else
         {
             GameStats.Instance.shield = true;
-            shieldCancel.enabled = false;
+            shieldButton.GetComponent<Button>().colors = onColor;
         }
     }
 
