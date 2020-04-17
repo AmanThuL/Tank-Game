@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class PowerUpSettings : MonoBehaviour
 {
     //Buttons
-    public Button speedUpButton;
-    public Button doubleShotButton;
-    public Button infAmmoButton;
-    public Button shieldButton;
+    public GameObject speedUpButton;
+    public GameObject doubleShotButton;
+    public GameObject infAmmoButton;
+    public GameObject shieldButton;
 
     //Colors
     ColorBlock offColor;
@@ -25,10 +25,10 @@ public class PowerUpSettings : MonoBehaviour
         onColor = ColorBlock.defaultColorBlock;
         onColor.normalColor = new Color(255, 255, 255);
 
-        speedUpButton.onClick.AddListener(SpeedUpCheck);
-        doubleShotButton.onClick.AddListener(DoubleShotCheck);
-        infAmmoButton.onClick.AddListener(InfAmmoCheck);
-        shieldButton.onClick.AddListener(ShieldCheck);
+        speedUpButton.GetComponent<Button>().onClick.AddListener(SpeedUpCheck);
+        doubleShotButton.GetComponent<Button>().onClick.AddListener(DoubleShotCheck);
+        infAmmoButton.GetComponent<Button>().onClick.AddListener(InfAmmoCheck);
+        shieldButton.GetComponent<Button>().onClick.AddListener(ShieldCheck);
 
         if (!GameStats.Instance.speedUp)
         {
@@ -49,7 +49,6 @@ public class PowerUpSettings : MonoBehaviour
         {
             shieldButton.GetComponent<Button>().colors = offColor;
         }
-
     }
 
     // Update is called once per frame
@@ -60,16 +59,19 @@ public class PowerUpSettings : MonoBehaviour
 
     void SpeedUpCheck()
     {
-        if (GameStats.Instance.speedUp)
-        {
-            GameStats.Instance.speedUp = false;
-            speedUpButton.GetComponent<Button>().colors = offColor;
-        }
-        else
-        {
-            GameStats.Instance.speedUp = true;
-            speedUpButton.GetComponent<Button>().colors = onColor;
-        }
+        //if (GameStats.Instance.speedUp)
+        //{
+        //    GameStats.Instance.speedUp = false;
+        //    speedUpButton.GetComponent<Image>().color = new Color(41, 41, 41);
+        //}
+        //else
+        //{
+        //    GameStats.Instance.speedUp = true;
+        //    speedUpButton.GetComponent<Button>().colors = onColor;
+        //}
+
+        GameStats.Instance.speedUp = !GameStats.Instance.speedUp;
+        speedUpButton.GetComponent<Image>().color = GameStats.Instance.speedUp ? new Color(255, 255, 255) : new Color(141, 141, 141);
     }
 
     void DoubleShotCheck()
