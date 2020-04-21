@@ -112,11 +112,14 @@ public class Manager : MonoBehaviour
             redScore = GameStats.Instance.maxLives;
             blueScore = GameStats.Instance.maxLives;
             Destroy(clockUI);
+            updateScoreUI();
         }
 
         if (GameStats.Instance.mode == GameMode.Time)
         {
             timeOnClock = GameStats.Instance.lengthInSeconds;
+            updateScoreUI();
+            UpdateClock(0f);
         }
 
         UIManager = GameObject.Find("UI Manager");
