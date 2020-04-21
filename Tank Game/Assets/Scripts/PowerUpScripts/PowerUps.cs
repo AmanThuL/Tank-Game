@@ -19,8 +19,9 @@ public class PowerUps : MonoBehaviour
 
 
     GameObject currentPowerup;
-
     List<GameObject> powerUps;
+    bool powerUpsSpawning = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,13 @@ public class PowerUps : MonoBehaviour
         if (GameStats.Instance.doubleShot){      powerUps.Add(doubleShot);}
 
         if (GameStats.Instance.shield) {         powerUps.Add(shield);}
+
+
+        if (powerUps.Count == 0)
+        {
+            powerUpsSpawning = false;
+        }
+
         GameStats.Instance.powerUpSpawned = false;
 
     }
@@ -50,7 +58,7 @@ public class PowerUps : MonoBehaviour
     void Update()
     {
         if (!hasCheckedFirstScreen) { ChangeScreen(); hasCheckedFirstScreen = true; }
-        SpawnPowerUp(Time.deltaTime);
+        if (powerUpsSpawning){ SpawnPowerUp(Time.deltaTime); }
     }
 
     void SpawnPowerUp(float dt)

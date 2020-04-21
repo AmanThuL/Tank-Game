@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
     public Image bluePowerupUI, redPowerupUI;
     [SerializeField] private List<Sprite> powerupSprites;
 
+
     private void Awake()
     {
         Globals.resolution = new Vector2(Screen.width, Screen.height);

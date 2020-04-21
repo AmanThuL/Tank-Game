@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Manager : MonoBehaviour
@@ -69,6 +70,9 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject arrowUI;
     [SerializeField] private GameObject resumeButton;
 
+    [SerializeField] private GameObject scoreUI;
+    [SerializeField] private GameObject clockUI;
+
     int redScore, blueScore;
     float timeOnClock;
 
@@ -87,6 +91,8 @@ public class Manager : MonoBehaviour
         if (GameStats.Instance.mode == GameMode.Flag)
         {
             SpawnFlag(flagSpawnPos);
+            Destroy(clockUI);
+            Destroy(scoreUI);
         }
         //spawn the red and blue tank
         RespawnBounds();
@@ -105,11 +111,15 @@ public class Manager : MonoBehaviour
         {
             redScore = GameStats.Instance.maxLives;
             blueScore = GameStats.Instance.maxLives;
+            Destroy(clockUI);
+            updateScoreUI();
         }
 
         if (GameStats.Instance.mode == GameMode.Time)
         {
             timeOnClock = GameStats.Instance.lengthInSeconds;
+            updateScoreUI();
+            UpdateClock(0f);
         }
 
         UIManager = GameObject.Find("UI Manager");
@@ -129,6 +139,11 @@ public class Manager : MonoBehaviour
                 UpdateClock(Time.deltaTime);
             }
 
+            if (GameStats.Instance.mode == GameMode.Lives || GameStats.Instance.mode == GameMode.Time)
+            {
+                updateScoreUI();
+            }
+
             //Check for game pause
             PauseGame();
         }
@@ -143,14 +158,20 @@ public class Manager : MonoBehaviour
         timeOnClock -= dt;
         if (timeOnClock <= 0f)
         {
+            if (clockUI != null) { clockUI.GetComponent<Text>().text = "00:00"; }
             if (redScore > blueScore)
             {
                 redTankWinsUI.SetActive(true);
             }
             else if (blueScore > redScore)
-            { 
+            {
                 blueTankWinsUI.SetActive(true);
             }
+        }
+        else
+        { 
+            TimeSpan time = TimeSpan.FromSeconds(timeOnClock);
+            if (clockUI != null) { clockUI.GetComponent<Text>().text = time.ToString("mm':'ss"); }
         }
     }
 
@@ -662,6 +683,19 @@ public class Manager : MonoBehaviour
         if (bulletTag[0] == 'B')
         {
             GameStats.Instance.incrementBullets(bulletTag[0]);
+        }
+    }
+
+    public string GetScoreText()
+    {
+        return blueScore.ToString() + " | " + redScore.ToString();
+    }
+
+    public void updateScoreUI()
+    {
+        if (scoreUI != null)
+        {
+            scoreUI.GetComponent<Text>().text = GetScoreText();
         }
     }
 }
