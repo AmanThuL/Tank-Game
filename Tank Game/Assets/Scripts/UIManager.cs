@@ -358,4 +358,10 @@ public class UIManager : MonoBehaviour
 
         powerupUI.enabled = false;
     }
+
+    public void ToggleLimitedAmmo() { GameStats.Instance.limitedAmmo = !GameStats.Instance.limitedAmmo; }
+    public void ToggleSpeedUp() { GameStats.Instance.speedUp = !GameStats.Instance.speedUp; }
+    public void ToggleInfiniteAmmo() { GameStats.Instance.infAmmo = !GameStats.Instance.infAmmo; }
+    public void ToggleDoubleShot() { GameStats.Instance.doubleShot = !GameStats.Instance.doubleShot; }
+    public void ToggleShield() { GameStats.Instance.shield = !GameStats.Instance.shield; }
 }

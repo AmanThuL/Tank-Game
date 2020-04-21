@@ -118,5 +118,4 @@ public class GameStats : Singleton<GameStats>
             blueBullets = blueBullets < 0 ? 0 : blueBullets;
         }
     }
-
 }
