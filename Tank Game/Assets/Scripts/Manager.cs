@@ -690,6 +690,8 @@ public class Manager : MonoBehaviour
     {
         GameStats.Instance.winPlayer = tankPlayerNum;
         UIManager.GetComponent<UIManager>().ToEndScreen();
+    }
+
     public string GetScoreText()
     {
         return blueScore.ToString() + " | " + redScore.ToString();
