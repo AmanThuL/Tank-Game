@@ -55,7 +55,6 @@ public class Manager : MonoBehaviour
     GameObject currentLeftBounds;
     GameObject currentRightBounds;
 
-    public GameObject blueTankWinsUI, redTankWinsUI;
     public GameObject getFlagCanvasUI;
 
     [Header("Tanks Properties")]
@@ -94,6 +93,7 @@ public class Manager : MonoBehaviour
             Destroy(clockUI);
             Destroy(scoreUI);
         }
+
         //spawn the red and blue tank
         RespawnBounds();
         RespawnBlueTank();
@@ -161,11 +161,11 @@ public class Manager : MonoBehaviour
             if (clockUI != null) { clockUI.GetComponent<Text>().text = "00:00"; }
             if (redScore > blueScore)
             {
-                redTankWinsUI.SetActive(true);
+                Win(2);
             }
             else if (blueScore > redScore)
             {
-                blueTankWinsUI.SetActive(true);
+                Win(1);
             }
         }
         else
@@ -393,10 +393,10 @@ public class Manager : MonoBehaviour
             switch (direction)
             {
                 case -1:
-                    redTankWinsUI.SetActive(true);
+                    Win(2);
                     break;
                 case 1:
-                    blueTankWinsUI.SetActive(true);
+                    Win(1);
                     break;
             }
 
@@ -500,7 +500,7 @@ public class Manager : MonoBehaviour
                     blueScore--;
                     if (blueScore <= 0)
                     {
-                        redTankWinsUI.SetActive(true);
+                        Win(2);
                     }
                     break;
                 case GameMode.Time:
@@ -518,7 +518,7 @@ public class Manager : MonoBehaviour
                     redScore--;
                     if (redScore <= 0)
                     {
-                        blueTankWinsUI.SetActive(true);                    
+                        Win(1);             
                     }
 
                     break;
@@ -686,6 +686,10 @@ public class Manager : MonoBehaviour
         }
     }
 
+    private void Win(int tankPlayerNum)
+    {
+        GameStats.Instance.winPlayer = tankPlayerNum;
+        UIManager.GetComponent<UIManager>().ToEndScreen();
     public string GetScoreText()
     {
         return blueScore.ToString() + " | " + redScore.ToString();
