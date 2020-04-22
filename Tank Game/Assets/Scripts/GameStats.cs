@@ -49,7 +49,7 @@ public class GameStats : Singleton<GameStats>
     public bool doubleShot = true;
     public bool shield = true;
 
-    public GameMode mode = GameMode.Lives;
+    public GameMode mode = GameMode.Flag;
 
     #region Lives
     //death occurs when reduced below zero, so if lives = 1 you must die 2 times before the game ends
