@@ -42,13 +42,14 @@ public class GameStats : Singleton<GameStats>
 
     //Game Options Vars
     public float changeTime = 0;
+
     public bool limitedAmmo = true;
     public bool speedUp = true;
     public bool infAmmo = true;
     public bool doubleShot = true;
     public bool shield = true;
 
-    public GameMode mode = GameMode.Flag;
+    public GameMode mode = GameMode.Lives;
 
     #region Lives
     //death occurs when reduced below zero, so if lives = 1 you must die 2 times before the game ends
