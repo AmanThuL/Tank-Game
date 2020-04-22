@@ -38,6 +38,8 @@ public class GameStats : Singleton<GameStats>
 
     public Levels selectedLevel = 0;
 
+    public int winPlayer = 0;
+
     //Game Options Vars
     public float changeTime = 0;
     public bool limitedAmmo = true;

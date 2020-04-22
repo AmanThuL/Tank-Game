@@ -2742,16 +2742,6 @@ PrefabInstance:
       objectReference: {fileID: 6090104430702550766}
     - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
         type: 3}
-      propertyPath: blueTankWinsUI
-      value: 
-      objectReference: {fileID: 6090104431752252735}
-    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
-        type: 3}
-      propertyPath: redTankWinsUI
-      value: 
-      objectReference: {fileID: 6090104431966035373}
-    - target: {fileID: 1069561382835582327, guid: 0dae555daa268a546b793977202a4484,
-        type: 3}
       propertyPath: getFlagCanvasUI
       value: 
       objectReference: {fileID: 6090104432124984063}
@@ -2942,10 +2932,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3844498361117505249}
     m_Modifications:
-    - target: {fileID: 138939811, guid: c8267337aafea8d4a9ccfce55633aab0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 671212266999557637, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3005,6 +2991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: powerupSprites.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+        type: 3}
+      propertyPath: endScreenName
+      value: EndScreen
       objectReference: {fileID: 0}
     - target: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
         type: 3}

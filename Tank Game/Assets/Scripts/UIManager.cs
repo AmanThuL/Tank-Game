@@ -25,7 +25,7 @@ public enum Powerup
 public class UIManager : MonoBehaviour
 {
     // Buttons
-    public string menuSceneName, gameSceneName, controlsSceneName, tankSelectionSceneName, levelSelectionSceneName;
+    public string menuSceneName, gameSceneName, controlsSceneName, tankSelectionSceneName, levelSelectionSceneName, endScreenName;
 
     public GameObject controlMenu, buttons;
 
@@ -59,6 +59,10 @@ public class UIManager : MonoBehaviour
 
     public Image bluePowerupUI, redPowerupUI;
     [SerializeField] private List<Sprite> powerupSprites;
+
+    [Header("End Screen UI")]
+    public Image winScreenUI;
+    public Image mainMenuBtn, playAgainBtn;
 
     private void Awake()
     {
@@ -120,6 +124,25 @@ public class UIManager : MonoBehaviour
         if (arrowUI)
         {
             PointToSelectedButton(EventSystem.current.GetComponent<EventSystem>().firstSelectedGameObject);
+        }
+
+        // If current scene is endscreen
+        if (SceneManager.GetActiveScene().name == "EndScreen")
+        {
+            Color winnerColor;
+            switch (GameStats.Instance.winPlayer)
+            {
+                case 1:
+                    winnerColor = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player1TankColor];
+                    break;
+                case 2:
+                    winnerColor = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player2TankColor];
+                    break;
+                default:
+                    winnerColor = (Color32)GameStats.Instance.tankColor[GameStats.Instance.player1TankColor];
+                    break;
+            }
+            winScreenUI.color = mainMenuBtn.color = playAgainBtn.color = winnerColor;
         }
     }
 
@@ -225,6 +248,12 @@ public class UIManager : MonoBehaviour
 
         Debug.Log(GameStats.Instance.selectedLevel.ToString());
         sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.Instance.selectedLevel.ToString());
+    }
+
+    public void ToEndScreen()
+    {
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(endScreenName);
     }
 
     public void Desert()
