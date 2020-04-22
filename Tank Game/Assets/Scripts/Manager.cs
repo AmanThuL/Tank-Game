@@ -498,7 +498,7 @@ public class Manager : MonoBehaviour
             {
                 case GameMode.Lives:
                     blueScore--;
-                    if (blueScore < 0)
+                    if (blueScore <= 0)
                     {
                         Win(2);
                     }
@@ -516,7 +516,7 @@ public class Manager : MonoBehaviour
             {
                 case GameMode.Lives:
                     redScore--;
-                    if (redScore < 0)
+                    if (redScore <= 0)
                     {
                         Win(1);             
                     }
