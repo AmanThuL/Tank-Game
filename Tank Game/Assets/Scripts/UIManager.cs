@@ -10,7 +10,8 @@ public enum Levels
     DesertLevel,
     IceLevel,
     JungleLevel,
-    FireLevel
+    FireLevel,
+    GrassLandsLevel
 }
 
 public enum Powerup
@@ -277,6 +278,12 @@ public class UIManager : MonoBehaviour
     public void Fire()
     {
         GameStats.Instance.selectedLevel = Levels.FireLevel;
+        ToSelectedLevel();
+    }
+
+    public void Grass()
+    {
+        GameStats.Instance.selectedLevel = Levels.GrassLandsLevel;
         ToSelectedLevel();
     }
 
