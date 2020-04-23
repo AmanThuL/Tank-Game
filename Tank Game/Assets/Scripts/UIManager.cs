@@ -162,31 +162,31 @@ public class UIManager : MonoBehaviour
         }
 #endif //UNITY_EDITOR
 
-        if (arrowUI != null)
+
+        // When a different button is selected, enable its border and start flickering
+        GameObject tempSelectedGO = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+        if (tempSelectedGO && tempSelectedGO.CompareTag("NavigatableButton"))
         {
-            GameObject tempSelectedGO = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
-
-            if (tempSelectedGO && tempSelectedGO.CompareTag("NavigatableButton"))
-            {
-                currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
-            }
-            else if (SceneManager.GetActiveScene().name.Equals("TankSelection"))
-            {
-                EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(currentSelected);
-            }
-
-            // Select on change
-            if (currentSelected != null && currentSelected != lastSelected)
-            {
-                lastSelected = currentSelected;
-                PointToSelectedButton(currentSelected);
-            }
-            else if (currentSelected == null)
-            {
-                // set self invisible
-                arrowUI.SetActive(false);
-            }
+            currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
         }
+        else if (SceneManager.GetActiveScene().name.Equals("TankSelection"))
+        {
+            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(currentSelected);
+        }
+
+        // Select on change
+        if (currentSelected != null && currentSelected != lastSelected)
+        {
+            ToggleSelectedButtonBorder(lastSelected, false);   
+            lastSelected = currentSelected;
+            ToggleSelectedButtonBorder(currentSelected, true);
+        }
+        else if (currentSelected == null)
+        {
+            // set border invisible
+            ToggleSelectedButtonBorder(currentSelected, false);
+        }
+
 
         if (redArrow != null && blueArrow != null)
         {
@@ -312,6 +312,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void ToggleSelectedButtonBorder(GameObject button, bool isEnabled)
+    {
+        if (!button) return;
+        if (button.transform.childCount == 0) return;
+        GameObject border = button.transform.GetChild(0).gameObject;
+        border.GetComponent<Image>().enabled = isEnabled;
+    }
+
     private void PointToSelectedButton(GameObject button)
     {
         arrowUI.SetActive(true);
@@ -351,7 +359,7 @@ public class UIManager : MonoBehaviour
     {
         int currentBulletCount;
         int maxBulletCount;
-        switch(color)
+        switch (color)
         {
             case 'B':
                 currentBulletCount = GameStats.Instance.blueBullets;

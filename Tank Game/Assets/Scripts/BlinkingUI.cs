@@ -13,6 +13,7 @@ public class BlinkingUI : MonoBehaviour
     private bool hasBlinked = false;
 
     [SerializeField] private float timeToWaitBeforeStart = 0f;
+    [SerializeField] private bool infiniteBlink = false;
 
     public int SetBlinkingTimes { set => blinkingTimes = value; }
 
@@ -48,7 +49,8 @@ public class BlinkingUI : MonoBehaviour
             {
                 case "0":
                     image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
-                    blinkingTimes++;
+                    if (!infiniteBlink)
+                        blinkingTimes++;
                     yield return new WaitForSeconds(blinkingRate);
                     break;
                 case "1":

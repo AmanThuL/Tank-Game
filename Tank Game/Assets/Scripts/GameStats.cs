@@ -41,6 +41,8 @@ public class GameStats : Singleton<GameStats>
     public int winPlayer = 0;
 
     //Game Options Vars
+    public bool isMouseInputActive = false;
+
     public float changeTime = 0;
 
     public bool limitedAmmo = true;
