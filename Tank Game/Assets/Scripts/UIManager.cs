@@ -50,6 +50,14 @@ public class UIManager : MonoBehaviour
 
     private float scaler;
 
+    [Header("Level Selection UI")]
+    public GameObject scrollbar;
+    public GameObject scrollViewContent;
+    private float distance;
+    private float scrollPos = 0;
+    private float[] pos;
+    private int posIndex;
+
     [Header("Tank UI")]
     public GameObject blueAmmoUI;
     public GameObject redAmmoUI;
@@ -127,6 +135,17 @@ public class UIManager : MonoBehaviour
             PointToSelectedButton(EventSystem.current.GetComponent<EventSystem>().firstSelectedGameObject);
         }
 
+        if (SceneManager.GetActiveScene().name == "LevelSelection")
+        {
+            pos = new float[scrollViewContent.transform.childCount];
+            distance = 1f / (pos.Length - 1f);
+            for (int i = 0; i < pos.Length; i++)
+            {
+                pos[i] = distance * i;
+            }
+            posIndex = 0;
+        }
+
         // If current scene is endscreen
         if (SceneManager.GetActiveScene().name == "EndScreen")
         {
@@ -162,6 +181,47 @@ public class UIManager : MonoBehaviour
         }
 #endif //UNITY_EDITOR
 
+        if (SceneManager.GetActiveScene().name.Equals("LevelSelection"))
+        {
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                NextLevelCard();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                PrevLevelCard();
+            }
+            else
+            {
+                for (int i = 0; i < pos.Length; i++)
+                {
+                    if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
+                    {
+                        scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
+                        posIndex = i;
+                    }
+                }
+            }
+
+            for (int i = 0; i < pos.Length; i++)
+            {
+                if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
+                {
+                    scrollViewContent.transform.GetChild(i).localScale = 
+                        Vector2.Lerp(scrollViewContent.transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
+                    for (int j = 0; j < pos.Length; j++)
+                    {
+                        if (j != i)
+                        {
+                            scrollViewContent.transform.GetChild(j).localScale = 
+                                Vector2.Lerp(scrollViewContent.transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
+                        }
+                    }
+                }
+            }
+        }
+
 
         // When a different button is selected, enable its border and start flickering
         GameObject tempSelectedGO = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
@@ -177,7 +237,7 @@ public class UIManager : MonoBehaviour
         // Select on change
         if (currentSelected != null && currentSelected != lastSelected)
         {
-            ToggleSelectedButtonBorder(lastSelected, false);   
+            ToggleSelectedButtonBorder(lastSelected, false);
             lastSelected = currentSelected;
             ToggleSelectedButtonBorder(currentSelected, true);
         }
@@ -401,6 +461,20 @@ public class UIManager : MonoBehaviour
         }
 
         powerupUI.enabled = false;
+    }
+
+    private void NextLevelCard()
+    {
+        posIndex++;
+        posIndex = Mathf.Clamp(posIndex, 0, pos.Length - 1);
+        scrollPos = pos[posIndex];
+    }
+
+    private void PrevLevelCard()
+    {
+        posIndex--;
+        posIndex = Mathf.Clamp(posIndex, 0, pos.Length - 1);
+        scrollPos = pos[posIndex];
     }
 
     public void ToggleLimitedAmmo() { GameStats.Instance.limitedAmmo = !GameStats.Instance.limitedAmmo; }
