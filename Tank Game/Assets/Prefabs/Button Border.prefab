@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenIndex: 0
-  blinkingRate: 0.5
+  blinkingRate: 0.7
   blinkingTimes: 0
   blinkingMaxCounts: 2
   timeToWaitBeforeStart: 0

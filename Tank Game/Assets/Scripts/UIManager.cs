@@ -183,14 +183,25 @@ public class UIManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Equals("LevelSelection"))
         {
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                NextLevelCard();
+                if (GameStats.Instance.currentSelectedGameObject().name != "BackBtn")
+                {
+                    NextLevelCard();
+                    EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(scrollViewContent.transform.GetChild(posIndex).gameObject);
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                PrevLevelCard();
+                if (GameStats.Instance.currentSelectedGameObject().name != "BackBtn")
+                {
+                    PrevLevelCard();
+                    EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(scrollViewContent.transform.GetChild(posIndex).gameObject);
+                }
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                scrollPos = scrollbar.GetComponent<Scrollbar>().value;
             }
             else
             {
@@ -208,13 +219,13 @@ public class UIManager : MonoBehaviour
             {
                 if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
                 {
-                    scrollViewContent.transform.GetChild(i).localScale = 
+                    scrollViewContent.transform.GetChild(i).localScale =
                         Vector2.Lerp(scrollViewContent.transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
                     for (int j = 0; j < pos.Length; j++)
                     {
                         if (j != i)
                         {
-                            scrollViewContent.transform.GetChild(j).localScale = 
+                            scrollViewContent.transform.GetChild(j).localScale =
                                 Vector2.Lerp(scrollViewContent.transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
                         }
                     }
@@ -227,7 +238,7 @@ public class UIManager : MonoBehaviour
         GameObject tempSelectedGO = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
         if (tempSelectedGO && tempSelectedGO.CompareTag("NavigatableButton"))
         {
-            currentSelected = EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
+            currentSelected = GameStats.Instance.currentSelectedGameObject();
         }
         else if (SceneManager.GetActiveScene().name.Equals("TankSelection"))
         {

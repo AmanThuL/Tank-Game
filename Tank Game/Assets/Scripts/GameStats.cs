@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum GameMode
 {
@@ -41,7 +42,7 @@ public class GameStats : Singleton<GameStats>
     public int winPlayer = 0;
 
     //Game Options Vars
-    public bool isMouseInputActive = false;
+    public bool isMouseInputActive = true;
 
     public float changeTime = 0;
 
@@ -122,5 +123,10 @@ public class GameStats : Singleton<GameStats>
             blueBullets--;
             blueBullets = blueBullets < 0 ? 0 : blueBullets;
         }
+    }
+
+    public GameObject currentSelectedGameObject()
+    {
+        return EventSystem.current.GetComponent<EventSystem>().currentSelectedGameObject;
     }
 }
