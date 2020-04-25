@@ -5,10 +5,18 @@ using UnityEngine.UI;
 
 public class GameModeSettings : MonoBehaviour
 {
+    //Game mode buttons
+    public GameObject flagButton;
+    public GameObject stockButton;
+    public GameObject timeButton;
 
-    public Toggle flagToggle;
-    public Toggle stockToggle;
-    public Toggle timeToggle;
+    //Game mode images
+    public Sprite flagOn;
+    public Sprite flagOff;
+    public Sprite stockOn;
+    public Sprite stockOff;
+    public Sprite timeOn;
+    public Sprite timeOff;
 
     void Start()
     {
@@ -16,23 +24,23 @@ public class GameModeSettings : MonoBehaviour
         {
             case GameMode.Flag:
 
-                flagToggle.isOn = true;
-                stockToggle.isOn = false;
-                timeToggle.isOn = false;
+                flagButton.GetComponent<Image>().sprite = flagOn;
+                stockButton.GetComponent<Image>().sprite = stockOff;
+                timeButton.GetComponent<Image>().sprite = timeOff;
 
                 break;
             case GameMode.Time:
 
-                flagToggle.isOn = false;
-                stockToggle.isOn = false;
-                timeToggle.isOn = true;
+                flagButton.GetComponent<Image>().sprite = flagOff;
+                stockButton.GetComponent<Image>().sprite = stockOn;
+                timeButton.GetComponent<Image>().sprite = timeOn;
 
                 break;
             case GameMode.Lives:
 
-                flagToggle.isOn = false;
-                stockToggle.isOn = true;
-                timeToggle.isOn = false;
+                flagButton.GetComponent<Image>().sprite = flagOff;
+                stockButton.GetComponent<Image>().sprite = stockOn;
+                timeButton.GetComponent<Image>().sprite = timeOff;
 
                 break;
             default:
@@ -50,14 +58,14 @@ public class GameModeSettings : MonoBehaviour
     {
         if (GameStats.Instance.mode == GameMode.Flag)
         {
-            flagToggle.isOn = true;
+            flagButton.GetComponent<Image>().sprite = flagOn;
         }
         else
         {
             GameStats.Instance.mode = GameMode.Flag;
-            flagToggle.isOn = true;
-            stockToggle.isOn = false;
-            timeToggle.isOn = false;
+            flagButton.GetComponent<Image>().sprite = flagOn;
+            stockButton.GetComponent<Image>().sprite = stockOff;
+            timeButton.GetComponent<Image>().sprite = timeOff;
         }
     }
 
@@ -65,14 +73,14 @@ public class GameModeSettings : MonoBehaviour
     {
         if (GameStats.Instance.mode == GameMode.Time)
         {
-            timeToggle.isOn = true;
+            stockButton.GetComponent<Image>().sprite = stockOn;
         }
         else
         {
             GameStats.Instance.mode = GameMode.Time;
-            flagToggle.isOn = false;
-            stockToggle.isOn = false;
-            timeToggle.isOn = true;
+            flagButton.GetComponent<Image>().sprite = flagOff;
+            stockButton.GetComponent<Image>().sprite = stockOff;
+            timeButton.GetComponent<Image>().sprite = timeOn;
         }
     }
 
@@ -80,14 +88,14 @@ public class GameModeSettings : MonoBehaviour
     {
         if (GameStats.Instance.mode == GameMode.Lives)
         {
-            stockToggle.isOn = true;
+            stockButton.GetComponent<Image>().sprite = stockOn;
         }
         else
         {
             GameStats.Instance.mode = GameMode.Lives;
-            flagToggle.isOn = false;
-            stockToggle.isOn = true;
-            timeToggle.isOn = false;
+            flagButton.GetComponent<Image>().sprite = flagOff;
+            stockButton.GetComponent<Image>().sprite = stockOn;
+            timeButton.GetComponent<Image>().sprite = timeOff;
         }
     }
 

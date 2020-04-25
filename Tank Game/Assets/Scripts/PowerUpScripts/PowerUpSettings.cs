@@ -12,42 +12,38 @@ public class PowerUpSettings : MonoBehaviour
     public GameObject shieldButton;
 
     //Colors
-    ColorBlock offColor;
-    ColorBlock onColor;
+    public Sprite speedUpOn;
+    public Sprite speedUpOff;
+    public Sprite doubleShotOn;
+    public Sprite doubleShotOff;
+    public Sprite infAmmoOn;
+    public Sprite infAmmoOff;
+    public Sprite shieldOn;
+    public Sprite shieldOff;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        offColor = ColorBlock.defaultColorBlock;
-        offColor.normalColor = new Color(41, 41, 41);
-
-        onColor = ColorBlock.defaultColorBlock;
-        onColor.normalColor = new Color(255, 255, 255);
-
-        speedUpButton.GetComponent<Button>().onClick.AddListener(SpeedUpCheck);
-        doubleShotButton.GetComponent<Button>().onClick.AddListener(DoubleShotCheck);
-        infAmmoButton.GetComponent<Button>().onClick.AddListener(InfAmmoCheck);
-        shieldButton.GetComponent<Button>().onClick.AddListener(ShieldCheck);
 
         if (!GameStats.Instance.speedUp)
         {
-            speedUpButton.GetComponent<Button>().colors = offColor;
+            speedUpButton.GetComponent<Image>().sprite = speedUpOff;
         }
 
         if (!GameStats.Instance.doubleShot)
         {
-            doubleShotButton.GetComponent<Button>().colors = offColor;
+            doubleShotButton.GetComponent<Image>().sprite = doubleShotOff;
         }
 
         if (!GameStats.Instance.infAmmo)
         {
-            infAmmoButton.GetComponent<Button>().colors = offColor;
+            infAmmoButton.GetComponent<Image>().sprite = infAmmoOff;
         }
 
         if (!GameStats.Instance.shield)
         {
-            shieldButton.GetComponent<Button>().colors = offColor;
+            shieldButton.GetComponent<Image>().sprite = shieldOff;
         }
     }
 
@@ -57,62 +53,63 @@ public class PowerUpSettings : MonoBehaviour
         
     }
 
-    void SpeedUpCheck()
+    public void SpeedUpChange()
     {
-        //if (GameStats.Instance.speedUp)
-        //{
-        //    GameStats.Instance.speedUp = false;
-        //    speedUpButton.GetComponent<Image>().color = new Color(41, 41, 41);
-        //}
-        //else
-        //{
-        //    GameStats.Instance.speedUp = true;
-        //    speedUpButton.GetComponent<Button>().colors = onColor;
-        //}
+        if (GameStats.Instance.speedUp)
+        {
+            GameStats.Instance.speedUp = false;
+            speedUpButton.GetComponent<Image>().sprite = speedUpOff;
 
-        GameStats.Instance.speedUp = !GameStats.Instance.speedUp;
-        speedUpButton.GetComponent<Image>().color = GameStats.Instance.speedUp ? new Color(255, 255, 255) : new Color(141, 141, 141);
+        }
+        else
+        {
+            GameStats.Instance.speedUp = true;
+            speedUpButton.GetComponent<Image>().sprite = speedUpOn;
+        }
     }
 
-    void DoubleShotCheck()
+    public void DoubleShotChange()
     {
         if (GameStats.Instance.doubleShot)
         {
             GameStats.Instance.doubleShot = false;
-            doubleShotButton.GetComponent<Button>().colors = offColor;
+            doubleShotButton.GetComponent<Image>().sprite = doubleShotOff;
+
         }
         else
         {
             GameStats.Instance.doubleShot = true;
-            doubleShotButton.GetComponent<Button>().colors = onColor;
+            doubleShotButton.GetComponent<Image>().sprite = doubleShotOn;
         }
     }
 
-    void InfAmmoCheck()
+    public void InfAmmoChange()
     {
         if (GameStats.Instance.infAmmo)
         {
             GameStats.Instance.infAmmo = false;
-            infAmmoButton.GetComponent<Button>().colors = offColor;
+            infAmmoButton.GetComponent<Image>().sprite = infAmmoOff;
+
         }
         else
         {
             GameStats.Instance.infAmmo = true;
-            infAmmoButton.GetComponent<Button>().colors = onColor;
+            infAmmoButton.GetComponent<Image>().sprite = infAmmoOn;
         }
     }
 
-    void ShieldCheck()
+    public void ShieldChange()
     {
         if (GameStats.Instance.shield)
         {
             GameStats.Instance.shield = false;
-            shieldButton.GetComponent<Button>().colors = offColor;
+            shieldButton.GetComponent<Image>().sprite = shieldOff;
+
         }
         else
         {
             GameStats.Instance.shield = true;
-            shieldButton.GetComponent<Button>().colors = onColor;
+            shieldButton.GetComponent<Image>().sprite = shieldOn;
         }
     }
 
