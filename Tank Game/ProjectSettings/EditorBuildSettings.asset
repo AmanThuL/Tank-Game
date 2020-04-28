@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Build Scenes/TankSelection.unity
     guid: f8505d9f579afe641aa8b99d889f1051
   - enabled: 1
+    path: Assets/Scenes/Build Scenes/GameOptions.unity
+    guid: 539181615db9cad48b7126857a1e088f
+  - enabled: 1
     path: Assets/Scenes/Build Scenes/Controls.unity
     guid: ce8cbe106e51f3743a1186d24c5874b0
   - enabled: 1
