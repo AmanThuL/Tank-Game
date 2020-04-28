@@ -349,7 +349,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 73595819}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 358135775}
+        m_MethodName: ToLevelSelectionScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &73595819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,6 +813,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267295968}
   m_CullTransparentMesh: 0
+--- !u!114 &358135775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 671212266999557638, guid: c8267337aafea8d4a9ccfce55633aab0,
+    type: 3}
+  m_PrefabInstance: {fileID: 49114858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741afb853e11d54bb1c419575cec40d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &431742052
 GameObject:
   m_ObjectHideFlags: 0
