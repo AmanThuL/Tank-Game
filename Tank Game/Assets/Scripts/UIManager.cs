@@ -26,7 +26,7 @@ public enum Powerup
 public class UIManager : MonoBehaviour
 {
     // Buttons
-    public string menuSceneName, gameSceneName, controlsSceneName, tankSelectionSceneName, levelSelectionSceneName, endScreenName;
+    public string menuSceneName, gameSceneName, controlsSceneName, gameOptionsSceneName, tankSelectionSceneName, levelSelectionSceneName, endScreenName;
 
     public GameObject controlMenu, buttons;
 
@@ -292,6 +292,13 @@ public class UIManager : MonoBehaviour
         sceneFader.SetActive(true);
         //Debug.Log("Loading Main Menu!");
         sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
+        GameStats.Instance.isPauseMenuEnabled = false;
+    }
+
+    public void ToGameOptions()
+    {
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(gameOptionsSceneName);
         GameStats.Instance.isPauseMenuEnabled = false;
     }
 
