@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
     private float distance;
     private float scrollPos = 0;
     private float[] pos;
-    private int posIndex;
+    private int posIndex = 2;
 
     [Header("Tank UI")]
     public GameObject blueAmmoUI;
