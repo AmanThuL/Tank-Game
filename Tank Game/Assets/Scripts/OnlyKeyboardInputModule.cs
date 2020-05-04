@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class OnlyKeyboardInputModule : StandaloneInputModule
 {
@@ -25,7 +26,7 @@ public class OnlyKeyboardInputModule : StandaloneInputModule
                 SendSubmitEventToSelectedObject();
         }
 
-        if (GameStats.Instance.isMouseInputActive)
+        if (SceneManager.GetActiveScene().name != "LevelSelection" && GameStats.Instance.isMouseInputActive)
             ProcessMouseEvent();
     }
 }

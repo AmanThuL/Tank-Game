@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 
 public enum Levels
 {
@@ -57,6 +58,7 @@ public class UIManager : MonoBehaviour
     private float scrollPos = 0;
     private float[] pos;
     private int posIndex = 2;
+    public Button optionButton;
 
     [Header("Tank UI")]
     public GameObject blueAmmoUI;
@@ -65,6 +67,10 @@ public class UIManager : MonoBehaviour
     public GameObject tank_shell_UI_blank;
     [SerializeField] private List<GameObject> blueTankBulletsUIList;
     [SerializeField] private List<GameObject> redTankBulletsUIList;
+
+    [Header("Endzone")]
+    public GameObject blueEndZone;
+    public GameObject redEndZone;
 
     public Image bluePowerupUI, redPowerupUI;
     [SerializeField] private List<Sprite> powerupSprites;
@@ -109,6 +115,12 @@ public class UIManager : MonoBehaviour
 
             blueAmmoUI.GetComponent<Image>().color = new Color(p1Color.r, p1Color.g, p1Color.b, 0.8f);
             redAmmoUI.GetComponent<Image>().color = new Color(p2Color.r, p2Color.g, p2Color.b, 0.8f);
+
+
+            blueEndZone = GameObject.Find("Blue_Endzone");
+            redEndZone = GameObject.Find("Red_Endzone");
+            blueEndZone.GetComponent<Tilemap>().color = p1Color;
+            redEndZone.GetComponent<Tilemap>().color = p2Color;
 
             // Initiate the ammo UI
             for (int i = 0; i < GameStats.Instance.blueBullets; ++i)
@@ -493,6 +505,13 @@ public class UIManager : MonoBehaviour
         posIndex--;
         posIndex = Mathf.Clamp(posIndex, 0, pos.Length - 1);
         scrollPos = pos[posIndex];
+    }
+
+    private void ButtonFadesToColor(GameObject button, Color targetColor)
+    {
+        Graphic graphic = button.GetComponent<Graphic>();
+        Button btn = button.GetComponent<Button>();
+        graphic.CrossFadeColor(targetColor, btn.colors.fadeDuration, true, true);
     }
 
     public void ToggleLimitedAmmo() { GameStats.Instance.limitedAmmo = !GameStats.Instance.limitedAmmo; }
