@@ -87,6 +87,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         isControlOn = false;
         sceneFader = transform.GetChild(0).gameObject;
 
@@ -149,6 +152,9 @@ public class UIManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "LevelSelection")
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             pos = new float[scrollViewContent.transform.childCount];
             distance = 1f / (pos.Length - 1f);
             for (int i = 0; i < pos.Length; i++)
@@ -197,15 +203,18 @@ public class UIManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                if (GameStats.Instance.currentSelectedGameObject().name != "BackBtn")
+                GameObject currentSelected = GameStats.Instance.currentSelectedGameObject();
+                if (currentSelected.name != "BackBtn" && currentSelected.name != "GameOptionsBtn")
                 {
                     NextLevelCard();
+                    Debug.Log(currentSelected.name);
                     EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(scrollViewContent.transform.GetChild(posIndex).gameObject);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                if (GameStats.Instance.currentSelectedGameObject().name != "BackBtn")
+                GameObject currentSelected = GameStats.Instance.currentSelectedGameObject();
+                if (currentSelected.name != "BackBtn" && currentSelected.name != "GameOptionsBtn")
                 {
                     PrevLevelCard();
                     EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(scrollViewContent.transform.GetChild(posIndex).gameObject);
