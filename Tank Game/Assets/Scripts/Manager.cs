@@ -75,6 +75,8 @@ public class Manager : MonoBehaviour
     int redScore, blueScore;
     float timeOnClock;
 
+    bool gameStart = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,6 +130,11 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameStart)
+        {
+            gameStart = true;
+        }
+
         if (GameStats.Instance.isInputEnabled)
         {
             UpdateRespawnTimer(Time.deltaTime);
@@ -281,7 +288,16 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
-        activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, blueSpawnPosition.z);
+        if (GameStats.Instance.mode == GameMode.Time || !gameStart)
+        {
+            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, blueSpawnPosition.z);
+        }
+        else
+        {
+            //spawn tank on oposite side of the red tank's current position in time and stock matches
+            float redx = -activeRedTank.transform.position.x / activeRedTank.transform.position.x;
+            activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x *redx, 0, blueSpawnPosition.z);
+        }
     }
 
     /// <summary>
@@ -300,7 +316,16 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
-        activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
+        if (GameStats.Instance.mode == GameMode.Time|| !gameStart)
+        {
+            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
+        }
+        else
+        {
+            float bluex = -activeBlueTank.transform.position.x / activeBlueTank.transform.position.x;
+            activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x *bluex, 0, redSpawnPosition.z);
+        }
+
     }
 
     /// <summary>
