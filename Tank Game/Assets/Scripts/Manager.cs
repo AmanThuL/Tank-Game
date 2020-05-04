@@ -288,7 +288,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeBlueTank);
         //move the blue tank to it's spawn location
-        if (GameStats.Instance.mode == GameMode.Time || !gameStart)
+        if (GameStats.Instance.mode == GameMode.Flag || !gameStart)
         {
             activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, blueSpawnPosition.z);
         }
@@ -316,7 +316,7 @@ public class Manager : MonoBehaviour
 
         AssignTankProperties(activeRedTank);
         //move the red tank to it's spawn position
-        if (GameStats.Instance.mode == GameMode.Time|| !gameStart)
+        if (GameStats.Instance.mode == GameMode.Flag|| !gameStart)
         {
             activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x + GameStats.Instance.currScreenIndex * ScreenWidth.x, 0, redSpawnPosition.z);
         }
