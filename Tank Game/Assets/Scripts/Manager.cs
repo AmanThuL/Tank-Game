@@ -295,7 +295,7 @@ public class Manager : MonoBehaviour
         else
         {
             //spawn tank on oposite side of the red tank's current position in time and stock matches
-            float redx = -activeRedTank.transform.position.x / activeRedTank.transform.position.x;
+            float redx = -activeRedTank.transform.position.x / Mathf.Abs( activeRedTank.transform.position.x);
             activeBlueTank.gameObject.transform.position = new Vector3(blueSpawnPosition.x *redx, 0, blueSpawnPosition.z);
         }
     }
@@ -322,7 +322,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            float bluex = -activeBlueTank.transform.position.x / activeBlueTank.transform.position.x;
+            float bluex = -activeBlueTank.transform.position.x / Mathf.Abs(activeBlueTank.transform.position.x);
             activeRedTank.gameObject.transform.position = new Vector3(redSpawnPosition.x *bluex, 0, redSpawnPosition.z);
         }
 
