@@ -15,8 +15,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\Audio\FMOD\Ambient.fspro
-  sourceBankPath: Assets\Audio\FMOD\Build
+  sourceProjectPath: ../../../TankGame/Example12.1/FMOD/Ambient.fspro
+  sourceBankPath: ..\..\..\TankGame\Example12.1\FMOD\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -76,8 +76,7 @@ MonoBehaviour:
   - Platform: 20
     Value: 32
   Plugins: []
-  MasterBanks:
-  - Master
+  MasterBanks: []
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
