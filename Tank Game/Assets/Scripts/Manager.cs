@@ -409,7 +409,7 @@ public class Manager : MonoBehaviour
     private void Advance(int direction)
     {
         // Play advance/transition sound effect
-        audioManager.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        audioManager.GetComponent<AudioManager>().PlaySound("transition");
 
         GameStats.Instance.isGetFlagUIDisplayed = false;
         getFlagCanvasUI.SetActive(GameStats.Instance.isGetFlagUIDisplayed);
