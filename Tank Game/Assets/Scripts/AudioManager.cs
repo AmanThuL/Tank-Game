@@ -11,6 +11,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         {"ambient/1", "event:/Ambience/Ambient1" },
 
+        {"menu/buttonclick", "event:/MenuUI/click_button01" },
         {"menu/selector1", "event:/MenuUI/move_selector1" },
 
         {"game/arrow", "event:/InGameUI/arrow_notification" },

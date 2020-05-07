@@ -516,7 +516,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 649924505}
-        m_MethodName: ToSelectionScreen
+        m_MethodName: ToSelectionScreen_Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -270,7 +270,8 @@ public class UIManager : MonoBehaviour
         if (currentSelected != null && currentSelected != lastSelected)
         {
             // Play sound
-            AudioManager.Instance.PlaySound("menu/selector1");
+            if (lastSelected != null)
+                AudioManager.Instance.PlaySound("menu/selector1");
 
             ToggleSelectedButtonBorder(lastSelected, false);
             lastSelected = currentSelected;
@@ -312,6 +313,10 @@ public class UIManager : MonoBehaviour
 
     public void ToMainMenu()
     {
+        // ================ Play sound - WATCH THIS! CAMERON! ================
+        AudioManager.Instance.PlaySound("menu/buttonclick");
+        // ===================================================================
+
         //SceneManager.LoadScene(menuSceneName);
         sceneFader.SetActive(true);
         //Debug.Log("Loading Main Menu!");
@@ -335,9 +340,21 @@ public class UIManager : MonoBehaviour
 
     public void ToSelectionScreen()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
+
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(tankSelectionSceneName);
     }
+
+    // =============== YOU SHOULD BE ABLE TO SEE THIS! ================
+    public void ToSelectionScreen_Back()
+    {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
+
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(tankSelectionSceneName);
+    }
+    // =================================================================
 
     public void ToLevelSelectionScreen()
     {
