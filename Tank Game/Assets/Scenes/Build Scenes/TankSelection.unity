@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Effects/click_button01
+  Event: event:/MenuUI/click_button01
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -818,7 +818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Effects/move_selector1
+  Event: event:/MenuUI/move_selector1
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1

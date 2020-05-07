@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Effects/click_button01
+  Event: event:/MenuUI/click_button01
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -2165,7 +2165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/game_countdown
+  Event: event:/MenuUI/game_countdown
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
