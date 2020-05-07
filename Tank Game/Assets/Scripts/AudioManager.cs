@@ -3,40 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
 
-
-
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    [System.Serializable]
-    public struct EventPath
+    #region Fields
+
+    private Dictionary<string, string> dict_eventPaths = new Dictionary<string, string>
     {
-        public string key;
+        {"ambient/1", "event:/Ambience/Ambient1" },
 
-        [FMODUnity.EventRef]
-        public string path;
-    }
+        {"menu/selector1", "event:/MenuUI/move_selector1" },
 
-    public EventPath[] eventPaths;
-    private Dictionary<string, string> dict_eventPaths;
+        {"game/arrow", "event:/InGameUI/arrow_notification" },
+        {"game/transition", "event:/InGameUI/game_transition" },
+        {"game/final", "event:/InGameUI/game_finalscreen" },
+        {"game/end", "event:/InGameUI/game_end" },
+    };
 
     private EventInstance instance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Convert all eventPath from array to a dictionary
-        dict_eventPaths = new Dictionary<string, string>();
-        for (int i = 0; i < eventPaths.Length; i++)
-        {
-            dict_eventPaths[eventPaths[i].key] = eventPaths[i].path;
-        }
-    }
+    #endregion
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PlaySound(string key)
     {

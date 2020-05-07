@@ -269,6 +269,9 @@ public class UIManager : MonoBehaviour
         // Select on change
         if (currentSelected != null && currentSelected != lastSelected)
         {
+            // Play sound
+            AudioManager.Instance.PlaySound("menu/selector1");
+
             ToggleSelectedButtonBorder(lastSelected, false);
             lastSelected = currentSelected;
             ToggleSelectedButtonBorder(currentSelected, true);
