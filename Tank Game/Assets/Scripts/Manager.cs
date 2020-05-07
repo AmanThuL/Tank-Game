@@ -66,6 +66,7 @@ public class Manager : MonoBehaviour
     [SerializeField] GameObject destroyedDecal;
 
     private GameObject UIManager;
+    private GameObject audioManager;
     [SerializeField] private GameObject arrowUI;
     [SerializeField] private GameObject resumeButton;
 
@@ -125,6 +126,7 @@ public class Manager : MonoBehaviour
         }
 
         UIManager = GameObject.Find("UI Manager");
+        audioManager = GameObject.Find("Audio Manager");
     }
 
     // Update is called once per frame
@@ -406,6 +408,9 @@ public class Manager : MonoBehaviour
     /// <param name="direction">what direction to move the screen in -1 for a red win, 1 for a blue win</param>
     private void Advance(int direction)
     {
+        // Play advance/transition sound effect
+        audioManager.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+
         GameStats.Instance.isGetFlagUIDisplayed = false;
         getFlagCanvasUI.SetActive(GameStats.Instance.isGetFlagUIDisplayed);
 
@@ -433,7 +438,6 @@ public class Manager : MonoBehaviour
         screenTransEndX = cam.transform.position.x + direction * ScreenWidth.x;
         RemoveBounds();
         resetSpawnDelay();
-
     }
     /// <summary>
     /// called by left bounds to advance the red tank
