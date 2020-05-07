@@ -55,7 +55,7 @@ MonoBehaviour:
   Path: event:/Effects/synth_60
   guid: 4ee6b4b066e45140b178eaee00ab1194
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -63,6 +63,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4000
+--- !u!114 &-6549268164705566914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6438878554762440984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +97,24 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-6191654008667300271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637243848963540164
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-5859892516351613692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +130,7 @@ MonoBehaviour:
   Path: event:/Effects/synth_72
   guid: df75e47800a79246bb026bce039df5bd
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -242,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 1276151739232799813}
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   EditorEvents:
   - {fileID: 3432120956846074539}
   - {fileID: -6926659938900720791}
@@ -252,13 +287,30 @@ MonoBehaviour:
   - {fileID: -5859892516351613692}
   - {fileID: 8657535278428607073}
   EditorParameters:
-  - {fileID: -2827982893349824762}
+  - {fileID: 747355458074355043}
   MasterBanks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   StringsBanks:
   - {fileID: 1276151739232799813}
-  stringsBankWriteTime: 637243944691895683
+  stringsBankWriteTime: 637243848963733607
   cacheVersion: 3
+--- !u!114 &747355458074355043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &1276151739232799813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637243944691895683
+  lastModified: 637243848963733607
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -312,7 +364,7 @@ MonoBehaviour:
   Path: event:/game_countdown
   guid: 05801ef17b934f45a0cd74f3743ccab2
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -353,12 +405,12 @@ MonoBehaviour:
   Path: event:/Ambience/Ambient1
   guid: cc1e332175a4ab449dcdcef0e394b9af
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -7635598951196308618}
+  - {fileID: -6549268164705566914}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -423,7 +475,7 @@ MonoBehaviour:
   Path: event:/Effects/click_button01
   guid: 9547f1b0b08f3f40aa336355a67ce3c6
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -520,7 +572,7 @@ MonoBehaviour:
   Path: event:/Effects/move_selector2
   guid: dfc7abf4aae94044b2c5f84958c591c4
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -543,7 +595,7 @@ MonoBehaviour:
   Path: event:/Effects/move_selector1
   guid: d2997bb9a7f7784196ea986eef24d526
   Banks:
-  - {fileID: -5527295067400162579}
+  - {fileID: -6191654008667300271}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
