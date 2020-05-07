@@ -24,6 +24,8 @@ public class CountDown : MonoBehaviour
 
     private IEnumerator Countdown(int seconds)
     {
+        AudioManager.Instance.PlaySound("game/countdown");
+
         int count = seconds;
 
         yield return new WaitForSeconds(0.5f);

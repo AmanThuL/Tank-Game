@@ -13,7 +13,8 @@ public class AudioManager : Singleton<AudioManager>
 
         {"menu/buttonclick", "event:/MenuUI/click_button01" },
         {"menu/selector1", "event:/MenuUI/move_selector1" },
-
+        
+        {"game/countdown", "event:/MenuUI/game_countdown" },
         {"game/arrow", "event:/InGameUI/arrow_notification" },
         {"game/transition", "event:/InGameUI/game_transition" },
         {"game/final", "event:/InGameUI/game_finalscreen" },
