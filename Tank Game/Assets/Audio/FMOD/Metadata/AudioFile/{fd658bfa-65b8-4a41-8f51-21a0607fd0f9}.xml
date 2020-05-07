@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{fd658bfa-65b8-4a41-8f51-21a0607fd0f9}">
+		<property name="assetPath">
+			<value>148034__rmutt__oceanwaves-4.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>173.79473922902494</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5cad3b35-f207-4b49-a56f-266a17fa1e32}</destination>
+		</relationship>
+	</object>
+</objects>
