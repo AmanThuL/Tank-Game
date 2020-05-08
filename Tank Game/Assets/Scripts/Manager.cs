@@ -349,6 +349,7 @@ public class Manager : MonoBehaviour
         //redAdvance = true;
 
         //destroy the blue tank
+        AudioManager.Instance.PlaySound("player/destroyeffect");
         GameObject.Destroy(activeBlueTank);
         Vector3 temp = activeBlueTank.transform.position;
 
@@ -389,6 +390,7 @@ public class Manager : MonoBehaviour
         GameObject.Destroy(activeRedTank);
 
         //destroy the red tank
+        AudioManager.Instance.PlaySound("player/destroyeffect");
         Instantiate(explosion, temp, Quaternion.identity);
         Instantiate(destroyedDecal, new Vector3(temp.x, temp.y, 10), Quaternion.identity);
 
@@ -409,6 +411,7 @@ public class Manager : MonoBehaviour
     private void Advance(int direction)
     {
         // Play advance/transition sound effect
+
         AudioManager.Instance.PlaySound("game/transition");
 
         GameStats.Instance.isGetFlagUIDisplayed = false;
@@ -628,11 +631,13 @@ public class Manager : MonoBehaviour
 
     public void RedCaptureFlag()
     {
+        AudioManager.Instance.PlaySound("game/arrow");
         GameStats.Instance.redAdvance = true;
     }
 
     public void BlueCaptureFlag()
     {
+        AudioManager.Instance.PlaySound("game/arrow");
         GameStats.Instance.blueAdvance = true;
     }
 
@@ -650,6 +655,7 @@ public class Manager : MonoBehaviour
     {
         if (blueDead)
         {
+            AudioManager.Instance.PlaySound("player/respawneffect");
             RespawnBlueTank();
         }
         else
@@ -666,6 +672,8 @@ public class Manager : MonoBehaviour
     {
         if (redDead)
         {
+            AudioManager.Instance.PlaySound("menu/buttonclick2");
+            AudioManager.Instance.PlaySound("player/respawneffect");
             RespawnRedTank();
         }
         else
@@ -682,6 +690,7 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GameStats.Instance.isPauseMenuEnabled == false)
         {
+            AudioManager.Instance.PlaySound("menu/buttonclick2");
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(resumeButton);
 
             //Pause the game
@@ -698,6 +707,7 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GameStats.Instance.isPauseMenuEnabled == true)
         {
+            AudioManager.Instance.PlaySound("menu/buttonclick");
             UIManager.GetComponent<UIManager>().UnpauseGame();
         }
     }
@@ -717,6 +727,7 @@ public class Manager : MonoBehaviour
 
     private void Win(int tankPlayerNum)
     {
+        AudioManager.Instance.PlaySound("game/end");
         GameStats.Instance.winPlayer = tankPlayerNum;
         UIManager.GetComponent<UIManager>().ToEndScreen();
     }

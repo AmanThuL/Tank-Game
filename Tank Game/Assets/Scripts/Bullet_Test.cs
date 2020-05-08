@@ -195,6 +195,9 @@ public class Bullet_Test : MonoBehaviour
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0, 0, rot);
 
+            //PLAY AUDIO
+            AudioManager.Instance.PlaySound("bullet/bounce");
+
             // update bounced bool
             StartCoroutine(IncrementBounce());
         }

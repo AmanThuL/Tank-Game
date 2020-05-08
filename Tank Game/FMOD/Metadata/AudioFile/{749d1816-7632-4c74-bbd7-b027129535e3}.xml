@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{749d1816-7632-4c74-bbd7-b027129535e3}">
+		<property name="assetPath">
+			<value>player_destroy_effect.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.83873015873015877</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5cad3b35-f207-4b49-a56f-266a17fa1e32}</destination>
+		</relationship>
+	</object>
+</objects>

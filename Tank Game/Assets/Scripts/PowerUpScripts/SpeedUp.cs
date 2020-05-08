@@ -8,6 +8,7 @@ public class SpeedUp : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
+            AudioManager.Instance.PlaySound("player/pickuppowerup");
             //Infinite ammo for limited time
             collision.gameObject.GetComponent<TankControls>().SpeedUp();
             GameStats.Instance.changeTime = Time.time;

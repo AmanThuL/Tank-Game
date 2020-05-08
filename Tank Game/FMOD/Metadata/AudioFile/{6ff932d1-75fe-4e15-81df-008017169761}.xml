@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{6ff932d1-75fe-4e15-81df-008017169761}">
+		<property name="assetPath">
+			<value>bullet_cratedestruction.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.86328798185941047</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5cad3b35-f207-4b49-a56f-266a17fa1e32}</destination>
+		</relationship>
+	</object>
+</objects>

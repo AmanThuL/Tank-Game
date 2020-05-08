@@ -8,6 +8,7 @@ public class SpreadShot : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
+            AudioManager.Instance.PlaySound("player/pickuppowerup");
             //Spread shot for limited time
             collision.gameObject.GetComponent<TankControls>().SpreadShot();
             GameStats.Instance.changeTime = Time.time;

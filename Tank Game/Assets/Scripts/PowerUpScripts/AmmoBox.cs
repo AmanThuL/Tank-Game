@@ -25,6 +25,7 @@ public class AmmoBox : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
+            AudioManager.Instance.PlaySound("player/pickupammo");
             collision.gameObject.GetComponent<TankControls>().AddAmmo();
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;

@@ -323,9 +323,26 @@ public class UIManager : MonoBehaviour
         sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
         GameStats.Instance.isPauseMenuEnabled = false;
     }
+    public void ToMainMenu_Back()
+    {
+        AudioManager.Instance.PlaySound("menu/buttonclick2");
+        //SceneManager.LoadScene(menuSceneName);
+        sceneFader.SetActive(true);
+        //Debug.Log("Loading Main Menu!");
+        sceneFader.GetComponent<SceneFader>().FadeTo(menuSceneName);
+        GameStats.Instance.isPauseMenuEnabled = false;
+    }
 
     public void ToGameOptions()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(gameOptionsSceneName);
+        GameStats.Instance.isPauseMenuEnabled = false;
+    }
+    public void ToGameOptions_Back()
+    {
+        AudioManager.Instance.PlaySound("menu/buttonclick2");
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(gameOptionsSceneName);
         GameStats.Instance.isPauseMenuEnabled = false;
@@ -333,6 +350,14 @@ public class UIManager : MonoBehaviour
 
     public void ToControlsScreen()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
+        //SceneManager.LoadScene(controlsSceneName);
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(controlsSceneName);
+    }
+    public void ToControlsScreen_Back()
+    {
+        AudioManager.Instance.PlaySound("menu/buttonclick2");
         //SceneManager.LoadScene(controlsSceneName);
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(controlsSceneName);
@@ -349,7 +374,7 @@ public class UIManager : MonoBehaviour
     // =============== YOU SHOULD BE ABLE TO SEE THIS! ================
     public void ToSelectionScreen_Back()
     {
-        AudioManager.Instance.PlaySound("menu/buttonclick");
+        AudioManager.Instance.PlaySound("menu/buttonclick2");
 
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(tankSelectionSceneName);
@@ -358,6 +383,13 @@ public class UIManager : MonoBehaviour
 
     public void ToLevelSelectionScreen()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
+        sceneFader.SetActive(true);
+        sceneFader.GetComponent<SceneFader>().FadeTo(levelSelectionSceneName);
+    }
+    public void ToLevelSelectionScreen_Back()
+    {
+        AudioManager.Instance.PlaySound("menu/buttonclick2");
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(levelSelectionSceneName);
     }
@@ -378,30 +410,35 @@ public class UIManager : MonoBehaviour
 
     public void Desert()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.DesertLevel;
         ToSelectedLevel();
     }
 
     public void Ice()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.IceLevel;
         ToSelectedLevel();
     }
 
     public void Jungle()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.JungleLevel;
         ToSelectedLevel();
     }
 
     public void Fire()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.FireLevel;
         ToSelectedLevel();
     }
 
     public void Grass()
     {
+        AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.GrassLandsLevel;
         ToSelectedLevel();
     }
@@ -414,6 +451,7 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
+
         GameStats.Instance.isInputEnabled = true;
         GameStats.Instance.isPauseMenuEnabled = false;
 

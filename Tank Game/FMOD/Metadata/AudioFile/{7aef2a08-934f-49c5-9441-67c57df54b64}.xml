@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{7aef2a08-934f-49c5-9441-67c57df54b64}">
+		<property name="assetPath">
+			<value>game_toggle.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.44077097505668933</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5cad3b35-f207-4b49-a56f-266a17fa1e32}</destination>
+		</relationship>
+	</object>
+</objects>

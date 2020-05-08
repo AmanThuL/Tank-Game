@@ -8,6 +8,7 @@ public class Shield : MonoBehaviour
     {
         if (collision.gameObject.name == "Blue_Tank(Clone)" || collision.gameObject.name == "Red_Tank(Clone)")
         {
+            AudioManager.Instance.PlaySound("player/pickuppowerup");
             //Shield for one shot
             collision.gameObject.GetComponent<TankControls>().Shield();
             GameStats.Instance.changeTime = Time.time;

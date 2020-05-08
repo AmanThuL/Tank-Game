@@ -56,7 +56,7 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             // Button interaction with keypress
-
+            AudioManager.Instance.PlaySound("menu/selector2");
             ButtonFadesToColor(leftL, leftL_btn.colors.pressedColor);
 
             LeftTankLeft();
@@ -71,6 +71,7 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             // Button interaction with keypress
+            AudioManager.Instance.PlaySound("menu/selector2");
             ButtonFadesToColor(leftR, leftR_btn.colors.pressedColor);
 
             LeftTankRight();
@@ -85,6 +86,7 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             // Button interaction with keypress
+            AudioManager.Instance.PlaySound("menu/selector2");
             ButtonFadesToColor(rightL, rightL_btn.colors.pressedColor);
 
             RightTankLeft();
@@ -99,6 +101,7 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             // Button interaction with keypress
+            AudioManager.Instance.PlaySound("menu/selector2");
             ButtonFadesToColor(rightR, rightR_btn.colors.pressedColor);
 
             RightTankRight();
