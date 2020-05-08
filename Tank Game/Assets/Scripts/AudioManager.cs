@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -44,6 +45,10 @@ public class AudioManager : Singleton<AudioManager>
     private EventInstance loopInstance;
     private EventInstance instance;
 
+    private Bus bus;
+
+    [SerializeField] private float masterVolume = 3f;
+
     #endregion
 
 
@@ -51,15 +56,24 @@ public class AudioManager : Singleton<AudioManager>
     {
         //instance.release();
         instance = FMODUnity.RuntimeManager.CreateInstance(dict_eventPaths[key]);
+
+        // Set volume level
+        instance.setVolume(masterVolume);
+
         instance.start();
         instance.release();
     }
+
     public void PlayLoop(string key)
     {
         if (!isLooping)
         {
             isLooping = true;
             loopInstance = FMODUnity.RuntimeManager.CreateInstance(dict_eventPaths[key]);
+
+            // Set volume level
+            loopInstance.setVolume(masterVolume);
+
             loopInstance.start();
         }
             
@@ -79,5 +93,11 @@ public class AudioManager : Singleton<AudioManager>
             loopInstance.release();
             isLooping = false;
         }
+    }
+
+    public void StopAllSounds()
+    {
+        bus = RuntimeManager.GetBus("event:/PlayerEffect");
+        bus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
