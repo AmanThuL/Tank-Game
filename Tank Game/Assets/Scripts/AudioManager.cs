@@ -64,12 +64,18 @@ public class AudioManager : Singleton<AudioManager>
         }
             
     }
+    private void GetOutOfLoopAndPlayRest()
+    {
+        // Play the end track
+        loopInstance.setParameterByName("End", 0.5f);
+    }
 
     public void StopLoop()
     {
         if (isLooping)
         {
-            loopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            GetOutOfLoopAndPlayRest();
+
             loopInstance.release();
             isLooping = false;
         }
