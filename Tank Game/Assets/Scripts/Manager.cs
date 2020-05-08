@@ -279,11 +279,12 @@ public class Manager : MonoBehaviour
     /// </summary>
     void RespawnBlueTank()
     {
+        // Play respawn sound effect
+        if (blueDead)
+            AudioManager.Instance.PlaySound("player/respawneffect");
+
         //the blue tank is no longer dead
         blueDead = false;
-
-        // Play respawn sound effect
-        AudioManager.Instance.PlaySound("player/respawneffect");
 
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
@@ -311,11 +312,12 @@ public class Manager : MonoBehaviour
     /// </summary>
     void RespawnRedTank()
     {
+        // Play respawn sound effect
+        if (redDead)
+            AudioManager.Instance.PlaySound("player/respawneffect");
+
         //the red tank is no longer dead
         redDead = false;
-
-        // Play respawn sound effect
-        AudioManager.Instance.PlaySound("player/respawneffect");
 
         //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
@@ -663,7 +665,6 @@ public class Manager : MonoBehaviour
     {
         if (blueDead)
         {
-            AudioManager.Instance.PlaySound("player/respawneffect");
             RespawnBlueTank();
         }
         else
@@ -680,8 +681,6 @@ public class Manager : MonoBehaviour
     {
         if (redDead)
         {
-            AudioManager.Instance.PlaySound("menu/buttonclick2");
-            AudioManager.Instance.PlaySound("player/respawneffect");
             RespawnRedTank();
         }
         else
@@ -735,6 +734,7 @@ public class Manager : MonoBehaviour
 
     private void Win(int tankPlayerNum)
     {
+        AudioManager.Instance.StopLoop();
         AudioManager.Instance.PlaySound("game/end");
         GameStats.Instance.winPlayer = tankPlayerNum;
         UIManager.GetComponent<UIManager>().ToEndScreen();
