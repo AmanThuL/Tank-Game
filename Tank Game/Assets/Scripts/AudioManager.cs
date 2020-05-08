@@ -12,6 +12,7 @@ public class AudioManager : Singleton<AudioManager>
         {"ambient/1", "event:/Ambience/Ambient1" },
 
         {"bullet/bounce", "event:/Bullet/bullet_bounce" },
+        {"bullet/bounce2", "event:/Bullet/bullet_bounce2" },
         {"bullet/cratedestruction", "event:/Bullet/bullet_creatdestruction" },
         {"bullet/destruction", "event:/Bullet/bullet_destruction" },
 

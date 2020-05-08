@@ -201,9 +201,6 @@ public class Bullet_Test : MonoBehaviour
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0, 0, rot);
 
-            //PLAY AUDIO
-            AudioManager.Instance.PlaySound("bullet/bounce");
-
             // update bounced bool
             StartCoroutine(IncrementBounce());
         }
@@ -217,6 +214,14 @@ public class Bullet_Test : MonoBehaviour
 
     private IEnumerator IncrementBounce()
     {
+        if (currentBounces == 1)
+        {
+            AudioManager.Instance.PlaySound("bullet/bounce");
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound("bullet/bounce2");
+        }
         yield return 0; // make it wait 1 frame
         currentBounces++;
     }
