@@ -35,12 +35,6 @@ public class AudioManager : Singleton<AudioManager>
         {"player/pickupammo", "event:/PlayerEffect/player_pickup_ammo" },
         {"player/pickuppowerup", "event:/PlayerEffect/player_pickup_powerup" },
 
-        
-
-
-
-
-
     };
 
     private EventInstance instance;

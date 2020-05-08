@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9157637430670016547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-8949389865435443841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-8758933770179506849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,6 +50,24 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+  Exists: 0
+--- !u!114 &-8737961746902214220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244948298572825
+  LoadResult: 0
+  FileSizes: []
   Exists: 0
 --- !u!114 &-8256304885113937179
 MonoBehaviour:
@@ -66,7 +118,11 @@ MonoBehaviour:
   Path: event:/InGameUI/game_end
   guid: 6bc12dd7e168e64f80268288402b29c8
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -123,7 +179,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_shoot_effect
   guid: b2f7bafa33f3e54bbcbd6d0759327199
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -162,12 +222,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637244905064891939
+<<<<<<< HEAD
+  lastModified: 637244956104934266
+=======
+  lastModified: 637244907572533081
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 1864
   Exists: 1
+--- !u!114 &-6462992190284021975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244951563870902
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &-5994409568902254474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244948073232304
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &-5734911824600132185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-5528392874076293079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-5503951550343085121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5284708868469841510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +352,11 @@ MonoBehaviour:
   Path: event:/InGameUI/game_transition
   guid: 01da409875a1124db64182928553d37e
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -209,6 +364,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 277
+--- !u!114 &-5088301700549052338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244953254280646
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-4953431742389160869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +398,24 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+  Exists: 0
+--- !u!114 &-4947013847291659908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244953543188447
+  LoadResult: 0
+  FileSizes: []
   Exists: 0
 --- !u!114 &-4881481938680242865
 MonoBehaviour:
@@ -261,6 +452,40 @@ MonoBehaviour:
   lastModified: 637244900047764676
   LoadResult: 0
   FileSizes: []
+  Exists: 0
+--- !u!114 &-4648165473639184590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-4613498928557071270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 0
 --- !u!114 &-3656808381336354931
 MonoBehaviour:
@@ -311,7 +536,11 @@ MonoBehaviour:
   Path: event:/MenuUI/click_button02
   guid: d4018eba10053b4b852389aad1596a1a
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -392,6 +621,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-2734474507675333135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244956104854485
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-1536358944492848713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +672,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_shoot_fail2
   guid: c3ef75fad45e6149b96aa8a224a5ee8c
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -433,6 +684,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 135
+--- !u!114 &-768444995645940338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244907572523160
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-193882297647495268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +717,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_respawn_effect
   guid: 2443080688e4f940a74b9c533c0cf393
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -470,7 +743,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -6874527268274367346}
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   EditorEvents:
   - {fileID: -5227324190885320993}
   - {fileID: 2318232015225003593}
@@ -494,13 +771,58 @@ MonoBehaviour:
   - {fileID: 3049913762241013284}
   - {fileID: 6341664731271368795}
   EditorParameters:
-  - {fileID: 3789872573069051189}
+<<<<<<< HEAD
+  - {fileID: 4762861999953742417}
   MasterBanks:
-  - {fileID: 1816183569215761892}
+  - {fileID: -2734474507675333135}
   StringsBanks:
   - {fileID: -6874527268274367346}
-  stringsBankWriteTime: 637244905064891939
+  stringsBankWriteTime: 637244956104934266
+=======
+  - {fileID: 8482235265749320751}
+  MasterBanks:
+  - {fileID: -768444995645940338}
+  StringsBanks:
+  - {fileID: -6874527268274367346}
+  stringsBankWriteTime: 637244907572533081
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   cacheVersion: 3
+--- !u!114 &94564160514778580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244953876233850
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &483664792566314383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244952498467515
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &627030805609943496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +839,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &687748399832130042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +872,11 @@ MonoBehaviour:
   Path: event:/MenuUI/move_selector2
   guid: dfc7abf4aae94044b2c5f84958c591c4
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -573,7 +899,11 @@ MonoBehaviour:
   Path: event:/MenuUI/game_toggle
   guid: b72e33f6085a414b83ccea2ef552ebb7
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -616,7 +946,7 @@ MonoBehaviour:
   lastModified: 637244905064782234
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &1918815672964364303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +960,23 @@ MonoBehaviour:
   m_Name: TestGlobalParam
   m_EditorClassIdentifier: 
   Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &2217566947238669707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
   Min: 0
   Max: 1
   Default: 0
@@ -649,14 +996,18 @@ MonoBehaviour:
   Path: event:/MenuUI/game_countdown
   guid: 05801ef17b934f45a0cd74f3743ccab2
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 4325
+  Length: 5505
 --- !u!114 &2365853443726931029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,6 +1062,40 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &2809153540272339817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &2975360935946372845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &3049913762241013284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +1111,11 @@ MonoBehaviour:
   Path: event:/Bullet/bullet_destruction
   guid: 4e215601d7f0604298041bc8c2fe6f1e
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -752,6 +1141,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &3580206094522843996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &3789872573069051189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +1174,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &3899948619103989149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,7 +1190,11 @@ MonoBehaviour:
   Path: event:/MenuUI/click_button01
   guid: 9547f1b0b08f3f40aa336355a67ce3c6
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -792,6 +1202,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 435
+--- !u!114 &4113920188771698444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &4385432819494147246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,6 +1236,41 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &4762861999953742417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &5738453483742663669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244952744471223
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &5763801531854605557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,6 +1284,41 @@ MonoBehaviour:
   m_Name: parameter:/Ambient1/Mood
   m_EditorClassIdentifier: 
   Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &5977503009768293499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637244953295557216
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &6016598907025455666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
   Min: 0
   Max: 1
   Default: 0
@@ -858,7 +1355,11 @@ MonoBehaviour:
   Path: event:/Bullet/bullet_bounce
   guid: 91a247d7017fd544af43d6c35badf9bd
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -881,15 +1382,40 @@ MonoBehaviour:
   Path: event:/Ambience/Ambient1
   guid: cc1e332175a4ab449dcdcef0e394b9af
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 627030805609943496}
+<<<<<<< HEAD
+  - {fileID: -5528392874076293079}
+=======
+  - {fileID: 2217566947238669707}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &6933237858375975339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &7411799413158400738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +1431,11 @@ MonoBehaviour:
   Path: event:/MenuUI/move_selector1
   guid: d2997bb9a7f7784196ea986eef24d526
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -928,7 +1458,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_pickup_ammo
   guid: f0ca153a7c351949a6a4a8568a527b98
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -951,7 +1485,11 @@ MonoBehaviour:
   Path: event:/Bullet/bullet_creatdestruction
   guid: 2f679692a815794d8223cbdf2084925e
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -959,6 +1497,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 863
+--- !u!114 &7760922572470392131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &8195339889525803910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,7 +1529,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_shoot_fail
   guid: e977af112aea864c898f5ac11dba12c7
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -982,6 +1541,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 30
+--- !u!114 &8482235265749320751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: TestGlobalParam
+  m_EditorClassIdentifier: 
+  Name: TestGlobalParam
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8594811470122552873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,7 +1573,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_pickup_powerup
   guid: 5416c3848c19da4b97a3ede194037abc
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1020,7 +1600,11 @@ MonoBehaviour:
   Path: event:/InGameUI/arrow_notification
   guid: 5d12ea7d7951be42b5a381964544b3a7
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1043,7 +1627,11 @@ MonoBehaviour:
   Path: event:/PlayerEffect/player_destroy_effect
   guid: 3940d26e09d61f46915c07c693840ff8
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1066,7 +1654,11 @@ MonoBehaviour:
   Path: event:/InGameUI/game_finalscreen
   guid: 828e013f2c6dca4fb016fd16fb8bf89b
   Banks:
-  - {fileID: 1816183569215761892}
+<<<<<<< HEAD
+  - {fileID: -2734474507675333135}
+=======
+  - {fileID: -768444995645940338}
+>>>>>>> 2d6c2568f74056e5aff2aeeac88601443fffa41f
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1074,3 +1666,20 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 430
+--- !u!114 &9101742613845734746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0

@@ -323,9 +323,19 @@ public class TankControls : MonoBehaviour
         GameObject tempBullet2;
         GameObject tempBullet3;
 
+        if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.Instance.getBullets(tankID) <= 0)
+        {
+            AudioManager.Instance.PlaySound("player/shootfail2");
+            nextFire = Time.time + fireRate;
+            return;
+        }
+
         if (Input.GetKey(shoot) && Time.time > nextFire && GameStats.Instance.getBullets(tankID) > 0 || Input.GetKey(shoot) && Time.time > nextFire && infAmmo == true )
         {
             Debug.Log(GameStats.Instance.blueBullets);
+
+            // Play shoot effect
+            AudioManager.Instance.PlaySound("player/shooteffect");
 
             nextFire = Time.time + fireRate;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -366,6 +376,8 @@ public class TankControls : MonoBehaviour
             if (!infAmmo)
             {
                 GameStats.Instance.decrementBullets(tankID);
+                if (GameStats.Instance.getBullets(tankID) <= 0)
+                    AudioManager.Instance.PlaySound("player/shootfail");
             }
 
         }

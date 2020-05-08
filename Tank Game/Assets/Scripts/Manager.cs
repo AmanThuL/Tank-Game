@@ -281,6 +281,10 @@ public class Manager : MonoBehaviour
     {
         //the blue tank is no longer dead
         blueDead = false;
+
+        // Play respawn sound effect
+        AudioManager.Instance.PlaySound("player/respawneffect");
+
         //create a new blue tank
         activeBlueTank = GameObject.Instantiate(BlueTank);
         BlueInvincible = true;
@@ -309,6 +313,10 @@ public class Manager : MonoBehaviour
     {
         //the red tank is no longer dead
         redDead = false;
+
+        // Play respawn sound effect
+        AudioManager.Instance.PlaySound("player/respawneffect");
+
         //create a new red tank
         activeRedTank = GameObject.Instantiate(RedTank);
         redInvincible = true;

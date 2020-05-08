@@ -49,9 +49,7 @@ public class Bullet : MonoBehaviour
 
 
         if (collision.gameObject.tag.Substring(0,3) != gameObject.tag.Substring(0,3))
-        {
-           
-
+        {         
             if (collision.gameObject.tag == "BluTank")
             {
                 GameObject.Find("Game Manager").GetComponent<Manager>().KillBlueTank();
