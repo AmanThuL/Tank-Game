@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
-	<object class="AudioFile" id="{c42d520b-dda5-4566-bb8a-da8f6d6fbc7f}">
+	<object class="AudioFile" id="{3298cf86-7ac6-4e6a-9627-971a81b61407}">
 		<property name="assetPath">
-			<value>player_shoot_effect.wav</value>
+			<value>player_movement.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.7163492063492064</value>
+			<value>6.2536281179138324</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{5cad3b35-f207-4b49-a56f-266a17fa1e32}</destination>
