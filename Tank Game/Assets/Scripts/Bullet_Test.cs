@@ -82,6 +82,9 @@ public class Bullet_Test : MonoBehaviour
 
             if (collision.gameObject.tag == "Crate" || collision.gameObject.tag.Substring(3) == "Bullet")
             {
+                // Play create destory sound effect
+                AudioManager.Instance.PlaySound("bullet/cratedestruction");
+
                 Destroy(collision.gameObject);
                 DestroySelf();
                 return;
@@ -115,6 +118,9 @@ public class Bullet_Test : MonoBehaviour
     /// </summary>
     void DestroySelf()
     {
+        // Play bullet destroy sound effect
+        AudioManager.Instance.PlaySound("bullet/destruction");
+
         Instantiate(explosion, transform.position, Quaternion.identity);
         //Debug.Log(gameObject.tag.Substring(0, 3) + "Tank");
         //GameObject.Find("Game Manager").GetComponent<Manager>().ReturnBullet(gameObject.tag);
