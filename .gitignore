@@ -65,3 +65,4 @@ crashlytics-build.properties
 /Assets/FMODStudioCache.asset.meta
 fmod.log
 fmod_editor.log
+Tank Game/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
