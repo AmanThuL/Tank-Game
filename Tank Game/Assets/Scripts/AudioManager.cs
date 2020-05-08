@@ -35,9 +35,13 @@ public class AudioManager : Singleton<AudioManager>
         {"player/shootfail2", "event:/PlayerEffect/player_shoot_fail2" },
         {"player/pickupammo", "event:/PlayerEffect/player_pickup_ammo" },
         {"player/pickuppowerup", "event:/PlayerEffect/player_pickup_powerup" },
+        {"player/movement", "event:/PlayerEffect/player_movement" },
+
 
     };
-
+    // Handle looping
+    private bool isLooping = false;
+    private EventInstance loopInstance;
     private EventInstance instance;
 
     #endregion
@@ -49,5 +53,25 @@ public class AudioManager : Singleton<AudioManager>
         instance = FMODUnity.RuntimeManager.CreateInstance(dict_eventPaths[key]);
         instance.start();
         instance.release();
+    }
+    public void PlayLoop(string key)
+    {
+        if (!isLooping)
+        {
+            isLooping = true;
+            loopInstance = FMODUnity.RuntimeManager.CreateInstance(dict_eventPaths[key]);
+            loopInstance.start();
+        }
+            
+    }
+
+    public void StopLoop()
+    {
+        if (isLooping)
+        {
+            loopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            loopInstance.release();
+            isLooping = false;
+        }
     }
 }

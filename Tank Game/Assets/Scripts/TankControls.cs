@@ -264,19 +264,25 @@ public class TankControls : MonoBehaviour
         //this grouping handles acceleration and deceleration
         if (Input.GetKey(moveUp))
         {
+            // Play movement sound effect
+            AudioManager.Instance.PlayLoop("player/movement");
+
             ifDecelerating = false;
 
             acceleration = accelRate * direction * Time.deltaTime;
 
             //forward movement
             //increase speed
-            velocity = (velocity.magnitude + acceleration.magnitude) *direction;
+            velocity = (velocity.magnitude + acceleration.magnitude) * direction;
 
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         }
         else if (Input.GetKey(moveDown))
-        { 
+        {
+            // Play movement sound effect
+            AudioManager.Instance.PlayLoop("player/movement");
+
             ifDecelerating = false;
 
             acceleration = accelRate * direction * Time.deltaTime;
@@ -288,6 +294,11 @@ public class TankControls : MonoBehaviour
             //speed does not go over max speed
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
+        }
+        else if (Input.GetKeyUp(moveUp) || Input.GetKeyUp(moveDown))
+        {
+            // Stop looping sound
+            AudioManager.Instance.StopLoop();
         }
 
         rb.velocity = Vector2.zero;
