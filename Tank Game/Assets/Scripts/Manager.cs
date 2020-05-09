@@ -737,7 +737,7 @@ public class Manager : MonoBehaviour
     private void Win(int tankPlayerNum)
     {
         AudioManager.Instance.StopLoop();
-        AudioManager.Instance.StopMusicLoop();
+       // AudioManager.Instance.StopMusicLoop();
         AudioManager.Instance.PlaySound("game/end");
         GameStats.Instance.winPlayer = tankPlayerNum;
         UIManager.GetComponent<UIManager>().ToEndScreen();

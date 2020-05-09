@@ -150,7 +150,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{45d7e5ab-9b6f-49dc-95ec-fc22cf78d54b}">
 		<property name="volume">
-			<value>-28</value>
+			<value>-22</value>
 		</property>
 		<property name="name">
 			<value>Start</value>
@@ -167,7 +167,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{6b57e251-4dc1-4c08-a731-3636042e61c9}">
 		<property name="volume">
-			<value>-28</value>
+			<value>-22</value>
 		</property>
 		<property name="name">
 			<value>Middle</value>
@@ -195,7 +195,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{df431ace-4df2-4d5e-ad67-73e2978cacf7}">
 		<property name="volume">
-			<value>-30</value>
+			<value>-23.5</value>
 		</property>
 		<property name="name">
 			<value>End</value>

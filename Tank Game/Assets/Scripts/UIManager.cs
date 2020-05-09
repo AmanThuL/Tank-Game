@@ -455,6 +455,7 @@ public class UIManager : MonoBehaviour
 
     public void RestartGameLevel()
     {
+        AudioManager.Instance.StopMusicLoop();
         sceneFader.SetActive(true);
         sceneFader.GetComponent<SceneFader>().FadeTo(GameStats.Instance.selectedLevel.ToString());
     }
