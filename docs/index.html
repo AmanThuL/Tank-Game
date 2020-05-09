@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Tank Game</title>
@@ -9,17 +10,54 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/docs.json", {onProgress: UnityProgress});
+        function startAudioOnClick() {
+
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            var bind = Function.bind;
+            var unbind = bind.bind(bind);
+
+            function instantiate(constructor, args) {
+                return new(unbind(constructor, null).apply(null, args));
+            }
+
+            window.AudioContext = function (AudioContext) {
+                return function () {
+                    var audioContext = instantiate(AudioContext, arguments);
+                    window.myAudioContext = audioContext;
+                    console.log('AudioContext has been instantiated!');
+                    return audioContext;
+                }
+            }(AudioContext);
+
+            var webAudioEnabled = false;
+
+            function resumeAudio() {
+                if (!webAudioEnabled && window.myAudioContext) {
+                    console.log('SIMMER starting Audio!');
+                    window.myAudioContext.resume();
+                    webAudioEnabled = true;
+                }
+            }
+
+            document.body.addEventListener('click', resumeAudio, true);
+            document.addEventListener('keydown', resumeAudio, true);
+        }
+
+        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/docs.json", {
+            onProgress: UnityProgress
+        });
     </script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="webgl-content">
-      <div id="unityContainer" style="width: 1280px; height: 720px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">Tank Game</div>
-      </div>
+        <div id="unityContainer" style="width: 1280px; height: 720px"></div>
+        <div class="footer">
+            <div class="webgl-logo"></div>
+            <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+            <div class="title">Tank Game</div>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
