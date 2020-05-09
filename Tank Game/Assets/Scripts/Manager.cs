@@ -360,6 +360,7 @@ public class Manager : MonoBehaviour
 
         //destroy the blue tank
         AudioManager.Instance.PlaySound("player/destroyeffect");
+        AudioManager.Instance.StopLoop();
         GameObject.Destroy(activeBlueTank);
         Vector3 temp = activeBlueTank.transform.position;
 
@@ -397,6 +398,7 @@ public class Manager : MonoBehaviour
         //blueAdvance = true;
 
         Vector3 temp = activeRedTank.transform.position;
+        AudioManager.Instance.StopLoop();
         GameObject.Destroy(activeRedTank);
 
         //destroy the red tank

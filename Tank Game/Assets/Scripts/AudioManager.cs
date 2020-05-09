@@ -38,18 +38,42 @@ public class AudioManager : Singleton<AudioManager>
         {"player/pickuppowerup", "event:/PlayerEffect/player_pickup_powerup" },
         {"player/movement", "event:/PlayerEffect/player_movement" },
 
+        {"music/UI", "event:/Music/music_UI" },
+        {"music/game", "event:/Music/music_game" },
+
+
 
     };
     // Handle looping
     private bool isLooping = false;
     private EventInstance loopInstance;
     private EventInstance instance;
+    private EventInstance manyMusic;
+
+
 
     private Bus bus;
 
     [SerializeField] private float masterVolume = 3f;
 
     #endregion
+
+    public void PlayMusicLoop(string key)
+    {
+        manyMusic = FMODUnity.RuntimeManager.CreateInstance(dict_eventPaths[key]);
+
+        // Set volume level
+        manyMusic.setVolume(masterVolume);
+
+        manyMusic.start();
+    }
+
+    public void StopMusicLoop()
+    {
+        manyMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        manyMusic.release();
+    }
+
 
 
     public void PlaySound(string key)

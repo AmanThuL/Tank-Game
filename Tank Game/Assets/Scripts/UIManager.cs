@@ -87,6 +87,11 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(SceneManager.GetActiveScene().name == "Menu")
+        {
+            AudioManager.Instance.PlayMusicLoop("music/UI");
+        }
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -313,7 +318,6 @@ public class UIManager : MonoBehaviour
 
     public void ToMainMenu()
     {
-        // ================ Play sound - WATCH THIS! CAMERON! ================
         AudioManager.Instance.PlaySound("menu/buttonclick");
         // ===================================================================
 
@@ -410,6 +414,8 @@ public class UIManager : MonoBehaviour
 
     public void Desert()
     {
+        AudioManager.Instance.StopMusicLoop();
+        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.DesertLevel;
         ToSelectedLevel();
@@ -417,6 +423,8 @@ public class UIManager : MonoBehaviour
 
     public void Ice()
     {
+        AudioManager.Instance.StopMusicLoop();
+        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.IceLevel;
         ToSelectedLevel();
@@ -424,6 +432,8 @@ public class UIManager : MonoBehaviour
 
     public void Jungle()
     {
+        AudioManager.Instance.StopMusicLoop();
+        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.JungleLevel;
         ToSelectedLevel();
@@ -431,6 +441,8 @@ public class UIManager : MonoBehaviour
 
     public void Fire()
     {
+        AudioManager.Instance.StopMusicLoop();
+        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.FireLevel;
         ToSelectedLevel();
@@ -438,6 +450,8 @@ public class UIManager : MonoBehaviour
 
     public void Grass()
     {
+        AudioManager.Instance.StopMusicLoop();
+        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.GrassLandsLevel;
         ToSelectedLevel();
