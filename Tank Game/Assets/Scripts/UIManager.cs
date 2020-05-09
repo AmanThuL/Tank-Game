@@ -319,6 +319,7 @@ public class UIManager : MonoBehaviour
     public void ToMainMenu()
     {
         AudioManager.Instance.PlaySound("menu/buttonclick");
+        AudioManager.Instance.StopMusicLoop();
         // ===================================================================
 
         //SceneManager.LoadScene(menuSceneName);
@@ -415,7 +416,6 @@ public class UIManager : MonoBehaviour
     public void Desert()
     {
         AudioManager.Instance.StopMusicLoop();
-        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.DesertLevel;
         ToSelectedLevel();
@@ -424,7 +424,6 @@ public class UIManager : MonoBehaviour
     public void Ice()
     {
         AudioManager.Instance.StopMusicLoop();
-        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.IceLevel;
         ToSelectedLevel();
@@ -433,7 +432,6 @@ public class UIManager : MonoBehaviour
     public void Jungle()
     {
         AudioManager.Instance.StopMusicLoop();
-        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.JungleLevel;
         ToSelectedLevel();
@@ -442,7 +440,6 @@ public class UIManager : MonoBehaviour
     public void Fire()
     {
         AudioManager.Instance.StopMusicLoop();
-        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.FireLevel;
         ToSelectedLevel();
@@ -451,7 +448,6 @@ public class UIManager : MonoBehaviour
     public void Grass()
     {
         AudioManager.Instance.StopMusicLoop();
-        AudioManager.Instance.PlayMusicLoop("music/game");
         AudioManager.Instance.PlaySound("menu/buttonclick");
         GameStats.Instance.selectedLevel = Levels.GrassLandsLevel;
         ToSelectedLevel();

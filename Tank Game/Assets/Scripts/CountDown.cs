@@ -40,7 +40,7 @@ public class CountDown : MonoBehaviour
 
         // count down is finished...
         num.text = "GO!";
-
+        AudioManager.Instance.PlayMusicLoop("music/game");
         yield return new WaitForSeconds(1f);
         GameStats.Instance.isInputEnabled = true;
         gameObject.SetActive(false);
